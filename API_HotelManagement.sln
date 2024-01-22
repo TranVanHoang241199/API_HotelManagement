@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API_HotelManagement", "API_HotelManagement\API_HotelManagement.csproj", "{9FDA1230-BD75-4F06-BB88-66C4F98640D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API_HotelManagement", "API_HotelManagement\API_HotelManagement.csproj", "{9FDA1230-BD75-4F06-BB88-66C4F98640D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API_HotelManagement.Business", "API_HotelManagement.Business\API_HotelManagement.Business.csproj", "{529217A7-F943-4425-8F7F-C97A87AB198B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API_HotelManagement.Business", "API_HotelManagement.Business\API_HotelManagement.Business.csproj", "{529217A7-F943-4425-8F7F-C97A87AB198B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API_HotelManagement.common", "API_HotelManagement.common\API_HotelManagement.common.csproj", "{A89F0782-F117-45A9-AB40-EC2D3282899C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API_HotelManagement.common", "API_HotelManagement.common\API_HotelManagement.common.csproj", "{A89F0782-F117-45A9-AB40-EC2D3282899C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API_HotelManagement.Data", "API_HotelManagement.Data\API_HotelManagement.Data.csproj", "{9D7BFE47-5FD0-4291-8EE2-1CA7502EF95C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API_HotelManagement.Data", "API_HotelManagement.Data\API_HotelManagement.Data.csproj", "{9D7BFE47-5FD0-4291-8EE2-1CA7502EF95C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

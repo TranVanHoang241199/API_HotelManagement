@@ -3,8 +3,8 @@ using System;
 using API_HotelManagement.Data.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -18,91 +18,247 @@ namespace API_HotelManagement.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.15")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("API_HotelManagement.Data.Data.Entity.ht_Test", b =>
+            modelBuilder.Entity("API_HotelManagement.Data.Data.Entitys.ht_Order", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<Guid>("CreateBy")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime?>("CreateDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("CustomerName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("CustomerPhone")
+                        .HasColumnType("text");
 
                     b.Property<Guid>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp without time zone");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("Note")
+                        .HasColumnType("Text");
+
+                    b.Property<Guid?>("RoomId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("TimeEnd")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime?>("TimeStart")
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
-                    b.ToTable("ht_Test");
+                    b.HasIndex("RoomId");
 
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("9d749d28-3405-45f7-8fd1-fdae05a0dea9"),
-                            CreateBy = new Guid("7c67e72e-e773-447f-9f3e-9c3a480be605"),
-                            CreateDate = new DateTime(2024, 1, 17, 13, 54, 15, 754, DateTimeKind.Local).AddTicks(8816),
-                            ModifiedBy = new Guid("7c67e72e-e773-447f-9f3e-9c3a480be605"),
-                            ModifiedDate = new DateTime(2024, 1, 17, 13, 54, 15, 754, DateTimeKind.Local).AddTicks(8837),
-                            Name = "hello 1"
-                        },
-                        new
-                        {
-                            Id = new Guid("801f03d6-5bb6-44b1-9460-9cdf4617aaf9"),
-                            CreateBy = new Guid("7c67e72e-e773-447f-9f3e-9c3a480be605"),
-                            CreateDate = new DateTime(2024, 1, 17, 13, 54, 15, 754, DateTimeKind.Local).AddTicks(8840),
-                            ModifiedBy = new Guid("7c67e72e-e773-447f-9f3e-9c3a480be605"),
-                            ModifiedDate = new DateTime(2024, 1, 17, 13, 54, 15, 754, DateTimeKind.Local).AddTicks(8841),
-                            Name = "hello 2"
-                        });
+                    b.ToTable("ht_Order");
                 });
 
-            modelBuilder.Entity("API_HotelManagement.Data.Data.Entity.ht_User", b =>
+            modelBuilder.Entity("API_HotelManagement.Data.Data.Entitys.ht_OrderDetail", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<Guid>("CreateBy")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime?>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("LastLogin")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<Guid?>("OrderId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("ServiceId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ServiceId");
+
+                    b.ToTable("ht_OrderDetail");
+                });
+
+            modelBuilder.Entity("API_HotelManagement.Data.Data.Entitys.ht_Room", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("CreateBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("CreateDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<int>("FloorNumber")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("ModifiedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("RoomNumber")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ht_Room");
+                });
+
+            modelBuilder.Entity("API_HotelManagement.Data.Data.Entitys.ht_Service", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("CreateBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("CreateDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<Guid>("ModifiedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<double>("Money")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("NameService")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ht_Service");
+                });
+
+            modelBuilder.Entity("API_HotelManagement.Data.Data.Entitys.ht_User", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("BusinessAreas")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<Guid>("CreateBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("CreateDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("FullName")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<Guid>("ModifiedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
+
+                    b.Property<DateTime?>("PasswordUpdatedDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Phone")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<string>("Role")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
-                    b.Property<string>("Username")
+                    b.Property<string>("UserName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("ht_User");
+                    b.ToTable("ht_Users");
+                });
+
+            modelBuilder.Entity("API_HotelManagement.Data.Data.Entitys.ht_Order", b =>
+                {
+                    b.HasOne("API_HotelManagement.Data.Data.Entitys.ht_Room", "Rooms")
+                        .WithMany("Orders")
+                        .HasForeignKey("RoomId");
+
+                    b.Navigation("Rooms");
+                });
+
+            modelBuilder.Entity("API_HotelManagement.Data.Data.Entitys.ht_OrderDetail", b =>
+                {
+                    b.HasOne("API_HotelManagement.Data.Data.Entitys.ht_Order", "Order")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("OrderId");
+
+                    b.HasOne("API_HotelManagement.Data.Data.Entitys.ht_Service", "Service")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("ServiceId");
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Service");
+                });
+
+            modelBuilder.Entity("API_HotelManagement.Data.Data.Entitys.ht_Order", b =>
+                {
+                    b.Navigation("OrderDetails");
+                });
+
+            modelBuilder.Entity("API_HotelManagement.Data.Data.Entitys.ht_Room", b =>
+                {
+                    b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("API_HotelManagement.Data.Data.Entitys.ht_Service", b =>
+                {
+                    b.Navigation("OrderDetails");
                 });
 #pragma warning restore 612, 618
         }

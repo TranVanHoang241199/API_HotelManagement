@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -25,10 +26,36 @@ namespace API_HotelManagement.common.Utils
         {
         }
 
+        //[JsonProperty(Order = 1)]
         public HttpStatusCode Status { get; set; } = HttpStatusCode.OK;
+
         public string Message { get; set; } = "Success";
         //public long TotalTime { get; set; } = 0;
     }
+
+    #region login
+    public class ApiResponseAuth : ApiResponse
+    {
+        public ApiResponseAuth(string accessToken) : base(HttpStatusCode.OK, "Success")
+        {
+            AccessToken = accessToken;
+        }
+
+        public ApiResponseAuth(HttpStatusCode status, string accessToken) : base(status, "OK")
+        {
+            AccessToken = accessToken;
+        }
+
+        public ApiResponseAuth(HttpStatusCode status, string accessToken, string message) : base(status, message)
+        {
+            AccessToken = accessToken;
+        }
+
+        //[JsonProperty(Order = 2)] // cho nằm vt cột 3
+        public string AccessToken { get; set; }
+    }
+    #endregion login
+
 
     #region Get
 

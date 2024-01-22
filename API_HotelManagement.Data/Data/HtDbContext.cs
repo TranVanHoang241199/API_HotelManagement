@@ -1,17 +1,12 @@
-﻿using API_HotelManagement.Data.Data.Entity;
+﻿using API_HotelManagement.Data.Data.Entitys;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace API_HotelManagement.Data.Data
 {
     /// <summary>
-    /// 
+    /// DB context
     /// </summary>
     public class HtDbContext : DbContext
     {
@@ -20,6 +15,7 @@ namespace API_HotelManagement.Data.Data
         public HtDbContext(IConfiguration configuration)
         {
             Configuration = configuration;
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }
 
         /// <summary>
@@ -29,50 +25,40 @@ namespace API_HotelManagement.Data.Data
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             // connect to sql server with connection string from app settings
-            options.UseSqlServer(Configuration.GetConnectionString("WebHotelApiDbManagement"));
+            options.UseNpgsql(Configuration.GetConnectionString("WebHotelApiDbManagement_PostreSql"));
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // Foreign key {N Order - 1 Rooms}
+            modelBuilder.Entity<ht_Order>()
+                .HasOne(o => o.Rooms)
+                .WithMany(c => c.Orders)
+                .HasForeignKey(o => o.RoomId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            // Foreign key {N OrderDetail - 1 Order}
+            modelBuilder.Entity<ht_OrderDetail>()
+                .HasOne(od => od.Order)
+                .WithMany(o => o.OrderDetails)
+                .HasForeignKey(od => od.OrderId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            // Foreign key {N OrderDetail - 1 Service}
+            modelBuilder.Entity<ht_OrderDetail>()
+                .HasOne(od => od.Service)
+                .WithMany(s => s.OrderDetails)
+                .HasForeignKey(od => od.ServiceId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
         }
 
         /// <summary>
         /// Test Table
         /// </summary>
-        public DbSet<ht_Test> ht_Test { get; set; }
-        public DbSet<ht_User> ht_User { get; set; }
-
-        /// <summary>
-        /// Khởi tạo dữ liệu test
-        /// </summary>
-        /// <param name="modelBuilder"></param>
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<ht_Test>().HasData(
-                new ht_Test
-                {
-                    Id = Guid.Parse("9d749d28-3405-45f7-8fd1-fdae05a0dea9"),
-                    Name = "hello 1",
-
-
-
-                    //----------------
-                    CreateBy = Guid.Parse("7c67e72e-e773-447f-9f3e-9c3a480be605"), // người tạo
-                    CreateDate = DateTime.Now, // thời gian tạo
-                    ModifiedBy = Guid.Parse("7c67e72e-e773-447f-9f3e-9c3a480be605"), // người sửa đổi lần cuối
-                    ModifiedDate = DateTime.Now // thời gian sửa đổi lần cuối
-                },
-                new ht_Test
-                {
-                    Id = Guid.Parse("801f03d6-5bb6-44b1-9460-9cdf4617aaf9"),
-                    Name = "hello 2",
-
-
-                    //----------------
-                    CreateBy = Guid.Parse("7c67e72e-e773-447f-9f3e-9c3a480be605"), // người tạo
-                    CreateDate = DateTime.Now, // thời gian tạo
-                    ModifiedBy = Guid.Parse("7c67e72e-e773-447f-9f3e-9c3a480be605"), // người sửa đổi lần cuối
-                    ModifiedDate = DateTime.Now // thời gian sửa đổi lần cuối
-                }
-            );
-
-            base.OnModelCreating(modelBuilder);
-        }
+        public DbSet<ht_User> ht_Users { get; set; }
+        public DbSet<ht_Room> ht_Rooms { get; set; }
+        public DbSet<ht_Order> ht_Orders { get; set; }
+        public DbSet<ht_OrderDetail> ht_OrderDetails { get; set; }
+        public DbSet<ht_Service> ht_Services { get; set; }
     }
 }

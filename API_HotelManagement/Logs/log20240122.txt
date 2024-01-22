@@ -1,0 +1,5 @@
+2024-01-22 16:19:20.672 +07:00 [INF] User '230fab29-fb1a-4e3c-adec-db8144cab19d' successfully authenticated.
+2024-01-22 16:19:46.312 +07:00 [INF] User '230fab29-fb1a-4e3c-adec-db8144cab19d' successfully authenticated.
+2024-01-22 16:19:56.775 +07:00 [INF] User '230fab29-fb1a-4e3c-adec-db8144cab19d' successfully authenticated.
+2024-01-22 16:20:12.745 +07:00 [INF] User '230fab29-fb1a-4e3c-adec-db8144cab19d' successfully authenticated.
+2024-01-22 16:21:14.317 +07:00 [INF] User '230fab29-fb1a-4e3c-adec-db8144cab19d' successfully authenticated.
