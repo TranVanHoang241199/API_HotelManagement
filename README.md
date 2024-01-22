@@ -9,7 +9,7 @@
 
 - Tải dự án từ link git bằng "git clone" hoặc file zip
 
-> git clone https://github.com/DHY-SOLUTIONS/hotel-api.git
+> git clone https://github.com/TranVanHoang241199/API_HotelManagement.git
 
 ### CẤU HÌNH KẾT NỐI DATABASE
 
