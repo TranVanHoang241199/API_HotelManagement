@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "WqoDcorGgxyCoRlb6Ju/y6x16H4d2AwTc4QVmZ7KPMQ=",
+  "Source": "API_HotelManagement",
+  "BasePath": "_content/API_HotelManagement",
+  "Mode": "Default",
+  "ManifestType": "Publish",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

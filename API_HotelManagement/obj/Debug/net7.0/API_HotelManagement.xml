@@ -1,0 +1,218 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>API_HotelManagement</name>
+    </assembly>
+    <members>
+        <member name="T:API_HotelManagement.Controllers.AuthController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:API_HotelManagement.Controllers.AuthController.#ctor(API_HotelManagement.Business.Services.Auths.IAuthHandler)">
+            <summary>
+            
+            </summary>
+            <param name="authHandler"></param>
+        </member>
+        <member name="M:API_HotelManagement.Controllers.AuthController.Login(API_HotelManagement.Business.Services.Auths.LoginView)">
+            <summary>
+            Login user
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_HotelManagement.Controllers.AuthController.Register(API_HotelManagement.Business.Services.Auths.UserUpdateCreateModel)">
+            <summary>
+            register for user
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_HotelManagement.Controllers.AuthController.ChangePass(API_HotelManagement.Business.Services.Auths.ChangePasswordModel)">
+            <summary>
+            change Password for user
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_HotelManagement.Controllers.AuthController.UpdateInformation(API_HotelManagement.Business.Services.Auths.UserUpdateCreateModel)">
+            <summary>
+            Update information for User
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_HotelManagement.Controllers.AuthController.RecoverAccount(System.Guid)">
+            <summary>
+            Recover disabled account
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_HotelManagement.Controllers.AuthController.RemoveAccount">
+            <summary>
+            delete account for user
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API_HotelManagement.Controllers.AuthController.Me">
+            <summary>
+            Get user login information
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:API_HotelManagement.Controllers.OrderController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:API_HotelManagement.Controllers.OrderController.#ctor(API_HotelManagement.Business.Services.Orders.IOrderHandler)">
+            <summary>
+            
+            </summary>
+            <param name="OrderService"></param>
+        </member>
+        <member name="M:API_HotelManagement.Controllers.OrderController.GetAllOrders(System.String,System.Int32,System.Int32)">
+            <summary>
+            show all orders
+            </summary>
+            <param name="search"></param>
+            <param name="currentPage">Page hiển thị hiện tại </param>
+            <param name="pageSize">Kích thước lỗi trang</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_HotelManagement.Controllers.OrderController.GetOrderById(System.Guid)">
+            <summary>
+            show order based on id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_HotelManagement.Controllers.OrderController.CreateOrder(API_HotelManagement.Business.Services.Orders.OrderCreateUpdateModel)">
+            <summary>
+            Create a new order
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_HotelManagement.Controllers.OrderController.UpdateOrder(System.Guid,API_HotelManagement.Business.Services.Orders.OrderCreateUpdateModel)">
+            <summary>
+            Edit order information
+            </summary>
+            <param name="id"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_HotelManagement.Controllers.OrderController.DeleteOrder(System.Guid)">
+            <summary>
+            delete order
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:API_HotelManagement.Controllers.RoomController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:API_HotelManagement.Controllers.RoomController.#ctor(API_HotelManagement.Business.Services.Rooms.IRoomHandler)">
+            <summary>
+            
+            </summary>
+            <param name="roomService"></param>
+        </member>
+        <member name="M:API_HotelManagement.Controllers.RoomController.GetAllRooms(System.String,System.Int32,System.Int32)">
+            <summary>
+            show all rooms
+            </summary>
+            <param name="search"></param>
+            <param name="currentPage">Page hiển thị hiện tại </param>
+            <param name="pageSize">Kích thước lỗi trang</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_HotelManagement.Controllers.RoomController.GetRoomById(System.Guid)">
+            <summary>
+            show room based on id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_HotelManagement.Controllers.RoomController.CreateRoom(API_HotelManagement.Business.Services.Rooms.RoomCreateUpdateModel)">
+            <summary>
+            Create a new room
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_HotelManagement.Controllers.RoomController.UpdateRoom(System.Guid,API_HotelManagement.Business.Services.Rooms.RoomCreateUpdateModel)">
+            <summary>
+            Edit room information
+            </summary>
+            <param name="id"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_HotelManagement.Controllers.RoomController.DeleteRoom(System.Guid)">
+            <summary>
+            delete room
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:API_HotelManagement.Controllers.ServiceController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:API_HotelManagement.Controllers.ServiceController.#ctor(API_HotelManagement.Business.Services.Services.IServiceHanlder)">
+            <summary>
+            
+            </summary>
+            <param name="ServiceService"></param>
+        </member>
+        <member name="M:API_HotelManagement.Controllers.ServiceController.GetAllServices(System.String,System.Int32,System.Int32)">
+            <summary>
+            show all services
+            </summary>
+            <param name="search"></param>
+            <param name="currentPage">Page hiển thị hiện tại </param>
+            <param name="pageSize">Kích thước lỗi trang</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_HotelManagement.Controllers.ServiceController.GetServiceById(System.Guid)">
+            <summary>
+            show service based on id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_HotelManagement.Controllers.ServiceController.CreateService(API_HotelManagement.Business.Services.Services.ServiceCreateUpdateModel)">
+            <summary>
+            Create a new service
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_HotelManagement.Controllers.ServiceController.UpdateService(System.Guid,API_HotelManagement.Business.Services.Services.ServiceCreateUpdateModel)">
+            <summary>
+            Edit service information
+            </summary>
+            <param name="id"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_HotelManagement.Controllers.ServiceController.DeleteService(System.Guid)">
+            <summary>
+            delete service
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:API_HotelManagement.Controllers.TestController">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

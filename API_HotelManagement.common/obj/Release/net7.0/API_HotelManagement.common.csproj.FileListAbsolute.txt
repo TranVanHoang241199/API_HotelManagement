@@ -1,0 +1,12 @@
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.common\bin\Release\net7.0\API_HotelManagement.common.deps.json
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.common\bin\Release\net7.0\API_HotelManagement.common.dll
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.common\bin\Release\net7.0\API_HotelManagement.common.pdb
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.common\obj\Release\net7.0\API_HotelManagement.common.csproj.AssemblyReference.cache
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.common\obj\Release\net7.0\API_HotelManagement.common.GeneratedMSBuildEditorConfig.editorconfig
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.common\obj\Release\net7.0\API_HotelManagement.common.AssemblyInfoInputs.cache
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.common\obj\Release\net7.0\API_HotelManagement.common.AssemblyInfo.cs
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.common\obj\Release\net7.0\API_HotelManagement.common.csproj.CoreCompileInputs.cache
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.common\obj\Release\net7.0\API_HotelManagement.common.dll
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.common\obj\Release\net7.0\refint\API_HotelManagement.common.dll
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.common\obj\Release\net7.0\API_HotelManagement.common.pdb
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.common\obj\Release\net7.0\ref\API_HotelManagement.common.dll

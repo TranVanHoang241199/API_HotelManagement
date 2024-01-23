@@ -46,7 +46,7 @@ namespace API_HotelManagement.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Authorize, HttpGet(), Route("GetRoomById{id}")]
+        [Authorize, HttpGet(), Route("GetRoomById/{id}")]
         [ProducesResponseType(typeof(ApiResponse<RoomViewModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetRoomById(Guid id)
         {
@@ -77,7 +77,7 @@ namespace API_HotelManagement.Controllers
         /// <param name="id"></param>
         /// <param name="model"></param>
         /// <returns></returns>
-        [Authorize, HttpPut(), Route("UpdateRoom{id}")]
+        [Authorize, HttpPut(), Route("UpdateRoom/{id}")]
         [ProducesResponseType(typeof(ApiResponse<bool>), StatusCodes.Status200OK)]
         public async Task<IActionResult> UpdateRoom(Guid id, [FromBody] RoomCreateUpdateModel model)
         {
@@ -92,7 +92,7 @@ namespace API_HotelManagement.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Authorize, HttpDelete(), Route("DeleteRoom{id}")]
+        [Authorize, HttpDelete(), Route("DeleteRoom/{id}")]
         [ProducesResponseType(typeof(ApiResponse<bool>), StatusCodes.Status200OK)]
         public async Task<IActionResult> DeleteRoom(Guid id)
         {

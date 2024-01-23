@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\publish\APIHotelManagement</_PublishTargetUrl>
+    <History>True|2024-01-23T00:06:00.7010469Z;True|2024-01-23T06:48:36.0627933+07:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="WebHotelApiDbManagement_SqlServer">
+      <Value>Data Source=.\SQLEXPRESS%3b Initial Catalog=DBHotelManagement%3b User Id=acc_hotelmanagement%3b Password=HoangTV%40123%3b TrustServerCertificate=True%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>

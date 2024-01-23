@@ -1,4 +1,6 @@
 ﻿using API_HotelManagement.common.Helps;
+using API_HotelManagement.Data.Data.Entitys;
+using AutoMapper;
 using System.ComponentModel.DataAnnotations;
 
 namespace API_HotelManagement.Business.Services.Auths
@@ -20,19 +22,22 @@ namespace API_HotelManagement.Business.Services.Auths
     /// </summary>
     public class UserViewModel
     {
+        public Guid Id { get; set; }
         public string? UserName { get; set; }
         public string? Email { get; set; }
         public string? FullName { get; set; }
         public string? Phone { get; set; }
         public EBusinessAreas BusinessAreas { get; set; }
         public bool IsDeleted { get; set; }
+        public string? Role { get; set; }
         public DateTime? CreateDate { get; set; }
         public DateTime? PasswordUpdatedDate { get; set; }
         public DateTime? DeletedDate { get; set; }
-        public string? Role { get; set; }
     }
 
-
+    /// <summary>
+    /// 
+    /// </summary>
     public class UserUpdateCreateModel
     {
         public string? UserName { get; set; }
@@ -46,6 +51,9 @@ namespace API_HotelManagement.Business.Services.Auths
 
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class ChangePasswordModel
     {
         [Required(ErrorMessage = "required to enter current Password")]
@@ -54,6 +62,18 @@ namespace API_HotelManagement.Business.Services.Auths
         public string? NewPassword { get; set; }
         [Required(ErrorMessage = "required to enter Confirm Password")]
         public string? ConfirmNewPassword { get; set; }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public class UserAutoMapper : Profile
+    {
+        public UserAutoMapper()
+        {
+            CreateMap<ht_User, UserViewModel>(); // Auto map ht_User to UserViewModel
+            CreateMap<UserUpdateCreateModel, ht_User>(); // Auto map ht_User to UserViewModel
+        }
     }
 
 }

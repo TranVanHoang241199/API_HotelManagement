@@ -3,6 +3,7 @@ using API_HotelManagement.common.Helps.Extensions;
 using API_HotelManagement.common.Utils;
 using API_HotelManagement.Data.Data;
 using API_HotelManagement.Data.Data.Entitys;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -15,18 +16,24 @@ using System.Text;
 
 namespace API_HotelManagement.Business.Services.Auths
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class AuthHandler : IAuthHandler
     {
 
         private readonly HtDbContext _context;
         private readonly IConfiguration _config;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IMapper _mapper;
 
-        public AuthHandler(HtDbContext context, IConfiguration config, IHttpContextAccessor httpContextAccessor)
+        
+        public AuthHandler(HtDbContext context, IConfiguration config, IHttpContextAccessor httpContextAccessor, IMapper mapper)
         {
             _context = context;
             _config = config;
             _httpContextAccessor = httpContextAccessor;
+            _mapper  = mapper;
         }
 
         /// <summary>
@@ -171,22 +178,7 @@ namespace API_HotelManagement.Business.Services.Auths
                     return new ApiResponseError(HttpStatusCode.NotFound, "User not found.");
                 }
 
-                var token = Authenticate("vanhoangtran241199@gmail.com", "HoangTV@123");
-
-                // Tạo đối tượng UserAccountViewModel
-                var userToAccount = new UserViewModel
-                {
-                    UserName = userEntity.UserName,
-                    Email = userEntity.Email,
-                    FullName = userEntity.FullName,
-                    BusinessAreas = userEntity.BusinessAreas,
-                    Phone = userEntity.Phone,
-                    
-                    PasswordUpdatedDate = userEntity.PasswordUpdatedDate,
-                    DeletedDate = userEntity.DeletedDate,
-                    IsDeleted = userEntity.IsDeleted,
-                    Role = userEntity.Role.ToString(),
-                };
+                var userToAccount = _mapper.Map<UserViewModel>(userEntity);
 
                 return new ApiResponse<UserViewModel>(userToAccount);
             }
@@ -241,7 +233,7 @@ namespace API_HotelManagement.Business.Services.Auths
                     Password = BCrypt.Net.BCrypt.HashPassword(request.Password), // Mã hóa mật khẩu trước khi lưu vào cơ sở dữ liệu
                     Phone = request.Phone,
                     FullName = request.FullName,
-                    BusinessAreas = request.BusinessAreas,
+                    BusinessAreas = request.BusinessAreas, 
                     IsDeleted = false,
                     Role = request.Role,
                     UserName = request.UserName,
@@ -254,17 +246,9 @@ namespace API_HotelManagement.Business.Services.Auths
                 _context.ht_Users.Add(newUser);
                 await _context.SaveChangesAsync();
 
-                return new ApiResponse<UserViewModel>(new UserViewModel
-                {
-                    Email = newUser.Email,
-                    FullName = newUser.FullName,
-                    Phone = newUser.Phone,
-                    BusinessAreas = newUser.BusinessAreas,
-                    IsDeleted = newUser.IsDeleted,
-                    CreateDate = newUser.CreateDate,
-                    Role = newUser.Role,
-                    UserName = newUser.UserName,
-                });
+                var userToAccount = _mapper.Map<UserViewModel>(newUser);
+
+                return new ApiResponse<UserViewModel>(userToAccount);
             }
             catch (Exception ex)
             {
@@ -285,8 +269,6 @@ namespace API_HotelManagement.Business.Services.Auths
             {
                 // Lấy thông tin người dùng từ context hoặc token
                 var userIdClaim = user.FindFirst("UserId");
-
-
                 if (userIdClaim == null || !Guid.TryParse(userIdClaim.Value, out var userId))
                 {
                     return new ApiResponseError(HttpStatusCode.BadRequest, "Invalid user token.");
@@ -299,14 +281,9 @@ namespace API_HotelManagement.Business.Services.Auths
                     return new ApiResponseError(HttpStatusCode.NotFound, "User not found.");
                 }
 
-                // Kiểm tra quyền trước khi xóa tài khoản
-                if (!user.IsInRole("Admin") && userId != userEntity.Id)
-                {
-                    return new ApiResponseError(HttpStatusCode.Forbidden, "You don't have permission to delete this account.");
-                }
+                userEntity.IsDeleted = true;
+                userEntity.DeletedDate = DateTime.UtcNow;
 
-                // Xóa tài khoản khỏi cơ sở dữ liệu
-                _context.ht_Users.Remove(userEntity);
                 await _context.SaveChangesAsync();
 
                 return new ApiResponse("Account removed successfully.");
@@ -415,6 +392,12 @@ namespace API_HotelManagement.Business.Services.Auths
             }
         }
 
+        /// <summary>
+        /// Cập nhật thông tin User
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="request"></param>
+        /// <returns></returns>
         public async Task<ApiResponse> UpdateInformation(ClaimsPrincipal user, UserUpdateCreateModel request)
         {
             try

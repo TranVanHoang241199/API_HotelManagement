@@ -1,14 +1,25 @@
-﻿using API_HotelManagement.common.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using API_HotelManagement.Business.Services.Rooms;
+using API_HotelManagement.Business.Services.Services;
+using API_HotelManagement.common.Utils;
+using API_HotelManagement.Data.Data;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Serilog;
+using System.Net;
 
 namespace API_HotelManagement.Business.Services.Orders
 {
     public class OrderHandler : IOrderHandler
     {
+        private readonly HtDbContext _context;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public OrderHandler(HtDbContext context, IHttpContextAccessor httpContextAccessor)
+        {
+            _context = context;
+            _httpContextAccessor = httpContextAccessor;
+        }
+
         public Task<ApiResponse> CreateOrder(OrderCreateUpdateModel model)
         {
             throw new NotImplementedException();
@@ -19,7 +30,7 @@ namespace API_HotelManagement.Business.Services.Orders
             throw new NotImplementedException();
         }
 
-        public Task<ApiResponse> GetAllOrders(string search = "", int currentPage = 1, int pageSize = 1)
+        public Task<ApiResponse> GetAllOrders(string search = "", int currentPage = 1, int pageSize = 10)
         {
             throw new NotImplementedException();
         }

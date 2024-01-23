@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using API_HotelManagement.common.Helps;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace API_HotelManagement.Data.Data.Entitys
@@ -10,22 +11,30 @@ namespace API_HotelManagement.Data.Data.Entitys
     public class ht_Room : EntityBase
     {
         /// <summary>
-        /// 
+        /// Tên phòng
         /// </summary>
         [MaxLength(100)]
-        public string? RoomNumber { get; set; }
+        public string? RoomName { get; set; }
         /// <summary>
-        /// 
+        /// Số tầng
         /// </summary>
         public int FloorNumber { get; set; }
         /// <summary>
-        /// 
+        /// Giá phòng
         /// </summary>
-        public int Status { get; set; }
+        public decimal Price { get; set; }
         /// <summary>
-        /// 
+        /// Trạng thái hoạt động
+        /// 0 = Active : đang hoạt động
+        /// 1 = Stop : đang có khách 
+        /// 2 = End : ngừng kinh doanh
+        /// 3 = maintenance : đang bảo trì
         /// </summary>
-        public ICollection<ht_Order>? Orders { get; set; }
+        public EStatusRoom Status { get; set; }
 
+        /// <summary>
+        /// Dánh sách list OrderRoomDetail
+        /// </summary>
+        public ICollection<ht_OrderRoomDetail>? OrderRoomDetails { get; set; }
     }
 }

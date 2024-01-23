@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,8 +13,8 @@ namespace API_HotelManagement.Data.Data.Entitys
         /// <summary>
         /// ID 
         /// </summary>
+        [Key]
         public Guid Id { get; set; }
-
         /// <summary>
         /// Thời gian tạo
         /// </summary>

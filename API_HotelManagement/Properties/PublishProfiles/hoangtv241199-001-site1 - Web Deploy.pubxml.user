@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword />
+    <History>True|2024-01-23T10:03:47.7841422Z;True|2024-01-23T16:44:28.9884909+07:00;False|2024-01-23T16:43:46.9254028+07:00;True|2024-01-23T16:39:59.3279600+07:00;True|2024-01-23T15:40:11.8689619+07:00;True|2024-01-23T08:14:50.4506049+07:00;True|2024-01-23T08:12:28.5145307+07:00;False|2024-01-23T08:10:08.3288599+07:00;False|2024-01-23T08:09:12.2774549+07:00;True|2024-01-23T07:58:36.3682336+07:00;True|2024-01-23T07:35:05.4598750+07:00;True|2024-01-23T07:32:23.5469781+07:00;True|2024-01-23T07:27:09.2940000+07:00;True|2024-01-23T07:19:56.3929850+07:00;True|2024-01-23T06:41:20.6917240+07:00;True|2024-01-23T06:36:48.9510434+07:00;True|2024-01-23T06:31:38.0549059+07:00;True|2024-01-23T06:26:33.2237087+07:00;False|2024-01-23T06:25:45.4591209+07:00;True|2024-01-23T06:20:53.9802709+07:00;True|2024-01-23T06:13:21.2640802+07:00;True|2024-01-23T06:05:06.9318052+07:00;False|2024-01-23T06:02:27.7801554+07:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="WebHotelApiDbManagement_SqlServer_Server">
+      <Value>Data Source=SQL8005.site4now.net%3bInitial Catalog=db_aa4628_dbhotelmanagement%3bUser Id=db_aa4628_dbhotelmanagement_admin%3bPassword=HoangTV%40123%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>

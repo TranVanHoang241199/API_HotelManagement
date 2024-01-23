@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "ngHchijGh+nxA0PnaC/E8Pc4JJNxbucWdGta4THmJfpHHprWsUpCYw6udFpO45eWJPLDVWYtFX6lMPK3VxEXxA==",
+  "dgSpecHash": "fnS9GkJ1Mu2io+pVzlieHkuIFMDeqdPOuImpfc8u2SLH9rUouaFgFfYKKFgPzdFKzeVlQlSflULJ/raIUMhCGw==",
   "success": true,
   "projectFilePath": "D:\\developer\\C#_dotnet\\Project_DHY\\API_HotelManagement\\API_HotelManagement\\API_HotelManagement.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\vanho\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\vanho\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\vanho\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\vanho\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
     "C:\\Users\\vanho\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
@@ -37,6 +38,7 @@
     "C:\\Users\\vanho\\.nuget\\packages\\microsoft.entityframeworkcore.design\\7.0.15\\microsoft.entityframeworkcore.design.7.0.15.nupkg.sha512",
     "C:\\Users\\vanho\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\7.0.15\\microsoft.entityframeworkcore.relational.7.0.15.nupkg.sha512",
     "C:\\Users\\vanho\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\7.0.15\\microsoft.entityframeworkcore.sqlserver.7.0.15.nupkg.sha512",
+    "C:\\Users\\vanho\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\7.0.15\\microsoft.entityframeworkcore.tools.7.0.15.nupkg.sha512",
     "C:\\Users\\vanho\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\vanho\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\7.0.0\\microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\vanho\\.nuget\\packages\\microsoft.extensions.caching.memory\\7.0.0\\microsoft.extensions.caching.memory.7.0.0.nupkg.sha512",

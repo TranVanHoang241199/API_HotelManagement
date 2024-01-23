@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-
 namespace API_HotelManagement.Data.Data
 {
     /// <summary>
@@ -12,9 +11,14 @@ namespace API_HotelManagement.Data.Data
     {
         protected readonly IConfiguration Configuration;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="configuration"></param>
         public HtDbContext(IConfiguration configuration)
         {
             Configuration = configuration;
+            // 
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }
 
@@ -25,31 +29,54 @@ namespace API_HotelManagement.Data.Data
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             // connect to sql server with connection string from app settings
-            options.UseNpgsql(Configuration.GetConnectionString("WebHotelApiDbManagement_PostreSql"));
+            //options.UseSqlServer(Configuration.GetConnectionString("WebHotelApiDbManagement_SqlServer"));
+            options.UseSqlServer(Configuration.GetConnectionString("WebHotelApiDbManagement_SqlServer_Server"));
+            //options.UseNpgsql(Configuration.GetConnectionString("WebHotelApiDbManagement_PostreSql"));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Foreign key {N Order - 1 Rooms}
-            modelBuilder.Entity<ht_Order>()
-                .HasOne(o => o.Rooms)
-                .WithMany(c => c.Orders)
-                .HasForeignKey(o => o.RoomId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+            #region đặt giới hạn cho colum
+            // decimal(18, 2) : 18 chữ số tổng cùng với 2 chữ số sau dấu thập phân.
+            modelBuilder.Entity<ht_Service>()
+           .Property(s => s.Price)
+           .HasPrecision(18, 2);
 
-            // Foreign key {N OrderDetail - 1 Order}
-            modelBuilder.Entity<ht_OrderDetail>()
+            // decimal(18, 2) : 18 chữ số tổng cùng với 2 chữ số sau dấu thập phân.
+            modelBuilder.Entity<ht_Room>()
+           .Property(s => s.Price)
+           .HasPrecision(18, 2);
+            #endregion đặt giới hạn cho colum
+
+            #region Nối bản
+            // Foreign key {N OrderRoomDetail - 1 Order}
+            modelBuilder.Entity<ht_OrderRoomDetail>()
                 .HasOne(od => od.Order)
-                .WithMany(o => o.OrderDetails)
+                .WithMany(o => o.OrderRoomDetails)
                 .HasForeignKey(od => od.OrderId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
-            // Foreign key {N OrderDetail - 1 Service}
-            modelBuilder.Entity<ht_OrderDetail>()
+            // Foreign key {N OrderRoomDetail - 1 Service}
+            modelBuilder.Entity<ht_OrderRoomDetail>()
+                .HasOne(od => od.Room)
+                .WithMany(s => s.OrderRoomDetails)
+                .HasForeignKey(od => od.RoomId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            // Foreign key {N OrderServiceDetail - 1 Order}
+            modelBuilder.Entity<ht_OrderServiceDetail>()
+                .HasOne(od => od.Order)
+                .WithMany(o => o.OrderServiceDetails)
+                .HasForeignKey(od => od.OrderId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            // Foreign key {N OrderServiceDetail - 1 Service}
+            modelBuilder.Entity<ht_OrderServiceDetail>()
                 .HasOne(od => od.Service)
-                .WithMany(s => s.OrderDetails)
+                .WithMany(s => s.OrderServiceDetails)
                 .HasForeignKey(od => od.ServiceId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
+            #endregion Nối bản
         }
 
         /// <summary>
@@ -58,7 +85,8 @@ namespace API_HotelManagement.Data.Data
         public DbSet<ht_User> ht_Users { get; set; }
         public DbSet<ht_Room> ht_Rooms { get; set; }
         public DbSet<ht_Order> ht_Orders { get; set; }
-        public DbSet<ht_OrderDetail> ht_OrderDetails { get; set; }
+        public DbSet<ht_OrderServiceDetail> ht_OrderServiceDetails { get; set; }
+        public DbSet<ht_OrderRoomDetail> ht_OrderRoomDetails { get; set; }
         public DbSet<ht_Service> ht_Services { get; set; }
     }
 }

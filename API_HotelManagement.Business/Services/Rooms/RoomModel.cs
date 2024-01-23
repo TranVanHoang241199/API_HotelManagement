@@ -1,29 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using API_HotelManagement.common.Helps;
+using API_HotelManagement.common.Helps.HelpBusiness;
+using API_HotelManagement.Data.Data.Entitys;
+using AutoMapper;
 
 namespace API_HotelManagement.Business.Services.Rooms
 {
-    public class RoomViewModel
-    {
-        public Guid Id { get; set; }
-        public string? RoomNumber { get; set; }
-        public int FloorNumber { get; set; }
-        public int Status { get; set; }
 
-        //-----------
-        public DateTime? CreateDate { get; set; }
-        public Guid CreateBy { get; set; }
-        public DateTime? ModifiedDate { get; set; }
-        public Guid ModifiedBy { get; set; }
+    public class RoomViewModel : BaseViewModel
+    {
+        public string? RoomName { get; set; }
+        public int FloorNumber { get; set; }
+        public decimal Price { get; set; }
+        public EStatusRoom Status { get; set; }
     }
 
     public class RoomCreateUpdateModel
     {
-        public string? RoomNumber { get; set; }
+        public string? RoomName { get; set; }
         public int FloorNumber { get; set; }
-        public int Status { get; set; }
+        public decimal Price { get; set; }
+        public EStatusRoom Status { get; set; }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public class RoomAutoMapper : Profile
+    {
+        public RoomAutoMapper()
+        {
+            CreateMap<ht_Room, RoomViewModel>(); // Auto map ht_Room to RoomViewModel
+            //CreateMap<RoomCreateUpdateModel, ht_Room>(); // Auto map RoomCreateUpdateModel to ht_Room
+        }
     }
 }

@@ -12,7 +12,7 @@ namespace API_HotelManagement.Controllers
     /// 
     /// </summary>
     //[ApiExplorerSettings(GroupName = "Auths")]
-    [Route("api/v1/Auth")]
+    [Route("api/v1/auth")]
     [AllowAnonymous]
     [ApiController]
     public class AuthController : ControllerBase
@@ -92,7 +92,7 @@ namespace API_HotelManagement.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Authorize(Roles = AppRole.Admin), HttpPut(), Route("recover-account{id}")]
+        [Authorize(Roles = AppRole.Admin), HttpPut(), Route("recover-account/{id}")]
         [ProducesResponseType(typeof(ApiResponse<UserViewModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> RecoverAccount(Guid id)
         {

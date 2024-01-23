@@ -1,28 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using API_HotelManagement.Business.Services.Auths;
+using API_HotelManagement.common.Helps;
+using API_HotelManagement.common.Helps.HelpBusiness;
+using API_HotelManagement.Data.Data.Entitys;
+using AutoMapper;
 
 namespace API_HotelManagement.Business.Services.Services
 {
-    public class ServiceViewModel
+    public class ServiceViewModel : BaseViewModel
     {
-        public Guid Id { get; set; }
-        public string? NameService { get; set; }
-        public double Money { get; set; }
-
-        //-----------
-        //-----------
-        public DateTime? CreateDate { get; set; }
-        public Guid CreateBy { get; set; }
-        public DateTime? ModifiedDate { get; set; }
-        public Guid ModifiedBy { get; set; }
+        public string? ServiceName { get; set; }
+        public decimal Price { get; set; }
+        public int Quantity { get; set; }
+        public EStatusService Status { get; set; }
     }
 
     public class ServiceCreateUpdateModel
     {
-        public string? NameService { get; set; }
-        public double Money { get; set; }
+        public string? ServiceName { get; set; }
+        public decimal Price { get; set; }
+        public int Quantity { get; set; }
+        public EStatusService Status { get; set; }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public class ServiceAutoMapper : Profile
+    {
+        public ServiceAutoMapper()
+        {
+            CreateMap<ht_Service, ServiceViewModel>(); // Auto map ht_Service to ServiceViewModel
+            //CreateMap<ServiceCreateUpdateModel, ht_User>(); // Auto map ServiceCreateUpdateModel to ht_User
+        }
     }
 }

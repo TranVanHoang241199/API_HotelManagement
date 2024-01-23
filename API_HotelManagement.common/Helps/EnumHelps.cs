@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace API_HotelManagement.common.Helps
+﻿namespace API_HotelManagement.common.Helps
 {
+    /// <summary>
+    /// Hỗ trợ cho 
+    /// </summary>
     public enum EBusinessAreas
     {
         Male,
@@ -13,6 +10,9 @@ namespace API_HotelManagement.common.Helps
         Other
     }
 
+    /// <summary>
+    /// Quyền {Chưa sử dụng}
+    /// </summary>
     public enum ERole
     {
         Adminstrator,
@@ -21,5 +21,26 @@ namespace API_HotelManagement.common.Helps
         Accountant,
         HR,
         Warehouse,
+    }
+
+    /// <summary>
+    /// Hỗ trợ cho trạng thái dịch vụ
+    /// </summary>
+    public enum EStatusService
+    {
+        Active,
+        End,
+        maintenance
+    }
+
+    /// <summary>
+    /// Hỗ trợ trạng thái phòng
+    /// </summary>
+    public enum EStatusRoom
+    {
+        Active,
+        Stop,
+        End,
+        maintenance
     }
 }

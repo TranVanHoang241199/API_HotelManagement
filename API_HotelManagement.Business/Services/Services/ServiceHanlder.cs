@@ -6,17 +6,22 @@ using System.Net;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using API_HotelManagement.common.Helps.Extensions;
+using System.Runtime.ConstrainedExecution;
+using AutoMapper;
+using API_HotelManagement.Business.Services.Rooms;
 
 namespace API_HotelManagement.Business.Services.Services
 {
     public class ServiceHanlder : IServiceHanlder
     {
         private readonly HtDbContext _context;
+        private readonly IMapper _mapper;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public ServiceHanlder(HtDbContext context, IHttpContextAccessor httpContextAccessor)
+        public ServiceHanlder(HtDbContext context, IMapper mapper, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
+            _mapper = mapper;
             _httpContextAccessor = httpContextAccessor;
         }
 
@@ -35,7 +40,7 @@ namespace API_HotelManagement.Business.Services.Services
                     return new ApiResponseError(HttpStatusCode.NotFound, "No information is transmitted.");
                 }
 
-                var queryService = _context.ht_Services.FirstOrDefault(o => o.NameService.Equals(model.NameService.Trim()));
+                var queryService = _context.ht_Services.FirstOrDefault(o => o.ServiceName.Equals(model.ServiceName.Trim()));
 
                 if (queryService != null)
                 {
@@ -46,8 +51,10 @@ namespace API_HotelManagement.Business.Services.Services
                 var entity = new ht_Service
                 {
                     Id = Guid.NewGuid(),
-                    NameService = model.NameService,
-                    Money = model.Money,
+                    ServiceName = model.ServiceName,
+                    Price = model.Price,
+                    Quantity = model.Quantity,
+                    Status = model.Status,
 
                     //---------
                     CreateDate = DateTime.UtcNow,
@@ -60,14 +67,7 @@ namespace API_HotelManagement.Business.Services.Services
                 // Lưu thay đổi vào database
                 await _context.SaveChangesAsync();
 
-                var result = new ServiceViewModel
-                {
-                    Id = entity.Id,
-                    NameService = model.NameService,
-                    Money = model.Money,
-                    CreateDate = entity.CreateDate,
-                    CreateBy = entity.CreateBy,
-                };
+                var result = _mapper.Map<ServiceViewModel>(entity);
 
                 // Trả về một ApiResponseObject với dữ liệu của model sau khi tạo
                 return new ApiResponseObject<ServiceViewModel>(result);
@@ -124,7 +124,7 @@ namespace API_HotelManagement.Business.Services.Services
                 // Áp dụng bộ lọc nếu có
                 if (!string.IsNullOrEmpty(search))
                 {
-                    query = query.Where(o => o.NameService.Contains(search.Trim()));
+                    query = query.Where(o => o.ServiceName.Contains(search.Trim()));
                 }
 
                 // Lấy tổng số lượng phần tử
@@ -137,16 +137,7 @@ namespace API_HotelManagement.Business.Services.Services
                     .OrderBy(o => o.CreateDate)
                     .ToListAsync();
 
-                var result = data.Select(o => new ServiceViewModel
-                {
-                    Id = o.Id,
-                    NameService = o.NameService,
-                    Money = o.Money,
-                    CreateDate = o.CreateDate,
-                    CreateBy = o.CreateBy,
-                    ModifiedBy = o.ModifiedBy,
-                    ModifiedDate = o.ModifiedDate,
-                }).ToList();
+                var result = _mapper.Map<List<ServiceViewModel>>(data).ToList();
 
                 return new ApiResponsePagination<ServiceViewModel>(result, totalItems, currentPage, pageSize);
             }
@@ -172,8 +163,11 @@ namespace API_HotelManagement.Business.Services.Services
                     .Select(test => new ServiceViewModel
                     {
                         Id = test.Id,
-                        Money = test.Money,
-                        NameService = test.NameService,
+                        Price = test.Price,
+                        ServiceName = test.ServiceName,
+                        Status = test.Status,
+                        Quantity = test.Quantity,
+
                         ModifiedDate = test.ModifiedDate,
                         ModifiedBy = test.ModifiedBy,
                         CreateBy = test.CreateBy,
@@ -205,7 +199,7 @@ namespace API_HotelManagement.Business.Services.Services
         {
             try
             {
-                var queryService = _context.ht_Services.FirstOrDefault(o => o.NameService.Equals(model.NameService.Trim()) && o.Id != id);
+                var queryService = _context.ht_Services.FirstOrDefault(o => o.ServiceName.Equals(model.ServiceName.Trim()) && o.Id != id);
 
                 if (queryService != null)
                 {
@@ -216,8 +210,10 @@ namespace API_HotelManagement.Business.Services.Services
 
                 if (serviceToUpdate != null)
                 {
-                    serviceToUpdate.NameService = model.NameService;
-                    serviceToUpdate.Money = model.Money;
+                    serviceToUpdate.ServiceName = model.ServiceName;
+                    serviceToUpdate.Price = model.Price;
+                    serviceToUpdate.Status = model.Status;
+                    serviceToUpdate.Quantity = model.Quantity;
 
                     //-------------
                     serviceToUpdate.ModifiedDate = DateTime.UtcNow;

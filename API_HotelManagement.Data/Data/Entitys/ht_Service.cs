@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using API_HotelManagement.common.Helps;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace API_HotelManagement.Data.Data.Entitys
 {
@@ -6,16 +7,28 @@ namespace API_HotelManagement.Data.Data.Entitys
     public class ht_Service : EntityBase
     {
         /// <summary>
-        /// 
+        /// Tên dịch vụ
         /// </summary>
-        public string? NameService { get; set; }
+        public string? ServiceName { get; set; }
+        /// <summary>
+        /// Giá dịch vụ
+        /// </summary>
+        public decimal Price { get; set; }
+        /// <summary>
+        /// Số lượng dịch vụ
+        /// </summary>
+        public int Quantity { get; set; }
+        /// <summary>
+        /// Trạng thái dịch vụ 
+        /// 0 = Active : đang cung cấp
+        /// 1 = End : hết cung cấp
+        /// 2 = maintenance : đang bảo trì
+        /// </summary>
+        public EStatusService Status { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
-        public double Money { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public ICollection<ht_OrderDetail>? OrderDetails { get; set; }
+        public ICollection<ht_OrderServiceDetail>? OrderServiceDetails { get; set; }
     }
 }

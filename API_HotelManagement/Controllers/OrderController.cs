@@ -31,7 +31,7 @@ namespace API_HotelManagement.Controllers
         /// <param name="currentPage">Page hiển thị hiện tại </param>
         /// <param name="pageSize">Kích thước lỗi trang</param>
         /// <returns></returns>
-        [Authorize, HttpGet(), Route("GetAllOrders")]
+        [Authorize, HttpGet, Route("GetAllOrders")]
         [ProducesResponseType(typeof(ApiResponsePagination<OrderViewModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAllOrders(string search = "", int currentPage = 1, int pageSize = 10)
         {
@@ -46,7 +46,7 @@ namespace API_HotelManagement.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Authorize, HttpGet(), Route("GetOrderById{id}")]
+        [Authorize, HttpGet, Route("GetOrderById/{id}")]
         [ProducesResponseType(typeof(ApiResponse<OrderViewModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetOrderById(Guid id)
         {
@@ -61,7 +61,7 @@ namespace API_HotelManagement.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        [Authorize, HttpPost(), Route("CreateOrder")]
+        [Authorize, HttpPost, Route("CreateOrder")]
         [ProducesResponseType(typeof(ApiResponseObject<OrderViewModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> CreateOrder([FromBody] OrderCreateUpdateModel model)
         {
@@ -77,7 +77,7 @@ namespace API_HotelManagement.Controllers
         /// <param name="id"></param>
         /// <param name="model"></param>
         /// <returns></returns>
-        [Authorize, HttpPut(), Route("UpdateOrder{id}")]
+        [Authorize, HttpPut, Route("UpdateOrder/{id}")]
         [ProducesResponseType(typeof(ApiResponse<bool>), StatusCodes.Status200OK)]
         public async Task<IActionResult> UpdateOrder(Guid id, [FromBody] OrderCreateUpdateModel model)
         {
@@ -92,7 +92,7 @@ namespace API_HotelManagement.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Authorize, HttpDelete(), Route("DeleteOrder{id}")]
+        [Authorize, HttpDelete, Route("DeleteOrder/{id}")]
         [ProducesResponseType(typeof(ApiResponse<bool>), StatusCodes.Status200OK)]
         public async Task<IActionResult> DeleteOrder(Guid id)
         {

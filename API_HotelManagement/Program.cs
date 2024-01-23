@@ -10,8 +10,11 @@ using API_HotelManagement.Business.Services.Orders;
 using API_HotelManagement.Business.Services.Rooms;
 using API_HotelManagement.Business.Services.Services;
 using API_HotelManagement.Business.Services.Auths;
+using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
+
+Environment.SetEnvironmentVariable("ASPNETCORE_APIURL", builder.Configuration.GetSection("URLs").GetSection("APIUrl").Value);
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -142,6 +145,15 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
  */
 //builder.Services.AddDbContext<HtDbContext>(options =>
 //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+/***
+ * AutoMapper
+ */
+builder.Services.AddAutoMapper(typeof(UserAutoMapper));
+builder.Services.AddAutoMapper(typeof(OrderAutoMapper));
+builder.Services.AddAutoMapper(typeof(RoomAutoMapper));
+builder.Services.AddAutoMapper(typeof(ServiceAutoMapper));
+
 
 var app = builder.Build();
 

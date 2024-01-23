@@ -1,0 +1,52 @@
+2024-01-23 02:51:31.004 +07:00 [INF] User 'eb50a876-1f21-46db-bc07-deb7f516713f' successfully authenticated.
+2024-01-23 02:54:03.543 +07:00 [ERR] 
+System.InvalidOperationException: Invalid operation. The connection is closed.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__209_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at API_HotelManagement.Business.Services.Auths.AuthHandler.Authenticate(String userName, String password) in D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Business\Services\Auths\AuthHandler.cs:line 50
+2024-01-23 02:56:13.974 +07:00 [INF] User 'eb50a876-1f21-46db-bc07-deb7f516713f' successfully authenticated.
+2024-01-23 02:58:05.732 +07:00 [ERR] 
+System.InvalidOperationException: Invalid operation. The connection is closed.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__209_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at API_HotelManagement.Business.Services.Auths.AuthHandler.Authenticate(String userName, String password) in D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Business\Services\Auths\AuthHandler.cs:line 50
+2024-01-23 08:18:08.178 +07:00 [INF] User 'a0e3e0f1-3672-4e13-9efe-0abbb09592e2' successfully authenticated.
+2024-01-23 14:27:18.157 +07:00 [ERR] 
+System.ArgumentNullException: Value cannot be null. (Parameter 'input')
+   at System.ArgumentNullException.Throw(String paramName)
+   at System.Guid.Parse(String input)
+   at API_HotelManagement.Business.Services.Auths.AuthHandler.ChangePassword(ClaimsPrincipal user, ChangePasswordModel changePasswordModel) in D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Business\Services\Auths\AuthHandler.cs:line 114
+2024-01-23 14:39:02.627 +07:00 [ERR] 
+System.ArgumentNullException: Value cannot be null. (Parameter 'input')
+   at System.ArgumentNullException.Throw(String paramName)
+   at System.Guid.Parse(String input)
+   at API_HotelManagement.Business.Services.Auths.AuthHandler.ChangePassword(ClaimsPrincipal user, ChangePasswordModel changePasswordModel) in D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Business\Services\Auths\AuthHandler.cs:line 114
+2024-01-23 15:11:16.882 +07:00 [ERR] 
+System.ArgumentNullException: Value cannot be null. (Parameter 'input')
+   at System.ArgumentNullException.Throw(String paramName)
+   at System.Guid.Parse(String input)
+   at API_HotelManagement.Business.Services.Auths.AuthHandler.GetCurrentUser(ClaimsPrincipal user) in D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Business\Services\Auths\AuthHandler.cs:line 167
