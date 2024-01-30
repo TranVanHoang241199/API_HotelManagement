@@ -1,5 +1,4 @@
-﻿using API_HotelManagement.Business.Services.Auths;
-using API_HotelManagement.common.Helps;
+﻿using API_HotelManagement.common.Helps;
 using API_HotelManagement.common.Helps.HelpBusiness;
 using API_HotelManagement.Data.Data.Entitys;
 using AutoMapper;
@@ -20,6 +19,7 @@ namespace API_HotelManagement.Business.Services.Services
         public decimal Price { get; set; }
         public int Quantity { get; set; }
         public EStatusService Status { get; set; }
+        public Guid CategoryServiceId { get; set; }
     }
 
     /// <summary>

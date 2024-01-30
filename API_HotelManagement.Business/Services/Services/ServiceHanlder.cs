@@ -6,9 +6,7 @@ using System.Net;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using API_HotelManagement.common.Helps.Extensions;
-using System.Runtime.ConstrainedExecution;
 using AutoMapper;
-using API_HotelManagement.Business.Services.Rooms;
 
 namespace API_HotelManagement.Business.Services.Services
 {
@@ -55,6 +53,7 @@ namespace API_HotelManagement.Business.Services.Services
                     Price = model.Price,
                     Quantity = model.Quantity,
                     Status = model.Status,
+                    CategoryServiceId = model.CategoryServiceId,
 
                     //---------
                     CreateDate = DateTime.UtcNow,
@@ -214,6 +213,7 @@ namespace API_HotelManagement.Business.Services.Services
                     serviceToUpdate.Price = model.Price;
                     serviceToUpdate.Status = model.Status;
                     serviceToUpdate.Quantity = model.Quantity;
+                    serviceToUpdate.CategoryServiceId = model.CategoryServiceId;
 
                     //-------------
                     serviceToUpdate.ModifiedDate = DateTime.UtcNow;

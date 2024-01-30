@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\publish\APIHotelManagement_Somee</_PublishTargetUrl>
+    <History>True|2024-01-27T07:33:30.1029096Z;True|2024-01-27T14:29:37.1492011+07:00;True|2024-01-27T14:03:02.9862741+07:00;True|2024-01-24T15:50:54.3416263+07:00;True|2024-01-24T15:39:08.6700564+07:00;True|2024-01-24T15:31:59.9317282+07:00;True|2024-01-23T23:02:10.9657654+07:00;True|2024-01-23T23:01:18.6020413+07:00;True|2024-01-23T22:53:38.8251506+07:00;True|2024-01-23T17:59:41.1752956+07:00;True|2024-01-23T17:59:13.9932483+07:00;True|2024-01-23T17:56:01.7322221+07:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="WebHotelApiDbManagement_SqlServer_Sv_Somee">
+      <Value>Data Source=DBHotelManagement.mssql.somee.com%3bInitial Catalog=DBHotelManagement%3bUser Id=acc_hotelmanagement%3bPassword=HoangTV%40123%3bTrustServerCertificate=True%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>

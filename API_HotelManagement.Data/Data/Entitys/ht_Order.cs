@@ -14,13 +14,9 @@ namespace API_HotelManagement.Data.Data.Entitys
         /// </summary>
         public string? CustomerName { get; set; }
         /// <summary>
-        /// Thời gian đặc phòng
+        /// Mã định danh điện tử
         /// </summary>
-        public DateTime? TimeStart { get; set; }
-        /// <summary>
-        /// Thời gian trả phòng
-        /// </summary>
-        public DateTime? TimeEnd { get; set; }
+        public string? Identifier { get; set; }
         /// <summary>
         /// Ghi chú khách hàng
         /// </summary>

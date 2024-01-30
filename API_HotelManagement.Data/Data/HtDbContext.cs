@@ -22,7 +22,7 @@ namespace API_HotelManagement.Data.Data
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }
 
-        /// <summary>
+        /// <summary>   
         /// Connection DB SQL Server
         /// </summary>
         /// <param name="options"></param>
@@ -30,7 +30,7 @@ namespace API_HotelManagement.Data.Data
         {
             // connect to sql server with connection string from app settings
             //options.UseSqlServer(Configuration.GetConnectionString("WebHotelApiDbManagement_SqlServer"));
-            options.UseSqlServer(Configuration.GetConnectionString("WebHotelApiDbManagement_SqlServer_Server"));
+            options.UseSqlServer(Configuration.GetConnectionString("WebHotelApiDbManagement_SqlServer_Sv_Somee"));
             //options.UseNpgsql(Configuration.GetConnectionString("WebHotelApiDbManagement_PostreSql"));
         }
 
@@ -49,6 +49,20 @@ namespace API_HotelManagement.Data.Data
             #endregion đặt giới hạn cho colum
 
             #region Nối bản
+            // Foreign key {N OrderRoomDetail - 1 Order}
+            modelBuilder.Entity<ht_Service>()
+                .HasOne(od => od.CategoryService)
+                .WithMany(o => o.ht_Services)
+                .HasForeignKey(od => od.CategoryServiceId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            // Foreign key {N CategoryRoom - 1 Room}
+            modelBuilder.Entity<ht_Room>()
+                .HasOne(od => od.CategoryRoom)
+                .WithMany(o => o.Rooms)
+                .HasForeignKey(od => od.CategoryRoomId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
             // Foreign key {N OrderRoomDetail - 1 Order}
             modelBuilder.Entity<ht_OrderRoomDetail>()
                 .HasOne(od => od.Order)
@@ -83,6 +97,8 @@ namespace API_HotelManagement.Data.Data
         /// Test Table
         /// </summary>
         public DbSet<ht_User> ht_Users { get; set; }
+        public DbSet<ht_CategoryRoom> ht_CategoryRooms { get; set; }
+        public DbSet<ht_CategoryService> ht_CategoryServices { get; set; }
         public DbSet<ht_Room> ht_Rooms { get; set; }
         public DbSet<ht_Order> ht_Orders { get; set; }
         public DbSet<ht_OrderServiceDetail> ht_OrderServiceDetails { get; set; }

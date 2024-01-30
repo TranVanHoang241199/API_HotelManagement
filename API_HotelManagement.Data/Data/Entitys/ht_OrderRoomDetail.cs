@@ -15,17 +15,13 @@ namespace API_HotelManagement.Data.Data.Entitys
     public class ht_OrderRoomDetail : EntityBase
     {
         /// <summary>
-        /// Thời gian đặt
+        /// Thời gian đặc phòng
         /// </summary>
-        public DateTime? OrderTime { get; set; }
+        public DateTime? TimeStart { get; set; }
         /// <summary>
-        /// Số lượng sản phẩm
+        /// Thời gian trả phòng
         /// </summary>
-        public string? Quantity { get; set; }
-        /// <summary>
-        /// tổng giá tiền
-        /// </summary>
-        public string? TotalPrice { get; set; }
+        public DateTime? TimeEnd { get; set; }
 
         /// Khoá ngoại Order
         public Guid? OrderId { get; set; }

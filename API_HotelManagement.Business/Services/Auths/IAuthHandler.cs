@@ -59,5 +59,13 @@ namespace API_HotelManagement.Business.Services.Auths
         /// <param name="id"></param>
         /// <returns></returns>
         Task<ApiResponse> RecoverAccount(Guid id);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="search"></param>
+        /// <param name="currentPage"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        Task<ApiResponse> GetAllUsers(string search = "", int currentPage = 1, int pageSize = 1);
     }
 }

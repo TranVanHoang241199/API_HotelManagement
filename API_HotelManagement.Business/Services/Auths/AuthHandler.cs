@@ -1,4 +1,5 @@
-﻿using API_HotelManagement.common.Helps;
+﻿using API_HotelManagement.Business.Services.Rooms;
+using API_HotelManagement.common.Helps;
 using API_HotelManagement.common.Helps.Extensions;
 using API_HotelManagement.common.Utils;
 using API_HotelManagement.Data.Data;
@@ -465,6 +466,47 @@ namespace API_HotelManagement.Business.Services.Auths
             {
                 Log.Error(ex, string.Empty);
                 return new ApiResponseError(HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="search"></param>
+        /// <param name="currentPage"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public async Task<ApiResponse> GetAllUsers(string search = "", int currentPage = 1, int pageSize = 1)
+        {
+            try
+            {
+                // Truy vấn dữ liệu từ cơ sở dữ liệu sử dụng LINQ
+                var query = _context.ht_Users.AsQueryable();
+
+                // Áp dụng bộ lọc nếu có
+                if (!string.IsNullOrEmpty(search))
+                {
+                    query = query.Where(o => o.FullName.Contains(search.Trim()) || o.UserName.ToString().Contains(search.Trim()));
+                }
+
+                // Lấy tổng số lượng phần tử
+                var totalItems = await query.CountAsync();
+
+                // Phân trang và lấy dữ liệu cho trang hiện tại
+                var data = await query
+                    .Skip((currentPage - 1) * pageSize)
+                    .Take(pageSize)
+                    .OrderBy(o => o.CreateDate)
+                    .ToListAsync();
+
+                var result = _mapper.Map<List<UserViewModel>>(data).ToList();
+
+                return new ApiResponsePagination<UserViewModel>(result, totalItems, currentPage, pageSize);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, string.Empty);
+                return new ApiResponseError(HttpStatusCode.InternalServerError, "Something went wrong: " + ex.Message);
             }
         }
     }

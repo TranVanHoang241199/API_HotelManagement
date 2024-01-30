@@ -11,6 +11,10 @@ using API_HotelManagement.Business.Services.Rooms;
 using API_HotelManagement.Business.Services.Services;
 using API_HotelManagement.Business.Services.Auths;
 using AutoMapper;
+using API_HotelManagement.Business.Services.Customers;
+using API_HotelManagement.Business.Rooms.CategoryRooms;
+using API_HotelManagement.Business.Services.CategoryRooms;
+using API_HotelManagement.Business.Services.CategoryServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -113,8 +117,11 @@ Log.Logger = new LoggerConfiguration()
  */
 builder.Services.AddScoped<IAuthHandler, AuthHandler>();
 builder.Services.AddScoped<IOrderHandler, OrderHandler>();
+builder.Services.AddScoped<ICategoryRoomHandler, CategoryRoomHandler>();
+builder.Services.AddScoped<ICategoryServiceHandler, CategoryServiceHandler>();
 builder.Services.AddScoped<IRoomHandler, RoomHandler>();
 builder.Services.AddScoped<IServiceHanlder, ServiceHanlder>();
+builder.Services.AddScoped<ICustomerHandler, CustomerHandler>();
 builder.Services.AddScoped<HtDbContext>();
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -167,6 +174,11 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+app.UseSwagger();
+app.UseSwaggerUI(options =>
+{
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "API_HotelManagement_v1");
+});
 
 
 app.UseHttpsRedirection();

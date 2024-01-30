@@ -26,6 +26,9 @@ namespace API_HotelManagement.Data.Data.Entitys
         /// </summary>
         public EStatusService Status { get; set; }
 
+        public Guid? CategoryServiceId { get; set; }
+        public ht_CategoryService? CategoryService { get; set; }
+
         /// <summary>
         /// 
         /// </summary>

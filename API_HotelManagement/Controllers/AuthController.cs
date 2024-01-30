@@ -33,7 +33,7 @@ namespace API_HotelManagement.Controllers
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        [AllowAnonymous, HttpPost(), Route("login")]
+        [AllowAnonymous, HttpPost, Route("login")]
         [ProducesResponseType(typeof(ApiResponseAuth), StatusCodes.Status200OK)]
         public async Task<IActionResult> Login([FromBody] LoginView request)
         {
@@ -50,7 +50,7 @@ namespace API_HotelManagement.Controllers
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        [AllowAnonymous, HttpPost(), Route("register")]
+        [AllowAnonymous, HttpPost, Route("register")]
         [ProducesResponseType(typeof(ApiResponse<UserViewModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> Register([FromBody] UserUpdateCreateModel request)
         {
@@ -64,7 +64,7 @@ namespace API_HotelManagement.Controllers
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        [Authorize, HttpPut(), Route("change-pass")]
+        [Authorize, HttpPut, Route("change-pass")]
         [ProducesResponseType(typeof(ApiResponse<UserViewModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> ChangePass([FromBody] ChangePasswordModel request)
         {
@@ -78,7 +78,7 @@ namespace API_HotelManagement.Controllers
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        [Authorize, HttpPut(), Route("update-information")]
+        [Authorize, HttpPut, Route("update-information")]
         [ProducesResponseType(typeof(ApiResponse<UserViewModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> UpdateInformation([FromBody] UserUpdateCreateModel request)
         {
@@ -92,7 +92,7 @@ namespace API_HotelManagement.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Authorize(Roles = AppRole.Admin), HttpPut(), Route("recover-account/{id}")]
+        [Authorize(Roles = AppRole.Admin), HttpPut, Route("recover-account/{id}")]
         [ProducesResponseType(typeof(ApiResponse<UserViewModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> RecoverAccount(Guid id)
         {
@@ -106,7 +106,7 @@ namespace API_HotelManagement.Controllers
         /// delete account for user
         /// </summary>
         /// <returns></returns>
-        [Authorize, HttpDelete(), Route("remove-account")]
+        [Authorize, HttpDelete, Route("remove-account")]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> RemoveAccount()
         {
@@ -119,11 +119,24 @@ namespace API_HotelManagement.Controllers
         /// Get user login information
         /// </summary>
         /// <returns></returns>
-        [Authorize, HttpGet(), Route("me")]
+        [Authorize, HttpGet, Route("me")]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> Me()
         {
             var result = await _authHandler.GetCurrentUser(User);
+
+            return ApiHelper.TransformData(result);
+        }
+
+        /// <summary>
+        /// Get user login information
+        /// </summary>
+        /// <returns></returns>
+        [Authorize, HttpGet, Route("GetAllUser")]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetAllUsers(string search = "", int currentPage = 1, int pageSize = 10)
+        {
+            var result = await _authHandler.GetAllUsers(search, currentPage, pageSize);
 
             return ApiHelper.TransformData(result);
         }
@@ -141,6 +154,6 @@ namespace API_HotelManagement.Controllers
         //    return ApiHelper.TransformData(result);
         //}
 
-        
+
     }
 }

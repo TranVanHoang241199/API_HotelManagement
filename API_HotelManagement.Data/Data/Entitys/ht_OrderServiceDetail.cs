@@ -15,11 +15,11 @@ namespace API_HotelManagement.Data.Data.Entitys
         /// <summary>
         /// Số lượng sản phẩm
         /// </summary>
-        public int Quantity { get; set; }
+        public int? Quantity { get; set; }
         /// <summary>
         /// tổng giá tiền
         /// </summary>
-        public string? TotalPrice { get; set; }
+        public decimal? TotalPrice { get; set; }
 
         /// Khoá ngoại Order
         public Guid? OrderId { get; set; }

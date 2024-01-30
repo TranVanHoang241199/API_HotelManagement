@@ -53,6 +53,7 @@ namespace API_HotelManagement.Business.Services.Rooms
                     FloorNumber = model.FloorNumber,
                     Status = model.Status,
                     Price = model.Price,
+                    CategoryRoomId = model.CategoryRoomId,
 
                     //---------
                     CreateDate = DateTime.UtcNow,
@@ -212,6 +213,7 @@ namespace API_HotelManagement.Business.Services.Rooms
                     roomToUpdate.FloorNumber = model.FloorNumber;
                     roomToUpdate.Status = model.Status;
                     roomToUpdate.Price = model.Price;
+                    roomToUpdate.CategoryRoomId = model.CategoryRoomId;
 
                     //-------------
                     roomToUpdate.ModifiedDate = DateTime.UtcNow;

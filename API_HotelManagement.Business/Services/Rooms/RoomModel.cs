@@ -20,6 +20,7 @@ namespace API_HotelManagement.Business.Services.Rooms
         public int FloorNumber { get; set; }
         public decimal Price { get; set; }
         public EStatusRoom Status { get; set; }
+        public Guid CategoryRoomId { get; set; }
     }
 
     /// <summary>
