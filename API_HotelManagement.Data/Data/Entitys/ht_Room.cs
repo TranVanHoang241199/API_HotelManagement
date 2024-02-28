@@ -5,7 +5,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace API_HotelManagement.Data.Data.Entitys
 {
     /// <summary>
-    /// 
+    /// * Bản Room 
+    /// - Bản Room lưu trữu các phòng trong khách sạn hoặc nhà nghỉ
+    /// - 
     /// </summary>
     [Table("ht_Room")]
     public class ht_Room : EntityBase

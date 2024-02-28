@@ -1,10 +1,4 @@
-﻿using API_HotelManagement.Business.Services.CategoryRooms;
-using API_HotelManagement.common.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using API_HotelManagement.common.Utils;
 
 namespace API_HotelManagement.Business.Services.CategoryServices
 {

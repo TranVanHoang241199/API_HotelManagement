@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Reflection;
 
 namespace API_HotelManagement.common.Helps
 {
@@ -14,5 +10,16 @@ namespace API_HotelManagement.common.Helps
         public const string Accountant = "Accountant";
         public const string HR = "Human Resource";
         public const string Warehouse = "Warehouse staff";
+
+        // Phương thức để lấy danh sách các role
+        public static List<string> GetAllRoles()
+        {
+            // Sử dụng reflection để lấy tất cả các hằng số public string từ lớp AppRole
+            var fields = typeof(AppRole).GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy)
+                                         .Where(fi => fi.IsLiteral && !fi.IsInitOnly && fi.FieldType == typeof(string))
+                                         .Select(fi => (string)fi.GetRawConstantValue());
+
+            return fields.ToList();
+        }
     }
 }

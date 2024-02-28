@@ -1,5 +1,4 @@
-﻿using API_HotelManagement.Business.Services.Rooms;
-using API_HotelManagement.common.Helps.HelpBusiness;
+﻿using API_HotelManagement.common.Helps.HelpBusiness;
 using API_HotelManagement.Data.Data.Entitys;
 using AutoMapper;
 

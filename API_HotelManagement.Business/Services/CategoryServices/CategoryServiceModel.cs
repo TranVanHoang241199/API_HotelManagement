@@ -1,11 +1,6 @@
 ﻿using API_HotelManagement.common.Helps.HelpBusiness;
 using API_HotelManagement.Data.Data.Entitys;
 using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace API_HotelManagement.Business.Services.CategoryServices
 {

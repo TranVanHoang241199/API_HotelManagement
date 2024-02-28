@@ -3,8 +3,6 @@ using API_HotelManagement.Data.Data;
 using Serilog;
 using System.Net;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Http;
-using API_HotelManagement.common.Helps.Extensions;
 using AutoMapper;
 
 namespace API_HotelManagement.Business.Services.Customers

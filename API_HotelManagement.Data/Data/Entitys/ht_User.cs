@@ -1,9 +1,9 @@
-﻿using API_HotelManagement.common.Helps;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace API_HotelManagement.Data.Data.Entitys
 {
+    [Table("ht_User")]
     public class ht_User : EntityBase
     {
         /// <summary>
@@ -34,11 +34,6 @@ namespace API_HotelManagement.Data.Data.Entitys
         [MaxLength(100)]
         public string? FullName { get; set; }
         /// <summary>
-        /// 
-        /// </summary>
-        [Column(TypeName = "varchar(50)")]
-        public EBusinessAreas BusinessAreas { get; set; }
-        /// <summary>
         /// Thời gian cập nhật mật khẩu
         /// </summary>
         public DateTime? PasswordUpdatedDate { get; set; }
@@ -55,6 +50,11 @@ namespace API_HotelManagement.Data.Data.Entitys
         /// </summary>
         [MaxLength(50)]
         public string? Role { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ICollection<ht_Role>? ht_Roles { get; set; }
 
     }
 }

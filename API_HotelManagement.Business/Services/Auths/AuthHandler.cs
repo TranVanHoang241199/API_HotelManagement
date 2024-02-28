@@ -234,7 +234,6 @@ namespace API_HotelManagement.Business.Services.Auths
                     Password = BCrypt.Net.BCrypt.HashPassword(request.Password), // Mã hóa mật khẩu trước khi lưu vào cơ sở dữ liệu
                     Phone = request.Phone,
                     FullName = request.FullName,
-                    BusinessAreas = request.BusinessAreas, 
                     IsDeleted = false,
                     Role = request.Role,
                     UserName = request.UserName,
@@ -448,7 +447,6 @@ namespace API_HotelManagement.Business.Services.Auths
                     userToUpdate.Phone = request.Phone;
                     userToUpdate.Email = request.Email;
                     userToUpdate.FullName = request.FullName;
-                    userToUpdate.BusinessAreas = request.BusinessAreas;
                     userToUpdate.IsDeleted = request.IsDeleted;
                     userToUpdate.Role = request.Role;
 

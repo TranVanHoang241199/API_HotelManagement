@@ -1,10 +1,9 @@
 ﻿using API_HotelManagement.Business.Services.Auths;
 using API_HotelManagement.common.Helps;
 using API_HotelManagement.common.Utils;
-using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace API_HotelManagement.Controllers
 {
@@ -132,13 +131,28 @@ namespace API_HotelManagement.Controllers
         /// Get user login information
         /// </summary>
         /// <returns></returns>
-        [Authorize, HttpGet, Route("GetAllUser")]
+        [AllowAnonymous, HttpGet, Route("GetAllUser")]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAllUsers(string search = "", int currentPage = 1, int pageSize = 10)
         {
             var result = await _authHandler.GetAllUsers(search, currentPage, pageSize);
 
             return ApiHelper.TransformData(result);
+        }
+
+        /// <summary>
+        /// Get all Role
+        /// </summary>
+        /// <returns></returns>
+        [AllowAnonymous, HttpGet, Route("GetsRole")]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetRoles()
+        {
+            var result = AppRole.GetAllRoles().ToList();
+
+            var response = new ApiResponse<List<string>>(result);
+
+            return ApiHelper.TransformData(response);
         }
 
         ///// <summary>

@@ -21,6 +21,10 @@ namespace API_HotelManagement.Controllers
             _roomService = roomService;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Login()
         {

@@ -1,0 +1,47 @@
+2024-02-27 14:34:46.362 +07:00 [INF] User '20772100-3304-43f1-9411-6e8099fd6c83' successfully authenticated.
+2024-02-27 14:39:46.591 +07:00 [INF] User '20772100-3304-43f1-9411-6e8099fd6c83' successfully authenticated.
+2024-02-27 14:43:53.056 +07:00 [ERR] 
+AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+ht_Hotel -> HotelViewModel
+API_HotelManagement.Data.Data.Entitys.ht_Hotel -> API_HotelManagement.Business.Services.Hotels.HotelViewModel
+   at lambda_method129(Closure, Object, HotelViewModel, ResolutionContext)
+   at API_HotelManagement.Business.Services.Hotels.HotelHandler.CreateHotel(HotelCreateUpdateModel model) in D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Business\Services\Hotels\HotelHandler.cs:line 76
+2024-02-27 14:47:47.934 +07:00 [ERR] 
+AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[API_HotelManagement.Data.Data.Entitys.ht_Hotel, API_HotelManagement.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[API_HotelManagement.Business.Services.Rooms.RoomViewModel, API_HotelManagement.Business, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+ ---> AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+ht_Hotel -> RoomViewModel
+API_HotelManagement.Data.Data.Entitys.ht_Hotel -> API_HotelManagement.Business.Services.Rooms.RoomViewModel
+   at lambda_method100(Closure, ht_Hotel, RoomViewModel, ResolutionContext)
+   at lambda_method99(Closure, Object, List`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method99(Closure, Object, List`1, ResolutionContext)
+   at API_HotelManagement.Business.Services.Hotels.HotelHandler.GetAllHotels(String search, Int32 currentPage, Int32 pageSize) in D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Business\Services\Hotels\HotelHandler.cs:line 149
+2024-02-27 14:47:53.756 +07:00 [ERR] 
+AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[API_HotelManagement.Data.Data.Entitys.ht_Hotel, API_HotelManagement.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[API_HotelManagement.Business.Services.Rooms.RoomViewModel, API_HotelManagement.Business, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+ ---> AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+ht_Hotel -> RoomViewModel
+API_HotelManagement.Data.Data.Entitys.ht_Hotel -> API_HotelManagement.Business.Services.Rooms.RoomViewModel
+   at lambda_method100(Closure, ht_Hotel, RoomViewModel, ResolutionContext)
+   at lambda_method99(Closure, Object, List`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method99(Closure, Object, List`1, ResolutionContext)
+   at API_HotelManagement.Business.Services.Hotels.HotelHandler.GetAllHotels(String search, Int32 currentPage, Int32 pageSize) in D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Business\Services\Hotels\HotelHandler.cs:line 149
+2024-02-27 14:56:21.116 +07:00 [INF] User '79841478-517e-4ac2-a67b-d395ce774aec' successfully authenticated.
+2024-02-27 14:57:40.123 +07:00 [INF] User '79841478-517e-4ac2-a67b-d395ce774aec' successfully authenticated.
+2024-02-27 14:58:10.820 +07:00 [INF] User '79841478-517e-4ac2-a67b-d395ce774aec' successfully authenticated.
+2024-02-27 15:05:53.169 +07:00 [INF] User '20772100-3304-43f1-9411-6e8099fd6c83' successfully authenticated.
+2024-02-27 15:24:29.586 +07:00 [INF] User '79841478-517e-4ac2-a67b-d395ce774aec' successfully authenticated.

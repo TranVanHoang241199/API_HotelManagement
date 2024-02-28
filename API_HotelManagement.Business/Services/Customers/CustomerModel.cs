@@ -1,9 +1,4 @@
-﻿using API_HotelManagement.common.Helps;
-using API_HotelManagement.common.Helps.HelpBusiness;
-using API_HotelManagement.Data.Data.Entitys;
-using AutoMapper;
-
-namespace API_HotelManagement.Business.Services.Customers
+﻿namespace API_HotelManagement.Business.Services.Customers
 {
 
     public class CustomerViewModel

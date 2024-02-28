@@ -37,6 +37,9 @@ namespace API_HotelManagement.Data.Migrations
                     b.Property<DateTime?>("CreateDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid>("HotelId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("ModifiedBy")
                         .HasColumnType("uniqueidentifier");
 
@@ -44,6 +47,8 @@ namespace API_HotelManagement.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("HotelId");
 
                     b.ToTable("ht_CategoryRoom");
                 });
@@ -63,6 +68,9 @@ namespace API_HotelManagement.Data.Migrations
                     b.Property<DateTime?>("CreateDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid>("HotelId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("ModifiedBy")
                         .HasColumnType("uniqueidentifier");
 
@@ -71,7 +79,38 @@ namespace API_HotelManagement.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("HotelId");
+
                     b.ToTable("ht_CategoryService");
+                });
+
+            modelBuilder.Entity("API_HotelManagement.Data.Data.Entitys.ht_Hotel", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CreateBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HotelName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ht_Hotel");
                 });
 
             modelBuilder.Entity("API_HotelManagement.Data.Data.Entitys.ht_Order", b =>
@@ -179,6 +218,7 @@ namespace API_HotelManagement.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal?>("TotalPrice")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
@@ -188,6 +228,42 @@ namespace API_HotelManagement.Data.Migrations
                     b.HasIndex("ServiceId");
 
                     b.ToTable("ht_OrderServiceDetail");
+                });
+
+            modelBuilder.Entity("API_HotelManagement.Data.Data.Entitys.ht_Role", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CreateBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("HotelId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("RoleName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HotelId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ht_Role");
                 });
 
             modelBuilder.Entity("API_HotelManagement.Data.Data.Entitys.ht_Room", b =>
@@ -279,10 +355,6 @@ namespace API_HotelManagement.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("BusinessAreas")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)");
-
                     b.Property<Guid>("CreateBy")
                         .HasColumnType("uniqueidentifier");
 
@@ -332,7 +404,27 @@ namespace API_HotelManagement.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ht_Users");
+                    b.ToTable("ht_User");
+                });
+
+            modelBuilder.Entity("API_HotelManagement.Data.Data.Entitys.ht_CategoryRoom", b =>
+                {
+                    b.HasOne("API_HotelManagement.Data.Data.Entitys.ht_Hotel", "Hotel")
+                        .WithMany("ht_CategoryRooms")
+                        .HasForeignKey("HotelId")
+                        .IsRequired();
+
+                    b.Navigation("Hotel");
+                });
+
+            modelBuilder.Entity("API_HotelManagement.Data.Data.Entitys.ht_CategoryService", b =>
+                {
+                    b.HasOne("API_HotelManagement.Data.Data.Entitys.ht_Hotel", "Hotel")
+                        .WithMany("ht_CategoryServices")
+                        .HasForeignKey("HotelId")
+                        .IsRequired();
+
+                    b.Navigation("Hotel");
                 });
 
             modelBuilder.Entity("API_HotelManagement.Data.Data.Entitys.ht_OrderRoomDetail", b =>
@@ -365,6 +457,23 @@ namespace API_HotelManagement.Data.Migrations
                     b.Navigation("Service");
                 });
 
+            modelBuilder.Entity("API_HotelManagement.Data.Data.Entitys.ht_Role", b =>
+                {
+                    b.HasOne("API_HotelManagement.Data.Data.Entitys.ht_Hotel", "Hotel")
+                        .WithMany("ht_Roles")
+                        .HasForeignKey("HotelId")
+                        .IsRequired();
+
+                    b.HasOne("API_HotelManagement.Data.Data.Entitys.ht_User", "User")
+                        .WithMany("ht_Roles")
+                        .HasForeignKey("UserId")
+                        .IsRequired();
+
+                    b.Navigation("Hotel");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("API_HotelManagement.Data.Data.Entitys.ht_Room", b =>
                 {
                     b.HasOne("API_HotelManagement.Data.Data.Entitys.ht_CategoryRoom", "CategoryRoom")
@@ -393,6 +502,15 @@ namespace API_HotelManagement.Data.Migrations
                     b.Navigation("ht_Services");
                 });
 
+            modelBuilder.Entity("API_HotelManagement.Data.Data.Entitys.ht_Hotel", b =>
+                {
+                    b.Navigation("ht_CategoryRooms");
+
+                    b.Navigation("ht_CategoryServices");
+
+                    b.Navigation("ht_Roles");
+                });
+
             modelBuilder.Entity("API_HotelManagement.Data.Data.Entitys.ht_Order", b =>
                 {
                     b.Navigation("OrderRoomDetails");
@@ -408,6 +526,11 @@ namespace API_HotelManagement.Data.Migrations
             modelBuilder.Entity("API_HotelManagement.Data.Data.Entitys.ht_Service", b =>
                 {
                     b.Navigation("OrderServiceDetails");
+                });
+
+            modelBuilder.Entity("API_HotelManagement.Data.Data.Entitys.ht_User", b =>
+                {
+                    b.Navigation("ht_Roles");
                 });
 #pragma warning restore 612, 618
         }
