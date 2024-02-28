@@ -39,8 +39,6 @@ namespace API_HotelManagement.Data.Data
         /// Test Table
         /// </summary>
         public DbSet<ht_User> ht_Users { get; set; } // User dang nhap
-        public DbSet<ht_Hotel> ht_Hotels { get; set; } // khach san quan ly
-        public DbSet<ht_Role> ht_Roles { get; set; } // quen trong khach san
         public DbSet<ht_CategoryRoom> ht_CategoryRooms { get; set; } // loai phong
         public DbSet<ht_CategoryService> ht_CategoryServices { get; set; } // loai dich vu
         public DbSet<ht_Room> ht_Rooms { get; set; } // phong 
@@ -87,33 +85,6 @@ namespace API_HotelManagement.Data.Data
             #endregion đặt giới hạn cho colum
 
             #region Nối bản
-            // Foreign key {N ht_Role - 1 Hotel}
-            modelBuilder.Entity<ht_Role>()
-                .HasOne(od => od.User)
-                .WithMany(o => o.ht_Roles)
-                .HasForeignKey(od => od.UserId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
-
-            // Foreign key {N ht_Role - 1 Hotel}
-            modelBuilder.Entity<ht_Role>()
-                .HasOne(od => od.Hotel)
-                .WithMany(o => o.ht_Roles)
-                .HasForeignKey(od => od.HotelId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
-
-            // Foreign key {N ht_CategoryService - 1 Hotel}
-            modelBuilder.Entity<ht_CategoryService>()
-                .HasOne(od => od.Hotel)
-                .WithMany(o => o.ht_CategoryServices)
-                .HasForeignKey(od => od.HotelId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
-
-            // Foreign key {N ht_CategoryRoom - 1 Hotel}
-            modelBuilder.Entity<ht_CategoryRoom>()
-                .HasOne(od => od.Hotel)
-                .WithMany(o => o.ht_CategoryRooms)
-                .HasForeignKey(od => od.HotelId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
 
             // Foreign key {N ht_Service - 1 CategoryService}
             modelBuilder.Entity<ht_Service>()

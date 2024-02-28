@@ -140,8 +140,11 @@ namespace API_HotelManagement.Business.Services.Orders
         {
             try
             {
+                // Lấy ID của người dùng hiện tại
+                var currentUserId = GetExtensions.GetUserId(_httpContextAccessor);
+
                 // Truy vấn dữ liệu từ cơ sở dữ liệu sử dụng LINQ
-                var query = _context.ht_Orders.AsQueryable();
+                var query = _context.ht_Orders.Where(o => o.CreateBy.Equals(currentUserId)).AsQueryable();
 
                 // Áp dụng bộ lọc nếu có
                 if (!string.IsNullOrEmpty(search))
@@ -161,6 +164,7 @@ namespace API_HotelManagement.Business.Services.Orders
                         .ThenInclude(detail => detail.Service) // Chi tiết dịch vụ và dịch vụ tương ứng
                     .Skip((currentPage - 1) * pageSize)
                     .Take(pageSize)
+                    .OrderBy(o => o.ModifiedDate)
                     .OrderBy(o => o.CreateDate)
                     .ToListAsync();
 

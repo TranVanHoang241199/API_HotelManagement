@@ -1,0 +1,3 @@
+2024-02-28 17:27:23.294 +07:00 [INF] User 'af2bfc8e-0da2-470f-9b67-e1f08367019f' successfully authenticated.
+2024-02-28 17:28:30.077 +07:00 [INF] User '42f39eef-9269-4c25-b9b2-74d08f983bba' successfully authenticated.
+2024-02-28 17:28:34.681 +07:00 [INF] User '42f39eef-9269-4c25-b9b2-74d08f983bba' successfully authenticated.

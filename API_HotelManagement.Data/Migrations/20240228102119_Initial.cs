@@ -12,12 +12,11 @@ namespace API_HotelManagement.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "ht_Hotel",
+                name: "ht_CategoryRoom",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    HotelName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreateBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -25,7 +24,23 @@ namespace API_HotelManagement.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ht_Hotel", x => x.Id);
+                    table.PrimaryKey("PK_ht_CategoryRoom", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ht_CategoryService",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreateBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ht_CategoryService", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -56,7 +71,7 @@ namespace API_HotelManagement.Data.Migrations
                     Password = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    FullName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    FullName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     PasswordUpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -69,78 +84,6 @@ namespace API_HotelManagement.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ht_User", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ht_CategoryRoom",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    HotelId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CreateBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ht_CategoryRoom", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ht_CategoryRoom_ht_Hotel_HotelId",
-                        column: x => x.HotelId,
-                        principalTable: "ht_Hotel",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ht_CategoryService",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    HotelId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CreateBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ht_CategoryService", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ht_CategoryService_ht_Hotel_HotelId",
-                        column: x => x.HotelId,
-                        principalTable: "ht_Hotel",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ht_Role",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    RoleName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    HotelId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CreateBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ht_Role", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ht_Role_ht_Hotel_HotelId",
-                        column: x => x.HotelId,
-                        principalTable: "ht_Hotel",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_ht_Role_ht_User_UserId",
-                        column: x => x.UserId,
-                        principalTable: "ht_User",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -253,16 +196,6 @@ namespace API_HotelManagement.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ht_CategoryRoom_HotelId",
-                table: "ht_CategoryRoom",
-                column: "HotelId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ht_CategoryService_HotelId",
-                table: "ht_CategoryService",
-                column: "HotelId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ht_OrderRoomDetail_OrderId",
                 table: "ht_OrderRoomDetail",
                 column: "OrderId");
@@ -283,16 +216,6 @@ namespace API_HotelManagement.Data.Migrations
                 column: "ServiceId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ht_Role_HotelId",
-                table: "ht_Role",
-                column: "HotelId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ht_Role_UserId",
-                table: "ht_Role",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ht_Room_CategoryRoomId",
                 table: "ht_Room",
                 column: "CategoryRoomId");
@@ -301,6 +224,12 @@ namespace API_HotelManagement.Data.Migrations
                 name: "IX_ht_Service_CategoryServiceId",
                 table: "ht_Service",
                 column: "CategoryServiceId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ht_User_UserName",
+                table: "ht_User",
+                column: "UserName",
+                unique: true);
         }
 
         /// <inheritdoc />
@@ -313,7 +242,7 @@ namespace API_HotelManagement.Data.Migrations
                 name: "ht_OrderServiceDetail");
 
             migrationBuilder.DropTable(
-                name: "ht_Role");
+                name: "ht_User");
 
             migrationBuilder.DropTable(
                 name: "ht_Room");
@@ -325,16 +254,10 @@ namespace API_HotelManagement.Data.Migrations
                 name: "ht_Service");
 
             migrationBuilder.DropTable(
-                name: "ht_User");
-
-            migrationBuilder.DropTable(
                 name: "ht_CategoryRoom");
 
             migrationBuilder.DropTable(
                 name: "ht_CategoryService");
-
-            migrationBuilder.DropTable(
-                name: "ht_Hotel");
         }
     }
 }

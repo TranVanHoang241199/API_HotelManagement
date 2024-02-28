@@ -51,10 +51,5 @@ namespace API_HotelManagement.Data.Data.Entitys
         [MaxLength(50)]
         public string? Role { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public ICollection<ht_Role>? ht_Roles { get; set; }
-
     }
 }

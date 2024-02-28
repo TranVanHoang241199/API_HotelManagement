@@ -38,7 +38,8 @@ namespace API_HotelManagement.Business.Services.CategoryServices
                     return new ApiResponseError(HttpStatusCode.NotFound, "No information is transmitted.");
                 }
 
-                var queryCategoryService = _context.ht_CategoryServices.FirstOrDefault(o => o.CategoryName.Equals(model.Categoryname.Trim()));
+                var queryCategoryService = _context.ht_CategoryServices.FirstOrDefault(o => o.CategoryName.Equals(model.Categoryname.Trim())
+                && o.CreateBy.Equals(GetExtensions.GetUserId(_httpContextAccessor)));
 
                 if (queryCategoryService != null)
                 {
@@ -113,8 +114,11 @@ namespace API_HotelManagement.Business.Services.CategoryServices
         {
             try
             {
+                // Lấy ID của người dùng hiện tại
+                var currentUserId = GetExtensions.GetUserId(_httpContextAccessor);
+
                 // Truy vấn dữ liệu từ cơ sở dữ liệu sử dụng LINQ
-                var query = _context.ht_CategoryServices.AsQueryable();
+                var query = _context.ht_CategoryServices.Where(o => o.CreateBy.Equals(currentUserId)).AsQueryable();
 
                 // Áp dụng bộ lọc nếu có
                 if (!string.IsNullOrEmpty(search))
@@ -129,6 +133,7 @@ namespace API_HotelManagement.Business.Services.CategoryServices
                 var data = await query
                     .Skip((currentPage - 1) * pageSize)
                     .Take(pageSize)
+                    .OrderBy(o => o.ModifiedDate)
                     .OrderBy(o => o.CreateDate)
                     .ToListAsync();
 

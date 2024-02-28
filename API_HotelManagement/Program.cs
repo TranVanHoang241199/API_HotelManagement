@@ -14,7 +14,6 @@ using API_HotelManagement.Business.Services.Customers;
 using API_HotelManagement.Business.Rooms.CategoryRooms;
 using API_HotelManagement.Business.Services.CategoryRooms;
 using API_HotelManagement.Business.Services.CategoryServices;
-using API_HotelManagement.Business.Services.Hotels;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -122,7 +121,6 @@ builder.Services.AddScoped<ICategoryServiceHandler, CategoryServiceHandler>();
 builder.Services.AddScoped<IRoomHandler, RoomHandler>();
 builder.Services.AddScoped<IServiceHanlder, ServiceHanlder>();
 builder.Services.AddScoped<ICustomerHandler, CustomerHandler>();
-builder.Services.AddScoped<IHotelHandler, HotelHandler>();
 builder.Services.AddScoped<HtDbContext>();
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

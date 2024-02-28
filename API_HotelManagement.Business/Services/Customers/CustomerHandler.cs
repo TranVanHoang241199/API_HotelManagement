@@ -4,6 +4,8 @@ using Serilog;
 using System.Net;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
+using API_HotelManagement.common.Helps.Extensions;
+using Microsoft.AspNetCore.Http;
 
 namespace API_HotelManagement.Business.Services.Customers
 {
@@ -11,11 +13,13 @@ namespace API_HotelManagement.Business.Services.Customers
     {
         private readonly HtDbContext _context;
         private readonly IMapper _mapper;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public CustomerHandler(HtDbContext context, IMapper mapper)
+        public CustomerHandler(HtDbContext context, IMapper mapper, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
             _mapper = mapper;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         /// <summary>
@@ -29,8 +33,11 @@ namespace API_HotelManagement.Business.Services.Customers
         {
             try
             {
+                // Lấy ID của người dùng hiện tại
+                var currentUserId = GetExtensions.GetUserId(_httpContextAccessor);
+
                 // Truy vấn dữ liệu từ cơ sở dữ liệu sử dụng LINQ
-                var query = _context.ht_Orders.AsQueryable();
+                var query = _context.ht_Orders.Where(o => o.CreateBy.Equals(currentUserId)).AsQueryable();
 
                 // Áp dụng bộ lọc nếu có
                 if (!string.IsNullOrEmpty(search))
@@ -45,6 +52,7 @@ namespace API_HotelManagement.Business.Services.Customers
                 var data = await query
                     .Skip((currentPage - 1) * pageSize)
                     .Take(pageSize)
+                    .OrderBy(o => o.ModifiedDate)
                     .OrderBy(o => o.CreateDate)
                     .Select(p => new CustomerViewModel { 
                         CustomerName = p.CustomerName,
