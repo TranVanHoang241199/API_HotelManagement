@@ -9,8 +9,10 @@ namespace API_HotelManagement.Controllers
     /// 
     /// </summary>
     //[ApiExplorerSettings(GroupName = "Users")]
-    [Route("api/v1/rooms")]
+    [ApiVersion("1.0")]
     [ApiController]
+    [Route("api/v{version:apiVersion}/rooms")]
+    [ApiExplorerSettings(GroupName = "Room")]
     public class RoomController : ControllerBase
     {
         private readonly IRoomHandler _roomService;

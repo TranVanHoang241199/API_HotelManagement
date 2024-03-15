@@ -8,9 +8,11 @@ namespace API_HotelManagement.Controllers
     /// <summary>
     /// 
     /// </summary>
-    //[ApiExplorerSettings(GroupName = "Users")]
-    [Route("api/v1/service")]
+    //[Route("api/v{version:apiVersion}/service")]
+    [ApiVersion("1.0")]
     [ApiController]
+    [Route("api/v1/service")]
+    [ApiExplorerSettings(GroupName = "Service")]
     public class ServiceController : ControllerBase
     {
         private readonly IServiceHanlder _serviceService;

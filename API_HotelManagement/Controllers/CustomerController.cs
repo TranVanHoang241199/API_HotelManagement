@@ -9,7 +9,9 @@ namespace API_HotelManagement.Controllers
     /// <summary>
     /// 
     /// </summary>
+    [ApiVersion("1.0")]
     [Route("api/v1/customers")]
+    //[Route("api/v{version:apiVersion}/customers")]
     [ApiController]
     public class CustomerController : ControllerBase
     {

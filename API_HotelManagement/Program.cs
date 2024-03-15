@@ -14,6 +14,10 @@ using API_HotelManagement.Business.Services.Customers;
 using API_HotelManagement.Business.Rooms.CategoryRooms;
 using API_HotelManagement.Business.Services.CategoryRooms;
 using API_HotelManagement.Business.Services.CategoryServices;
+using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.AspNetCore.Mvc.Controllers;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,9 +29,34 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
+
+
+#region Swagger
 /***
  * Xử lý Swagger hiển thị cho view
  */
+
+//builder.Services.AddApiVersioning(options =>
+//{
+//    options.DefaultApiVersion = new ApiVersion(1, 0);
+//    options.AssumeDefaultVersionWhenUnspecified = true;
+//    options.ReportApiVersions = true;
+//});
+
+//builder.Services.AddApiVersioning(options =>
+//{
+//    // Specify the default API version
+//    options.DefaultApiVersion = new ApiVersion(1, 0);
+
+//    // Specify supported API versions
+//    options.AssumeDefaultVersionWhenUnspecified = true;
+//    options.ReportApiVersions = true;
+
+//    // Specify versioning scheme (e.g., using query string parameter "api-version")
+//    options.ApiVersionReader = new QueryStringApiVersionReader("api-version");
+//});
+
+
 builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo
@@ -49,25 +78,46 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
 
-    options.SwaggerDoc("Auths", new OpenApiInfo
+    //options.SwaggerDoc("Auths", new OpenApiInfo
+    //{
+    //    Version = "v1",
+    //    Title = "API_HotelManagement - Auths",
+
+    //    // ...
+    //});
+
+    //options.SwaggerDoc("Users", new OpenApiInfo
+    //{
+    //    Version = "v1",
+    //    Title = "API_HotelManagement - User",
+    //    // ...
+    //});
+
+    // Group name
+    // https://rimdev.io/swagger-grouping-with-controller-name-fallback-using-swashbuckle-aspnetcore/
+    options.TagActionsBy(api =>
     {
-        Version = "v1",
-        Title = "API_HotelManagement - Auths",
-        
-        // ...
+        if (api.GroupName != null)
+        {
+            return new[] { api.GroupName };
+        }
+
+        var controllerActionDescriptor = api.ActionDescriptor as ControllerActionDescriptor;
+        if (controllerActionDescriptor != null)
+        {
+            return new[] { controllerActionDescriptor.ControllerName };
+        }
+
+        throw new InvalidOperationException("Unable to determine tag for endpoint.");
     });
 
-    options.SwaggerDoc("Users", new OpenApiInfo
-    {
-        Version = "v1",
-        Title = "API_HotelManagement - User",
-        // ...
-    });
+    options.DocInclusionPredicate((name, api) => true);
 
     // Tạo note ghi chú cho API từ file XML
     var filename = Assembly.GetExecutingAssembly().GetName().Name + ".xml";
     var filepath = Path.Combine(AppContext.BaseDirectory, filename);
     options.IncludeXmlComments(filepath);
+
 
     // Thêm định nghĩa bảo mật cho Swagger
     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -96,7 +146,18 @@ builder.Services.AddSwaggerGen(options =>
             Array.Empty<string>()
         }
     });
+
+    
 });
+
+// Đăng ký ràng buộc cho tham số đường dẫn 'api-version'
+
+builder.Services.Configure<RouteOptions>(options =>
+{
+    options.ConstraintMap.Add("apiVersion", typeof(ApiVersionRouteConstraint));
+});
+
+#endregion Swagger
 
 /***
  * Xử dụng cho log xem lỗi 

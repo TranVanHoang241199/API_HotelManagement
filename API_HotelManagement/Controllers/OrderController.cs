@@ -10,8 +10,11 @@ namespace API_HotelManagement.Controllers
     /// 
     /// </summary>
     //[ApiExplorerSettings(GroupName = "Users")]
-    [Route("api/v1/orders")]
+    //[Route("api/v{version:apiVersion}/orders")]
+    [ApiVersion("1.0")]
     [ApiController]
+    [Route("api/v1/orders")]
+    [ApiExplorerSettings(GroupName = "Order")]
     public class OrderController : ControllerBase
     {
         private readonly IOrderHandler _orderService;

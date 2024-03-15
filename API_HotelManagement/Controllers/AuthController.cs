@@ -9,10 +9,11 @@ namespace API_HotelManagement.Controllers
     /// <summary>
     /// 
     /// </summary>
-    //[ApiExplorerSettings(GroupName = "Auths")]
-    [Route("api/v1/auths")]
-    [AllowAnonymous]
+    //[Route("api/v{version:apiVersion}/auths")]
+    [ApiVersion("1.0")]
     [ApiController]
+    [Route("api/v1/auths")]
+    [ApiExplorerSettings(GroupName = "Auth")]
     public class AuthController : ControllerBase
     {
         private readonly IAuthHandler _authHandler;

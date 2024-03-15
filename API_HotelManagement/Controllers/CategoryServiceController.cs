@@ -9,8 +9,11 @@ namespace API_HotelManagement.Controllers
     /// <summary>
     /// 
     /// </summary>
-    [Route("api/v1/services")]
+    //[Route("api/v{api-version:apiVersion}/services")]
+    [ApiVersion("1.0")]
     [ApiController]
+    [Route("api/v1/services-categories")]
+    [ApiExplorerSettings(GroupName = "Service Category")]
     public class CategoryServiceController : ControllerBase
     {
         private readonly ICategoryServiceHandler _categoryServiceService;
