@@ -56,6 +56,8 @@ namespace API_HotelManagement.Business.Services.CategoryRooms
                     //---------
                     CreateDate = DateTime.UtcNow,
                     CreateBy = GetExtensions.GetUserId(_httpContextAccessor),
+                    ModifiedBy = Guid.Parse("00000000-0000-0000-0000-000000000000"),
+                    ModifiedDate = new DateTime(),
                 };
 
                 // Thêm đối tượng vào DbContext

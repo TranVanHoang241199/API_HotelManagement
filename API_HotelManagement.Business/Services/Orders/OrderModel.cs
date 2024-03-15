@@ -9,8 +9,6 @@ namespace API_HotelManagement.Business.Services.Orders
     #region Order
     public class OrderQuery
     {
-        public DateTime? TimeStart { get; set; }
-        public DateTime? TimeEnd { get; set; }
         public string Search { get; set; } = "";
         public int CurrentPage { get; set; } = 1;
         public int PageSize { get; set; } = 1;
@@ -23,8 +21,8 @@ namespace API_HotelManagement.Business.Services.Orders
         public string? Identifier { get; set; }
         public string? Note { get; set; }
 
-        public List<OrderRoomDetailViewModel>? OrderRoomDetails { get; set; }
-        public List<OrderServiceDetailViewModel>? OrderServiceDetails { get; set; }
+        public List<OrderRoomDetailViewModel>? OrderRooms { get; set; }
+        public List<OrderServiceDetailViewModel>? OrderServices { get; set; }
     }
 
     public class OrderCreateUpdateModel
@@ -33,47 +31,101 @@ namespace API_HotelManagement.Business.Services.Orders
         public string? CustomerName { get; set; }
         public string? Identifier { get; set; }
         public string? Note { get; set; }
-        public List<OrderRoomDetailCreateUpdateModel>? OrderRoomDetails { get; set; } 
-        public List<OrderServiceDetailCreateUpdateModel>? OrderServiceDetails { get; set; } 
+        public List<OrderRoomCreateUpdateModel>? OrderRooms { get; set; } 
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<OrderServiceCreateUpdateModel>? OrderServices { get; set; } 
     }
     #endregion Order
 
     #region OrderRoomDetail
-    public class OrderRoomDetailViewModel
+    /// <summary>
+    /// order room view
+    /// </summary>
+    public class OrderRoomDetailViewModel : RoomViewModel
     {
-        public Guid Id { get; set; }    
-        public DateTime? OrderTime { get; set; }
-        public int Quantity { get; set; }
-        public decimal? TotalPrice { get; set; }
-        public List<RoomViewModel>? Rooms { get; set; }
+        /// <summary>
+        /// phòng cần thuê
+        /// </summary>
+        public Guid RoomId { get; set; }
+        public Guid OrderId { get; set; }
+        /// <summary>
+        /// thời gian bắt đầu thuê
+        /// </summary>
+        public DateTime? TimeStart { get; set; }
+        /// <summary>
+        /// thời gian kết thúc thuê
+        /// </summary>
+        public DateTime? TimeEnd { get; set; }
     }
 
-    public class OrderRoomDetailCreateUpdateModel
+    /// <summary>
+    /// order room create/update
+    /// </summary>
+    public class OrderRoomCreateUpdateModel
     {
-        //public Guid? OrderId { get; set; }
-        public Guid? RoomId { get; set; }
+        /// <summary>
+        /// phòng cần thuê
+        /// </summary>
+        public Guid RoomId { get; set; }
+        /// <summary>
+        /// thời gian bắt đầu thuê
+        /// </summary>
         public DateTime? TimeStart { get; set; }
+        /// <summary>
+        /// thời gian kết thúc thuê
+        /// </summary>
         public DateTime? TimeEnd { get; set; }
     }
 
     #endregion OrderRoomDetail
 
     #region OrderServiceDetail
-    public class OrderServiceDetailViewModel
+    /// <summary>
+    /// order service view
+    /// </summary>
+    public class OrderServiceDetailViewModel : ServiceViewModel
     {
-        public Guid Id { get; set; }
+        /// <summary>
+        /// thời gian giao lên phòng
+        /// </summary>
         public DateTime? OrderTime { get; set; }
-        public int Quantity { get; set; }
-        public string? TotalPrice { get; set; }
-        public List<ServiceViewModel>? Services { get; set; }
+        /// <summary>
+        /// số lượng 
+        /// </summary>
+        public new int? Quantity { get; set; }
+        /// <summary>
+        /// tổng tiền dịch vụ
+        /// </summary>
+        public decimal? TotalPrice { get; set; }
+        /// <summary>
+        /// id phòng thuê
+        /// </summary>
+        public Guid ServiceId { get; set; }
     }
 
-    public class OrderServiceDetailCreateUpdateModel
+    /// <summary>
+    /// order service create/update
+    /// </summary>
+    public class OrderServiceCreateUpdateModel
     {
-        //public Guid? OrderId { get; set; }
-        public Guid? ServiceId { get; set; }
+        /// <summary>
+        /// thời gian order lên phòng
+        /// </summary>
+        public DateTime? OrderTime { get; set; }
+        /// <summary>
+        /// id dịch vụ
+        /// </summary>
+        public Guid ServiceId { get; set; }
+        /// <summary>
+        /// số lượng sản phẩm
+        /// </summary>
         public int Quantity { get; set; }
-        public Guid? RoomOrDerviceId { get; set; }
+        /// <summary>
+        /// Phòng giao đồ ăn
+        /// </summary>
+        public Guid RoomOrDerviceId { get; set; }
     }
     #endregion OrderServiceDetail
 
@@ -86,18 +138,8 @@ namespace API_HotelManagement.Business.Services.Orders
         {
             // ht_Order to OrderViewModel
             CreateMap<ht_Order, OrderViewModel>()
-                .ForMember(dest => dest.OrderRoomDetails, opt => opt.MapFrom(src => src.OrderRoomDetails))
-                .ForMember(dest => dest.OrderServiceDetails, opt => opt.MapFrom(src => src.OrderServiceDetails));
-
-            // ht_OrderRoomDetail to OrderRoomDetailViewModel
-            CreateMap<ht_OrderRoomDetail, OrderRoomDetailViewModel>()
-                .ForMember(dest => dest.Rooms, opt => opt.MapFrom(src => src.Room));
-
-            // ht_OrderServiceDetail to OrderServiceDetailViewModel
-            CreateMap<ht_OrderServiceDetail, OrderServiceDetailViewModel>()
-                .ForMember(dest => dest.Services, opt => opt.MapFrom(src => src.Service));
-
-            // ... Add other mappings if necessary
+                .ForMember(dest => dest.OrderRooms, opt => opt.MapFrom(src => src.OrderRoomDetails))
+                .ForMember(dest => dest.OrderServices, opt => opt.MapFrom(src => src.OrderServiceDetails));
         }
     }
 }

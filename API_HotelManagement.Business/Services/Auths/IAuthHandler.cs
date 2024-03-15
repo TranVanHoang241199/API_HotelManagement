@@ -59,6 +59,7 @@ namespace API_HotelManagement.Business.Services.Auths
         /// <param name="id"></param>
         /// <returns></returns>
         Task<ApiResponse> RecoverAccount(Guid id);
+        Task<ApiResponse> CheckUsename(string usename);
         /// <summary>
         /// 
         /// </summary>

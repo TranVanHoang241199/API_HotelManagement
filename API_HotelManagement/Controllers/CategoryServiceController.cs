@@ -9,7 +9,7 @@ namespace API_HotelManagement.Controllers
     /// <summary>
     /// 
     /// </summary>
-    [Route("api/v1/service")]
+    [Route("api/v1/services")]
     [ApiController]
     public class CategoryServiceController : ControllerBase
     {
@@ -25,13 +25,13 @@ namespace API_HotelManagement.Controllers
         }
 
         /// <summary>
-        /// show all CategoryServices
+        /// Lấy về theo bộ lọc
         /// </summary>
         /// <param name="search"></param>
         /// <param name="currentPage">Page hiển thị hiện tại </param>
         /// <param name="pageSize">Kích thước lỗi trang</param>
         /// <returns></returns>
-        [Authorize, HttpGet, Route("GetAllCategoryServices")]
+        [Authorize, HttpGet, Route("")]
         [ProducesResponseType(typeof(ApiResponsePagination<CategoryServiceViewModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAllCategoryServices(string search = "", int currentPage = 1, int pageSize = 10)
         {
@@ -42,11 +42,11 @@ namespace API_HotelManagement.Controllers
         }
 
         /// <summary>
-        /// show CategoryService based on id
+        /// Lấy về theo Id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Authorize, HttpGet, Route("GetCategoryServiceById/{id}")]
+        [Authorize, HttpGet, Route("{id}")]
         [ProducesResponseType(typeof(ApiResponse<CategoryServiceViewModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetCategoryServiceById(Guid id)
         {
@@ -57,11 +57,11 @@ namespace API_HotelManagement.Controllers
         }
 
         /// <summary>
-        /// Create a new CategoryService
+        /// Thêm mới
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        [Authorize, HttpPost, Route("CreateCategoryService")]
+        [Authorize, HttpPost, Route("")]
         [ProducesResponseType(typeof(ApiResponseObject<CategoryServiceViewModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> CreateCategoryService([FromBody] CategoryServiceCreateUpdateModel model)
         {
@@ -72,12 +72,12 @@ namespace API_HotelManagement.Controllers
         }
 
         /// <summary>
-        /// Edit CategoryService information
+        /// Cập nhật
         /// </summary>
         /// <param name="id"></param>
         /// <param name="model"></param>
         /// <returns></returns>
-        [Authorize, HttpPut, Route("UpdateCategoryService/{id}")]
+        [Authorize, HttpPut, Route("{id}")]
         [ProducesResponseType(typeof(ApiResponse<bool>), StatusCodes.Status200OK)]
         public async Task<IActionResult> UpdateCategoryService(Guid id, [FromBody] CategoryServiceCreateUpdateModel model)
         {
@@ -88,11 +88,11 @@ namespace API_HotelManagement.Controllers
         }
 
         /// <summary>
-        /// delete CategoryService
+        /// Xoá
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Authorize, HttpDelete, Route("DeleteCategoryService/{id}")]
+        [Authorize, HttpDelete, Route("{id}")]
         [ProducesResponseType(typeof(ApiResponse<bool>), StatusCodes.Status200OK)]
         public async Task<IActionResult> DeleteCategoryService(Guid id)
         {

@@ -3,7 +3,6 @@ using API_HotelManagement.common.Helps;
 using API_HotelManagement.common.Utils;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
 
 namespace API_HotelManagement.Controllers
 {
@@ -11,7 +10,7 @@ namespace API_HotelManagement.Controllers
     /// 
     /// </summary>
     //[ApiExplorerSettings(GroupName = "Auths")]
-    [Route("api/v1/auth")]
+    [Route("api/v1/auths")]
     [AllowAnonymous]
     [ApiController]
     public class AuthController : ControllerBase
@@ -28,7 +27,7 @@ namespace API_HotelManagement.Controllers
         }
 
         /// <summary>
-        /// Login user
+        /// Đăng nhập (not auth)
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -45,7 +44,7 @@ namespace API_HotelManagement.Controllers
         }
 
         /// <summary>
-        /// register for user
+        /// Tạo tài khoản (not auth)
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -59,7 +58,7 @@ namespace API_HotelManagement.Controllers
         }
 
         /// <summary>
-        /// change Password for user
+        /// Đổi mật khẩu user
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -73,7 +72,7 @@ namespace API_HotelManagement.Controllers
         }
 
         /// <summary>
-        /// Update information for User
+        /// Cập nhật thông tin
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -87,7 +86,7 @@ namespace API_HotelManagement.Controllers
         }
 
         /// <summary>
-        /// Recover disabled account
+        /// khôi phục tài khoản bị vô hiệu hoá
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -102,7 +101,7 @@ namespace API_HotelManagement.Controllers
 
 
         /// <summary>
-        /// delete account for user
+        /// Xoá/vô hiệu hoá tài khoản
         /// </summary>
         /// <returns></returns>
         [Authorize, HttpDelete, Route("remove-account")]
@@ -115,7 +114,7 @@ namespace API_HotelManagement.Controllers
         }
 
         /// <summary>
-        /// Get user login information
+        /// lấy thông tin tài khoản đã đăng nhập
         /// </summary>
         /// <returns></returns>
         [Authorize, HttpGet, Route("me")]
@@ -128,10 +127,23 @@ namespace API_HotelManagement.Controllers
         }
 
         /// <summary>
-        /// Get user login information
+        /// Lấy thông tin tài khoản(not auth)
         /// </summary>
         /// <returns></returns>
-        [AllowAnonymous, HttpGet, Route("GetAllUser")]
+        [AllowAnonymous, HttpGet, Route("check-usename")]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
+        public async Task<IActionResult> CheckUsename(string usename)
+        {
+            var result = await _authHandler.CheckUsename(usename);
+
+            return ApiHelper.TransformData(result);
+        }
+
+        /// <summary>
+        /// Lấy tất cả tài khoản (not auth) (test)
+        /// </summary>
+        /// <returns></returns>
+        [AllowAnonymous, HttpGet, Route("")]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAllUsers(string search = "", int currentPage = 1, int pageSize = 10)
         {
@@ -141,10 +153,10 @@ namespace API_HotelManagement.Controllers
         }
 
         /// <summary>
-        /// Get all Role
+        /// lấy tất cả role (not auth) (test)
         /// </summary>
         /// <returns></returns>
-        [AllowAnonymous, HttpGet, Route("GetsRole")]
+        [AllowAnonymous, HttpGet, Route("role")]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetRoles()
         {

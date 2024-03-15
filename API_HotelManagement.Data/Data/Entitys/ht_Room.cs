@@ -34,7 +34,10 @@ namespace API_HotelManagement.Data.Data.Entitys
         /// </summary>
         public EStatusRoom Status { get; set; }
 
-        public Guid? CategoryRoomId { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public Guid CategoryRoomId { get; set; }
         public ht_CategoryRoom? CategoryRoom { get; set; }
 
         /// <summary>

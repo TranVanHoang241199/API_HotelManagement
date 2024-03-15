@@ -127,10 +127,10 @@ namespace API_HotelManagement.Data.Migrations
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("OrderId")
+                    b.Property<Guid>("OrderId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("RoomId")
+                    b.Property<Guid>("RoomId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("TimeEnd")
@@ -166,7 +166,7 @@ namespace API_HotelManagement.Data.Migrations
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("OrderId")
+                    b.Property<Guid>("OrderId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("OrderTime")
@@ -175,7 +175,7 @@ namespace API_HotelManagement.Data.Migrations
                     b.Property<int?>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("ServiceId")
+                    b.Property<Guid>("ServiceId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal?>("TotalPrice")
@@ -197,7 +197,7 @@ namespace API_HotelManagement.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("CategoryRoomId")
+                    b.Property<Guid>("CategoryRoomId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("CreateBy")
@@ -340,11 +340,13 @@ namespace API_HotelManagement.Data.Migrations
                 {
                     b.HasOne("API_HotelManagement.Data.Data.Entitys.ht_Order", "Order")
                         .WithMany("OrderRoomDetails")
-                        .HasForeignKey("OrderId");
+                        .HasForeignKey("OrderId")
+                        .IsRequired();
 
                     b.HasOne("API_HotelManagement.Data.Data.Entitys.ht_Room", "Room")
                         .WithMany("OrderRoomDetails")
-                        .HasForeignKey("RoomId");
+                        .HasForeignKey("RoomId")
+                        .IsRequired();
 
                     b.Navigation("Order");
 
@@ -355,11 +357,13 @@ namespace API_HotelManagement.Data.Migrations
                 {
                     b.HasOne("API_HotelManagement.Data.Data.Entitys.ht_Order", "Order")
                         .WithMany("OrderServiceDetails")
-                        .HasForeignKey("OrderId");
+                        .HasForeignKey("OrderId")
+                        .IsRequired();
 
                     b.HasOne("API_HotelManagement.Data.Data.Entitys.ht_Service", "Service")
                         .WithMany("OrderServiceDetails")
-                        .HasForeignKey("ServiceId");
+                        .HasForeignKey("ServiceId")
+                        .IsRequired();
 
                     b.Navigation("Order");
 
@@ -370,7 +374,8 @@ namespace API_HotelManagement.Data.Migrations
                 {
                     b.HasOne("API_HotelManagement.Data.Data.Entitys.ht_CategoryRoom", "CategoryRoom")
                         .WithMany("Rooms")
-                        .HasForeignKey("CategoryRoomId");
+                        .HasForeignKey("CategoryRoomId")
+                        .IsRequired();
 
                     b.Navigation("CategoryRoom");
                 });

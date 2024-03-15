@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace API_HotelManagement.Controllers
 {
     /// <summary>
-    /// 
+    /// (not auth)
     /// </summary>
     [Route("api/v1/test")]
     [AllowAnonymous]
@@ -22,7 +22,7 @@ namespace API_HotelManagement.Controllers
         }
 
         /// <summary>
-        /// 
+        /// (not auth)
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -32,7 +32,7 @@ namespace API_HotelManagement.Controllers
         }
 
         /// <summary>
-        /// show all rooms
+        /// show all rooms (not auth)
         /// </summary>
         /// <param name="search"></param>
         /// <param name="currentPage">Page hiển thị hiện tại </param>

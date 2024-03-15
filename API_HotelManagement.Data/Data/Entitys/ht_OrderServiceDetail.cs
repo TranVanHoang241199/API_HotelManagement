@@ -9,7 +9,7 @@ namespace API_HotelManagement.Data.Data.Entitys
     public class ht_OrderServiceDetail : EntityBase
     {
         /// <summary>
-        /// Thời gian đặt
+        /// Thời giao hàng cho khách hàng
         /// </summary>
         public DateTime? OrderTime { get; set; }
         /// <summary>
@@ -22,11 +22,11 @@ namespace API_HotelManagement.Data.Data.Entitys
         public decimal? TotalPrice { get; set; }
 
         /// Khoá ngoại Order
-        public Guid? OrderId { get; set; }
+        public Guid OrderId { get; set; }
         public ht_Order? Order { get; set; }
 
         // Khoá ngoại Service
-        public Guid? ServiceId { get; set; }
+        public Guid ServiceId { get; set; }
         public ht_Service? Service { get; set; }
     }
 }

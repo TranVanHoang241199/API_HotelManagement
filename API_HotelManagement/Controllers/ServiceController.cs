@@ -31,7 +31,7 @@ namespace API_HotelManagement.Controllers
         /// <param name="currentPage">Page hiển thị hiện tại </param>
         /// <param name="pageSize">Kích thước lỗi trang</param>
         /// <returns></returns>
-        [Authorize, HttpGet, Route("GetAllServices")]
+        [Authorize, HttpGet, Route("")]
         [ProducesResponseType(typeof(ApiResponsePagination<ServiceViewModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAllServices(string search = "", int currentPage = 1, int pageSize = 10)
         {
@@ -45,7 +45,7 @@ namespace API_HotelManagement.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Authorize, HttpGet, Route("GetServiceById/{id}")]
+        [Authorize, HttpGet, Route("{id}")]
         [ProducesResponseType(typeof(ApiResponse<ServiceViewModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetServiceById(Guid id)
         {
@@ -59,7 +59,7 @@ namespace API_HotelManagement.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        [Authorize, HttpPost, Route("CreateService")]
+        [Authorize, HttpPost, Route("")]
         [ProducesResponseType(typeof(ApiResponseObject<ServiceViewModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> CreateService([FromBody] ServiceCreateUpdateModel model)
         {
@@ -74,7 +74,7 @@ namespace API_HotelManagement.Controllers
         /// <param name="id"></param>
         /// <param name="model"></param>
         /// <returns></returns>
-        [Authorize, HttpPut, Route("UpdateService/{id}")]
+        [Authorize, HttpPut, Route("{id}")]
         [ProducesResponseType(typeof(ApiResponse<bool>), StatusCodes.Status200OK)]
         public async Task<IActionResult> UpdateService(Guid id, [FromBody] ServiceCreateUpdateModel model)
         {
@@ -88,7 +88,7 @@ namespace API_HotelManagement.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Authorize, HttpDelete, Route("DeleteService/{id}")]
+        [Authorize, HttpDelete, Route("{id}")]
         [ProducesResponseType(typeof(ApiResponse<bool>), StatusCodes.Status200OK)]
         public async Task<IActionResult> DeleteService(Guid id)
         {

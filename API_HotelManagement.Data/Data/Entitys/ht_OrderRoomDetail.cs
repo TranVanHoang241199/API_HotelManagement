@@ -18,11 +18,11 @@ namespace API_HotelManagement.Data.Data.Entitys
         public DateTime? TimeEnd { get; set; }
 
         /// Khoá ngoại Order
-        public Guid? OrderId { get; set; }
+        public Guid OrderId { get; set; }
         public ht_Order? Order { get; set; }
 
         // Khoá ngoại Service
-        public Guid? RoomId { get; set; }
+        public Guid RoomId { get; set; }
         public ht_Room? Room { get; set; }
     }
 }

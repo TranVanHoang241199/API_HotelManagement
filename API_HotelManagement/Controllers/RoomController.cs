@@ -9,7 +9,7 @@ namespace API_HotelManagement.Controllers
     /// 
     /// </summary>
     //[ApiExplorerSettings(GroupName = "Users")]
-    [Route("api/v1/room")]
+    [Route("api/v1/rooms")]
     [ApiController]
     public class RoomController : ControllerBase
     {
@@ -31,7 +31,7 @@ namespace API_HotelManagement.Controllers
         /// <param name="currentPage">Page hiển thị hiện tại </param>
         /// <param name="pageSize">Kích thước lỗi trang</param>
         /// <returns></returns>
-        [Authorize, HttpGet, Route("GetAllRooms")]
+        [Authorize, HttpGet, Route("")]
         [ProducesResponseType(typeof(ApiResponsePagination<RoomViewModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAllRooms(string search = "", int currentPage = 1, int pageSize = 10)
         {
@@ -46,7 +46,7 @@ namespace API_HotelManagement.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Authorize, HttpGet, Route("GetRoomById/{id}")]
+        [Authorize, HttpGet, Route("{id}")]
         [ProducesResponseType(typeof(ApiResponse<RoomViewModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetRoomById(Guid id)
         {
@@ -61,7 +61,7 @@ namespace API_HotelManagement.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        [Authorize, HttpPost, Route("CreateRoom")]
+        [Authorize, HttpPost, Route("")]
         [ProducesResponseType(typeof(ApiResponseObject<RoomViewModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> CreateRoom([FromBody] RoomCreateUpdateModel model)
         {
@@ -77,7 +77,7 @@ namespace API_HotelManagement.Controllers
         /// <param name="id"></param>
         /// <param name="model"></param>
         /// <returns></returns>
-        [Authorize, HttpPut, Route("UpdateRoom/{id}")]
+        [Authorize, HttpPut, Route("{id}")]
         [ProducesResponseType(typeof(ApiResponse<bool>), StatusCodes.Status200OK)]
         public async Task<IActionResult> UpdateRoom(Guid id, [FromBody] RoomCreateUpdateModel model)
         {
@@ -92,7 +92,7 @@ namespace API_HotelManagement.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Authorize, HttpDelete, Route("DeleteRoom/{id}")]
+        [Authorize, HttpDelete, Route("{id}")]
         [ProducesResponseType(typeof(ApiResponse<bool>), StatusCodes.Status200OK)]
         public async Task<IActionResult> DeleteRoom(Guid id)
         {

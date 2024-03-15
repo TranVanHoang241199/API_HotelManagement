@@ -1,5 +1,4 @@
-﻿using API_HotelManagement.Business.Services.Rooms;
-using API_HotelManagement.common.Helps;
+﻿using API_HotelManagement.common.Helps;
 using API_HotelManagement.common.Helps.Extensions;
 using API_HotelManagement.common.Utils;
 using API_HotelManagement.Data.Data;
@@ -500,6 +499,27 @@ namespace API_HotelManagement.Business.Services.Auths
                 var result = _mapper.Map<List<UserViewModel>>(data).ToList();
 
                 return new ApiResponsePagination<UserViewModel>(result, totalItems, currentPage, pageSize);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, string.Empty);
+                return new ApiResponseError(HttpStatusCode.InternalServerError, "Something went wrong: " + ex.Message);
+            }
+        }
+
+        public async Task<ApiResponse> CheckUsename(string usename)
+        {
+            try
+            {
+                // Truy vấn dữ liệu từ cơ sở dữ liệu sử dụng LINQ
+                var query = await _context.ht_Users.Where(o => o.UserName != usename).FirstAsync();
+
+                if (query == null)
+                {
+                    new ApiResponse<int>(0);
+                }
+
+                return new ApiResponse<int>(1);
             }
             catch (Exception ex)
             {

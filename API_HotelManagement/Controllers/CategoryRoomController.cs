@@ -8,7 +8,7 @@ namespace API_HotelManagement.Controllers
     /// <summary>
     /// 
     /// </summary>
-    [Route("api/v1/room")]
+    [Route("api/v1/room-categories")]
     [ApiController]
     public class CategoryRoomController : ControllerBase
     {
@@ -24,13 +24,13 @@ namespace API_HotelManagement.Controllers
         }
 
         /// <summary>
-        /// show all CategoryRooms
+        /// Lấy về theo bộ lọc
         /// </summary>
         /// <param name="search"></param>
         /// <param name="currentPage">Page hiển thị hiện tại </param>
         /// <param name="pageSize">Kích thước lỗi trang</param>
         /// <returns></returns>
-        [Authorize, HttpGet, Route("GetAllCategoryRooms")]
+        [Authorize, HttpGet, Route("")]
         [ProducesResponseType(typeof(ApiResponsePagination<CategoryRoomViewModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAllCategoryRooms(string search = "", int currentPage = 1, int pageSize = 10)
         {
@@ -41,11 +41,11 @@ namespace API_HotelManagement.Controllers
         }
 
         /// <summary>
-        /// show CategoryRoom based on id
+        /// Lấy về theo Id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Authorize, HttpGet, Route("GetCategoryRoomById/{id}")]
+        [Authorize, HttpGet, Route("{id}")]
         [ProducesResponseType(typeof(ApiResponse<CategoryRoomViewModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetCategoryRoomById(Guid id)
         {
@@ -56,11 +56,11 @@ namespace API_HotelManagement.Controllers
         }
 
         /// <summary>
-        /// Create a new CategoryRoom
+        /// Thêm mới
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        [Authorize, HttpPost, Route("CreateCategoryRoom")]
+        [Authorize, HttpPost, Route("")]
         [ProducesResponseType(typeof(ApiResponseObject<CategoryRoomViewModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> CreateCategoryRoom([FromBody] CategoryRoomCreateUpdateModel model)
         {
@@ -71,12 +71,12 @@ namespace API_HotelManagement.Controllers
         }
 
         /// <summary>
-        /// Edit CategoryRoom information
+        /// Cập nhật
         /// </summary>
         /// <param name="id"></param>
         /// <param name="model"></param>
         /// <returns></returns>
-        [Authorize, HttpPut, Route("UpdateCategoryRoom/{id}")]
+        [Authorize, HttpPut, Route("{id}")]
         [ProducesResponseType(typeof(ApiResponse<bool>), StatusCodes.Status200OK)]
         public async Task<IActionResult> UpdateCategoryRoom(Guid id, [FromBody] CategoryRoomCreateUpdateModel model)
         {
@@ -87,11 +87,11 @@ namespace API_HotelManagement.Controllers
         }
 
         /// <summary>
-        /// delete CategoryRoom
+        /// xoá
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Authorize, HttpDelete, Route("DeleteCategoryRoom/{id}")]
+        [Authorize, HttpDelete, Route("{id}")]
         [ProducesResponseType(typeof(ApiResponse<bool>), StatusCodes.Status200OK)]
         public async Task<IActionResult> DeleteCategoryRoom(Guid id)
         {
