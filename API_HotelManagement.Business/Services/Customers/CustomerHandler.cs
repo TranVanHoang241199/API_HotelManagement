@@ -37,7 +37,7 @@ namespace API_HotelManagement.Business.Services.Customers
                 var currentUserId = GetExtensions.GetUserId(_httpContextAccessor);
 
                 // Truy vấn dữ liệu từ cơ sở dữ liệu sử dụng LINQ
-                var query = _context.ht_Orders.Where(o => o.CreateBy.Equals(currentUserId)).AsQueryable();
+                var query = _context.ht_Orders.Where(o => o.CreatedBy.Equals(currentUserId)).AsQueryable();
 
                 // Áp dụng bộ lọc nếu có
                 if (!string.IsNullOrEmpty(search))
@@ -53,7 +53,7 @@ namespace API_HotelManagement.Business.Services.Customers
                     .Skip((currentPage - 1) * pageSize)
                     .Take(pageSize)
                     .OrderBy(o => o.ModifiedDate)
-                    .OrderBy(o => o.CreateDate)
+                    .OrderBy(o => o.CreatedDate)
                     .Select(p => new CustomerViewModel { 
                         CustomerName = p.CustomerName,
                         CustomerPhone = p.CustomerPhone,

@@ -8,7 +8,7 @@ namespace API_HotelManagement.Business.Services.Services
     public class ServiceViewModel : BaseViewModel
     {
         public string? ServiceName { get; set; }
-        public decimal Price { get; set; }
+        public decimal PriceAmount { get; set; }
         public int Quantity { get; set; }
         public EStatusService Status { get; set; }
     }
@@ -16,7 +16,7 @@ namespace API_HotelManagement.Business.Services.Services
     public class ServiceCreateUpdateModel
     {
         public string? ServiceName { get; set; }
-        public decimal Price { get; set; }
+        public decimal PriceAmount { get; set; }
         public int Quantity { get; set; }
         public EStatusService Status { get; set; }
         public Guid CategoryServiceId { get; set; }

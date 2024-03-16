@@ -13,7 +13,7 @@ namespace API_HotelManagement.Data.Data.Entitys
         /// <summary>
         /// Giá dịch vụ
         /// </summary>
-        public decimal Price { get; set; }
+        public decimal PriceAmount { get; set; }
         /// <summary>
         /// Số lượng dịch vụ
         /// </summary>

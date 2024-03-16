@@ -10,7 +10,7 @@ namespace API_HotelManagement.Business.Services.Rooms
     {
         public string? RoomName { get; set; }
         public int FloorNumber { get; set; }
-        public decimal Price { get; set; }
+        public decimal PriceAmount { get; set; }
         public EStatusRoom Status { get; set; }
     }
 
@@ -18,7 +18,7 @@ namespace API_HotelManagement.Business.Services.Rooms
     {
         public string? RoomName { get; set; }
         public int FloorNumber { get; set; }
-        public decimal Price { get; set; }
+        public decimal PriceAmount { get; set; }
         public EStatusRoom Status { get; set; }
         public Guid CategoryRoomId { get; set; }
     }

@@ -53,11 +53,11 @@ namespace API_HotelManagement.Business.Services.Orders
         /// <summary>
         /// thời gian bắt đầu thuê
         /// </summary>
-        public DateTime? TimeStart { get; set; }
+        public DateTime? StartDate { get; set; }
         /// <summary>
         /// thời gian kết thúc thuê
         /// </summary>
-        public DateTime? TimeEnd { get; set; }
+        public DateTime? EndDate { get; set; }
     }
 
     /// <summary>
@@ -72,11 +72,11 @@ namespace API_HotelManagement.Business.Services.Orders
         /// <summary>
         /// thời gian bắt đầu thuê
         /// </summary>
-        public DateTime? TimeStart { get; set; }
+        public DateTime? StartDate { get; set; }
         /// <summary>
         /// thời gian kết thúc thuê
         /// </summary>
-        public DateTime? TimeEnd { get; set; }
+        public DateTime? EndDate { get; set; }
     }
 
     #endregion OrderRoomDetail
@@ -90,7 +90,7 @@ namespace API_HotelManagement.Business.Services.Orders
         /// <summary>
         /// thời gian giao lên phòng
         /// </summary>
-        public DateTime? OrderTime { get; set; }
+        public DateTime? OrderDate { get; set; }
         /// <summary>
         /// số lượng 
         /// </summary>
@@ -98,7 +98,7 @@ namespace API_HotelManagement.Business.Services.Orders
         /// <summary>
         /// tổng tiền dịch vụ
         /// </summary>
-        public decimal? TotalPrice { get; set; }
+        public decimal? TotalPriceAmount { get; set; }
         /// <summary>
         /// id phòng thuê
         /// </summary>
@@ -113,7 +113,7 @@ namespace API_HotelManagement.Business.Services.Orders
         /// <summary>
         /// thời gian order lên phòng
         /// </summary>
-        public DateTime? OrderTime { get; set; }
+        public DateTime? OrderDate { get; set; }
         /// <summary>
         /// id dịch vụ
         /// </summary>

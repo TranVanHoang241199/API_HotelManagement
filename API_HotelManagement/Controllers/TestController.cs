@@ -8,14 +8,19 @@ namespace API_HotelManagement.Controllers
     /// <summary>
     /// (not auth)
     /// </summary>
-    [Route("api/v1/test")]
-    [AllowAnonymous]
+    [ApiVersion("1.0")]
     [ApiController]
+    [AllowAnonymous, Route("api/v1/test")]
+    [ApiExplorerSettings(GroupName = "_Test")]
     public class TestController : ControllerBase
     {
 
         private readonly IRoomHandler _roomService;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="roomService"></param>
         public TestController(IRoomHandler roomService)
         {
             _roomService = roomService;
@@ -26,7 +31,7 @@ namespace API_HotelManagement.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IActionResult Login()
+        public IActionResult Test()
         {
             return Ok("Thành Công");
         }

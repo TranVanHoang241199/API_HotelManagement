@@ -68,19 +68,19 @@ namespace API_HotelManagement.Data.Data
             modelBuilder.Entity<ht_Service>(entity =>
             {
                 // decimal(18, 2) : 18 chữ số tổng cùng với 2 chữ số sau dấu thập phân.
-                entity.Property(s => s.Price).HasPrecision(18, 2);
+                entity.Property(s => s.PriceAmount).HasPrecision(18, 2);
             });
 
             modelBuilder.Entity<ht_OrderServiceDetail>(entity =>
             {
                 // decimal(18, 2) : 18 chữ số tổng cùng với 2 chữ số sau dấu thập phân.
-                entity.Property(s => s.TotalPrice).HasPrecision(18, 2);
+                entity.Property(s => s.TotalPriceAmount).HasPrecision(18, 2);
             });
 
             modelBuilder.Entity<ht_Room>(entity =>
             {
                 // decimal(18, 2) : 18 chữ số tổng cùng với 2 chữ số sau dấu thập phân.
-                entity.Property(s => s.Price).HasPrecision(18, 2);
+                entity.Property(s => s.PriceAmount).HasPrecision(18, 2);
             });
             #endregion đặt giới hạn cho colum
 

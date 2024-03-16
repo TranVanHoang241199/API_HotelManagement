@@ -56,7 +56,7 @@ namespace API_HotelManagement.Business.Services.Auths
                 // Kiểm tra xem có người dùng nào khớp với tên người dùng không
                 var userEntity = await _context.ht_Users
                     .Where(u => u.Email.Equals(userName) || u.UserName.Equals(userName) || u.Phone.Equals(userName))
-                    .OrderByDescending(u => u.CreateDate)
+                    .OrderByDescending(u => u.CreatedDate)
                     .FirstOrDefaultAsync();
 
                 // check mật khẩu mã hoá để so sánh
@@ -238,7 +238,7 @@ namespace API_HotelManagement.Business.Services.Auths
                     UserName = request.UserName,
 
                     //----------------
-                    CreateDate = DateTime.UtcNow,
+                    CreatedDate = DateTime.UtcNow,
                 };
 
                 // Thêm người dùng mới vào cơ sở dữ liệu
@@ -467,7 +467,7 @@ namespace API_HotelManagement.Business.Services.Auths
         }
 
         /// <summary>
-        /// 
+        /// lấy ra tất cả user
         /// </summary>
         /// <param name="search"></param>
         /// <param name="currentPage"></param>
@@ -493,7 +493,7 @@ namespace API_HotelManagement.Business.Services.Auths
                 var data = await query
                     .Skip((currentPage - 1) * pageSize)
                     .Take(pageSize)
-                    .OrderBy(o => o.CreateDate)
+                    .OrderBy(o => o.CreatedDate)
                     .ToListAsync();
 
                 var result = _mapper.Map<List<UserViewModel>>(data).ToList();
@@ -507,6 +507,11 @@ namespace API_HotelManagement.Business.Services.Auths
             }
         }
 
+        /// <summary>
+        /// kiểm tra user
+        /// </summary>
+        /// <param name="usename"></param>
+        /// <returns></returns>
         public async Task<ApiResponse> CheckUsename(string usename)
         {
             try

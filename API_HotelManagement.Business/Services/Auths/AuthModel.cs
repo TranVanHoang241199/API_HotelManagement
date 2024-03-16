@@ -30,7 +30,7 @@ namespace API_HotelManagement.Business.Services.Auths
         public EBusinessAreas BusinessAreas { get; set; }
         public bool IsDeleted { get; set; }
         public string? Role { get; set; }
-        public DateTime? CreateDate { get; set; }
+        public DateTime? CreatedDate { get; set; }
         public DateTime? PasswordUpdatedDate { get; set; }
         public DateTime? DeletedDate { get; set; }
     }

@@ -18,7 +18,6 @@ using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Mvc.Controllers;
 
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 Environment.SetEnvironmentVariable("ASPNETCORE_APIURL", builder.Configuration.GetSection("URLs").GetSection("APIUrl").Value);
@@ -28,8 +27,6 @@ builder.Services.AddControllers();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-
-
 
 #region Swagger
 /***

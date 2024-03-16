@@ -1,5 +1,4 @@
-﻿using API_HotelManagement.Business.Services.CategoryRooms;
-using API_HotelManagement.common.Utils;
+﻿using API_HotelManagement.common.Utils;
 
 namespace API_HotelManagement.Business.Rooms.CategoryRooms
 {

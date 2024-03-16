@@ -24,7 +24,7 @@ namespace API_HotelManagement.Data.Data.Entitys
         /// <summary>
         /// Giá phòng
         /// </summary>
-        public decimal Price { get; set; }
+        public decimal PriceAmount { get; set; }
         /// <summary>
         /// Trạng thái hoạt động
         /// 0 = Active : đang hoạt động

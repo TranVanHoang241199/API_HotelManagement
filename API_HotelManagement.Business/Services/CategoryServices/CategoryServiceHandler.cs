@@ -39,7 +39,7 @@ namespace API_HotelManagement.Business.Services.CategoryServices
                 }
 
                 var queryCategoryService = _context.ht_CategoryServices.FirstOrDefault(o => o.CategoryName.Equals(model.Categoryname.Trim())
-                && o.CreateBy.Equals(GetExtensions.GetUserId(_httpContextAccessor)));
+                && o.CreatedBy.Equals(GetExtensions.GetUserId(_httpContextAccessor)));
 
                 if (queryCategoryService != null)
                 {
@@ -53,8 +53,8 @@ namespace API_HotelManagement.Business.Services.CategoryServices
                     CategoryName = model.Categoryname,
 
                     //---------
-                    CreateDate = DateTime.UtcNow,
-                    CreateBy = GetExtensions.GetUserId(_httpContextAccessor),
+                    CreatedDate = DateTime.UtcNow,
+                    CreatedBy = GetExtensions.GetUserId(_httpContextAccessor),
                     ModifiedBy = Guid.Parse("00000000-0000-0000-0000-000000000000"),
                     ModifiedDate = new DateTime(),
                 };
@@ -120,7 +120,7 @@ namespace API_HotelManagement.Business.Services.CategoryServices
                 var currentUserId = GetExtensions.GetUserId(_httpContextAccessor);
 
                 // Truy vấn dữ liệu từ cơ sở dữ liệu sử dụng LINQ
-                var query = _context.ht_CategoryServices.Where(o => o.CreateBy.Equals(currentUserId)).AsQueryable();
+                var query = _context.ht_CategoryServices.Where(o => o.CreatedBy.Equals(currentUserId)).AsQueryable();
 
                 // Áp dụng bộ lọc nếu có
                 if (!string.IsNullOrEmpty(search))
@@ -136,7 +136,7 @@ namespace API_HotelManagement.Business.Services.CategoryServices
                     .Skip((currentPage - 1) * pageSize)
                     .Take(pageSize)
                     .OrderBy(o => o.ModifiedDate)
-                    .OrderBy(o => o.CreateDate)
+                    .OrderBy(o => o.CreatedDate)
                     .ToListAsync();
 
                 var result = _mapper.Map<List<CategoryServiceViewModel>>(data).ToList();
@@ -169,8 +169,8 @@ namespace API_HotelManagement.Business.Services.CategoryServices
 
                         ModifiedDate = o.ModifiedDate,
                         ModifiedBy = o.ModifiedBy,
-                        CreateBy = o.CreateBy,
-                        CreateDate = o.CreateDate,
+                        CreatedBy = o.CreatedBy,
+                        CreatedDate = o.CreatedDate,
                     })
                     .FirstOrDefaultAsync();
 

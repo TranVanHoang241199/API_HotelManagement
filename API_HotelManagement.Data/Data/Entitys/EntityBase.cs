@@ -12,11 +12,11 @@ namespace API_HotelManagement.Data.Data.Entitys
         /// <summary>
         /// Thời gian tạo
         /// </summary>
-        public DateTime? CreateDate { get; set; }
+        public DateTime? CreatedDate { get; set; }
         /// <summary>
         /// Người Tạo 
         /// </summary>
-        public Guid CreateBy { get; set; }
+        public Guid CreatedBy { get; set; }
         /// <summary>
         /// Ngày sửa đổi
         /// </summary>

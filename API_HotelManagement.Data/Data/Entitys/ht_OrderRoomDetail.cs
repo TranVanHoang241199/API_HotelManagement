@@ -11,11 +11,11 @@ namespace API_HotelManagement.Data.Data.Entitys
         /// <summary>
         /// Thời gian đặc phòng
         /// </summary>
-        public DateTime? TimeStart { get; set; }
+        public DateTime? StartDate { get; set; }
         /// <summary>
         /// Thời gian trả phòng
         /// </summary>
-        public DateTime? TimeEnd { get; set; }
+        public DateTime? EndDate { get; set; }
 
         /// Khoá ngoại Order
         public Guid OrderId { get; set; }

@@ -1,5 +1,4 @@
-﻿using API_HotelManagement.Business.Services.Rooms;
-using API_HotelManagement.common.Helps.Extensions;
+﻿using API_HotelManagement.common.Helps.Extensions;
 using API_HotelManagement.common.Utils;
 using API_HotelManagement.Data.Data;
 using API_HotelManagement.Data.Data.Entitys;
@@ -7,9 +6,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
-using System.Linq;
 using System.Net;
-using System.Runtime.ConstrainedExecution;
 
 namespace API_HotelManagement.Business.Services.Orders
 {
@@ -50,8 +47,8 @@ namespace API_HotelManagement.Business.Services.Orders
                     Note = model.Note,
 
                     //---------
-                    CreateBy = currentUserId,
-                    CreateDate = DateTime.UtcNow,
+                    CreatedBy = currentUserId,
+                    CreatedDate = DateTime.UtcNow,
                     ModifiedBy = Guid.Parse("00000000-0000-0000-0000-000000000000"),
                     ModifiedDate = new DateTime(), 
                 };
@@ -68,16 +65,18 @@ namespace API_HotelManagement.Business.Services.Orders
                     _context.ht_OrderRoomDetails.Add(new ht_OrderRoomDetail
                     {
                         Id = Guid.NewGuid(),
-                        TimeStart = DateTime.UtcNow,
-                        TimeEnd = DateTime.UtcNow,
+                        StartDate = room.StartDate,
+                        EndDate = room.StartDate,
                         
                         //--
                         RoomId = room.RoomId,
                         OrderId = entity.Id,
 
                         //---------
-                        CreateBy = currentUserId,
-                        CreateDate = DateTime.UtcNow,
+                        CreatedBy = currentUserId,
+                        CreatedDate = DateTime.UtcNow,
+                        ModifiedBy = Guid.Parse("00000000-0000-0000-0000-000000000000"),
+                        ModifiedDate = new DateTime(),
                     });
                 }
 
@@ -87,17 +86,19 @@ namespace API_HotelManagement.Business.Services.Orders
                     _context.ht_OrderServiceDetails.Add(new ht_OrderServiceDetail
                     {
                         Id = Guid.NewGuid(),
-                        OrderTime = service.OrderTime,
+                        OrderDate = service.OrderDate,
                         Quantity = service.Quantity,
-                        TotalPrice = (_context.ht_Services.Find(service.ServiceId).Price * service.Quantity),
+                        TotalPriceAmount = (_context.ht_Services.Find(service.ServiceId).PriceAmount * service.Quantity),
 
                         //--
                         ServiceId = service.ServiceId,
                         OrderId = entity.Id,
 
                         //---------
-                        CreateBy = currentUserId,
-                        CreateDate = DateTime.UtcNow,
+                        CreatedBy = currentUserId,
+                        CreatedDate = DateTime.UtcNow,
+                        ModifiedBy = Guid.Parse("00000000-0000-0000-0000-000000000000"),
+                        ModifiedDate = new DateTime(),
                     });
                 }
 
@@ -124,19 +125,19 @@ namespace API_HotelManagement.Business.Services.Orders
                         (orderRoom, room) => new OrderRoomDetailViewModel
                         {
                             Id = orderRoom.Id,
-                            TimeStart  = orderRoom.TimeStart,
-                            TimeEnd = orderRoom.TimeEnd,
+                            StartDate  = orderRoom.StartDate,
+                            EndDate = orderRoom.EndDate,
 
                             //-------------
                             RoomId = orderRoom.RoomId,
                             RoomName = room.RoomName,
                             FloorNumber = room.FloorNumber,
-                            Price = room.Price,
+                            PriceAmount = room.PriceAmount,
                             Status = room.Status,
 
                             //-------------
-                            CreateBy = orderRoom.CreateBy, 
-                            CreateDate = orderRoom.CreateDate,
+                            CreatedBy = orderRoom.CreatedBy, 
+                            CreatedDate = orderRoom.CreatedDate,
                             ModifiedBy = orderRoom.ModifiedBy,
                             ModifiedDate = orderRoom.ModifiedDate,
                         }
@@ -152,19 +153,19 @@ namespace API_HotelManagement.Business.Services.Orders
                         (orderService, service) => new OrderServiceDetailViewModel
                         {
                             Id = orderService.Id,
-                            OrderTime = orderService.OrderTime,
-                            TotalPrice = orderService.TotalPrice,
+                            OrderDate = orderService.OrderDate,
+                            TotalPriceAmount = orderService.TotalPriceAmount,
                             Quantity = orderService.Quantity,
 
                             //-------------
                             ServiceId = orderService.ServiceId,
-                            Price = service.Price,
+                            PriceAmount = service.PriceAmount,
                             Status = service.Status,
                             ServiceName = service.ServiceName,
 
                             //-------------
-                            CreateBy = orderService.CreateBy,
-                            CreateDate = orderService.CreateDate,
+                            CreatedBy = orderService.CreatedBy,
+                            CreatedDate = orderService.CreatedDate,
                             ModifiedBy = orderService.ModifiedBy,
                             ModifiedDate = orderService.ModifiedDate,
 
@@ -172,8 +173,8 @@ namespace API_HotelManagement.Business.Services.Orders
                     ).ToList(),
 
                     //-------------
-                    CreateBy = entity.CreateBy,
-                    CreateDate = entity.CreateDate,
+                    CreatedBy = entity.CreatedBy,
+                    CreatedDate = entity.CreatedDate,
                     ModifiedBy = entity.ModifiedBy,
                     ModifiedDate = entity.ModifiedDate,
                 };
@@ -204,15 +205,17 @@ namespace API_HotelManagement.Business.Services.Orders
                 var entity = new ht_OrderRoomDetail
                 {
                     Id = Guid.NewGuid(),
-                    TimeStart = DateTime.Now,
-                    TimeEnd = DateTime.Now,
+                    StartDate = model.StartDate,
+                    EndDate = model.EndDate,
                     
                     RoomId = model.RoomId,
                     OrderId = orderId,
 
                     //---------
-                    CreateDate = DateTime.UtcNow,
-                    CreateBy = currentUserId,
+                    CreatedDate = DateTime.UtcNow,
+                    CreatedBy = currentUserId,
+                    ModifiedBy = Guid.Parse("00000000-0000-0000-0000-000000000000"),
+                    ModifiedDate = new DateTime(),
                 };
 
                 // Thêm đối tượng vào DbContext
@@ -226,11 +229,11 @@ namespace API_HotelManagement.Business.Services.Orders
                 var result = new OrderRoomDetailViewModel
                 {
                     Id = entity.Id,
-                    TimeEnd= DateTime.Now,
-                    TimeStart= DateTime.Now,
+                    StartDate= entity.StartDate,
+                    EndDate= entity.EndDate,
 
                     FloorNumber = entityRoom.FloorNumber,
-                    Price = entityRoom.Price,
+                    PriceAmount = entityRoom.PriceAmount,
                     RoomName = entityRoom.RoomName,
                     Status = entityRoom.Status,
 
@@ -238,8 +241,8 @@ namespace API_HotelManagement.Business.Services.Orders
                     OrderId = orderId,
 
                     //-------------
-                    CreateBy = entity.CreateBy,
-                    CreateDate = entity.CreateDate,
+                    CreatedBy = entity.CreatedBy,
+                    CreatedDate = entity.CreatedDate,
                     ModifiedBy = entity.ModifiedBy,
                     ModifiedDate = entity.ModifiedDate,
                 };
@@ -272,14 +275,16 @@ namespace API_HotelManagement.Business.Services.Orders
                 {
                     Id = Guid.NewGuid(),
                     Quantity = model.Quantity,
-                    OrderTime = DateTime.UtcNow,
-                    TotalPrice = (_context.ht_Services.Find(model.ServiceId).Price * model.Quantity),
+                    OrderDate = model.OrderDate,
+                    TotalPriceAmount = (_context.ht_Services.Find(model.ServiceId).PriceAmount * model.Quantity),
                     OrderId = orderId,
                     ServiceId = Guid.NewGuid(),
 
                     //---------
-                    CreateDate = DateTime.UtcNow,
-                    CreateBy = currentUserId,
+                    CreatedDate = DateTime.UtcNow,
+                    CreatedBy = currentUserId,
+                    ModifiedBy = Guid.Parse("00000000-0000-0000-0000-000000000000"),
+                    ModifiedDate = new DateTime(),
                 };
 
                 // Thêm đối tượng vào DbContext
@@ -293,19 +298,19 @@ namespace API_HotelManagement.Business.Services.Orders
                 var result = new OrderServiceDetailViewModel
                 {
                     Id = entity.Id,
-                    TotalPrice = entity.TotalPrice,
-                    OrderTime = entity.OrderTime,
+                    TotalPriceAmount = entity.TotalPriceAmount,
+                    OrderDate = entity.OrderDate,
                     Quantity = entity.Quantity,
                     ServiceId = entity.ServiceId,
 
                     //--
-                    Price = entityRoom.Price,
+                    PriceAmount = entityRoom.PriceAmount,
                     ServiceName = entityRoom.ServiceName,
                     Status = entityRoom.Status,
 
                     //-------------
-                    CreateBy = entity.CreateBy,
-                    CreateDate = entity.CreateDate,
+                    CreatedBy = entity.CreatedBy,
+                    CreatedDate = entity.CreatedDate,
                     ModifiedBy = entity.ModifiedBy,
                     ModifiedDate = entity.ModifiedDate,
                 };
@@ -398,7 +403,7 @@ namespace API_HotelManagement.Business.Services.Orders
 
                 // Truy vấn dữ liệu từ cơ sở dữ liệu sử dụng LINQ và thực hiện kết nối với bảng ht_Room
                 var query = _context.ht_OrderRoomDetails
-                    .Where(o => o.CreateBy.Equals(currentUserId) && o.OrderId.Equals(orderId))
+                    .Where(o => o.CreatedBy.Equals(currentUserId) && o.OrderId.Equals(orderId))
                     .Join(_context.ht_Rooms,
                         roomDetail => roomDetail.RoomId,
                         room => room.Id,
@@ -418,18 +423,18 @@ namespace API_HotelManagement.Business.Services.Orders
                 var data = await query
                     .Skip((currentPage - 1) * pageSize)
                     .Take(pageSize)
-                    .OrderBy(roomDetail => roomDetail.roomDetail.CreateDate)
+                    .OrderBy(roomDetail => roomDetail.roomDetail.CreatedDate)
                     .ToListAsync();
 
                 var result = data.Select(orderRoom => new OrderRoomDetailViewModel
                 {
                     Id = orderRoom.roomDetail.Id,
-                    TimeEnd = orderRoom.roomDetail.TimeEnd,
-                    TimeStart = orderRoom.roomDetail.TimeStart,
+                    EndDate = orderRoom.roomDetail.EndDate,
+                    StartDate = orderRoom.roomDetail.StartDate,
 
                     FloorNumber = orderRoom.room.FloorNumber,
                     RoomName = orderRoom.room.RoomName,
-                    Price = orderRoom.room.Price,
+                    PriceAmount = orderRoom.room.PriceAmount,
                     Status = orderRoom.room.Status,
                     
                     //--
@@ -438,8 +443,8 @@ namespace API_HotelManagement.Business.Services.Orders
 
 
                     //-------------
-                    CreateBy = orderRoom.roomDetail.CreateBy,
-                    CreateDate = orderRoom.roomDetail.CreateDate,
+                    CreatedBy = orderRoom.roomDetail.CreatedBy,
+                    CreatedDate = orderRoom.roomDetail.CreatedDate,
                     ModifiedBy = orderRoom.roomDetail.ModifiedBy,
                     ModifiedDate = orderRoom.roomDetail.ModifiedDate,
                 }).ToList();
@@ -461,7 +466,7 @@ namespace API_HotelManagement.Business.Services.Orders
                 var currentUserId = GetExtensions.GetUserId(_httpContextAccessor);
 
                 // Truy vấn dữ liệu từ cơ sở dữ liệu sử dụng LINQ
-                var query = _context.ht_Orders.Where(o => o.CreateBy.Equals(currentUserId)).AsQueryable();
+                var query = _context.ht_Orders.Where(o => o.CreatedBy.Equals(currentUserId)).AsQueryable();
 
                 // Áp dụng bộ lọc nếu có
                 if (!string.IsNullOrEmpty(search))
@@ -478,7 +483,7 @@ namespace API_HotelManagement.Business.Services.Orders
                     .Skip((currentPage - 1) * pageSize)
                     .Take(pageSize)
                     .OrderBy(order => order.ModifiedDate)
-                    .OrderBy(order => order.CreateDate)
+                    .OrderBy(order => order.CreatedDate)
                     .ToListAsync();
 
                 if (data == null || !data.Any()) // Kiểm tra nếu dữ liệu trả về là null hoặc không có phần tử
@@ -505,19 +510,19 @@ namespace API_HotelManagement.Business.Services.Orders
                         (orderRoom, room) => new OrderRoomDetailViewModel
                         {
                             Id = orderRoom.Id,
-                            TimeStart  = orderRoom.TimeStart,
-                            TimeEnd = orderRoom.TimeEnd,
+                            StartDate  = orderRoom.StartDate,
+                            EndDate = orderRoom.EndDate,
 
                             //-------------
                             RoomId = orderRoom.RoomId,
                             RoomName = room.RoomName,
                             FloorNumber = room.FloorNumber,
-                            Price = room.Price,
+                            PriceAmount = room.PriceAmount,
                             Status = room.Status,
 
                             //-------------
-                            CreateBy = orderRoom.CreateBy, 
-                            CreateDate = orderRoom.CreateDate,
+                            CreatedBy = orderRoom.CreatedBy, 
+                            CreatedDate = orderRoom.CreatedDate,
                             ModifiedBy = orderRoom.ModifiedBy,
                             ModifiedDate = orderRoom.ModifiedDate,
                         }
@@ -533,19 +538,19 @@ namespace API_HotelManagement.Business.Services.Orders
                         (orderService, service) => new OrderServiceDetailViewModel
                         {
                             Id = orderService.Id,
-                            OrderTime = orderService.OrderTime,
-                            TotalPrice = orderService.TotalPrice,
+                            OrderDate = orderService.OrderDate,
+                            TotalPriceAmount = orderService.TotalPriceAmount,
                             Quantity = orderService.Quantity,
 
                             //-------------
                             ServiceId = orderService.ServiceId,
-                            Price = service.Price,
+                            PriceAmount = service.PriceAmount,
                             Status = service.Status,
                             ServiceName = service.ServiceName,
 
                             //-------------
-                            CreateBy = orderService.CreateBy,
-                            CreateDate = orderService.CreateDate,
+                            CreatedBy = orderService.CreatedBy,
+                            CreatedDate = orderService.CreatedDate,
                             ModifiedBy = orderService.ModifiedBy,
                             ModifiedDate = orderService.ModifiedDate,
 
@@ -553,8 +558,8 @@ namespace API_HotelManagement.Business.Services.Orders
                     ).ToList(),
 
                     //-------------
-                    CreateBy = order.CreateBy,
-                    CreateDate = order.CreateDate,
+                    CreatedBy = order.CreatedBy,
+                    CreatedDate = order.CreatedDate,
                     ModifiedBy = order.ModifiedBy,
                     ModifiedDate = order.ModifiedDate,
                 }).ToList();
@@ -577,7 +582,7 @@ namespace API_HotelManagement.Business.Services.Orders
 
                 // Truy vấn dữ liệu từ cơ sở dữ liệu sử dụng LINQ và thực hiện kết nối với bảng ht_Room
                 var query = _context.ht_OrderServiceDetails
-                    .Where(o => o.CreateBy.Equals(currentUserId) && o.OrderId.Equals(orderId))
+                    .Where(o => o.CreatedBy.Equals(currentUserId) && o.OrderId.Equals(orderId))
                     .Join(_context.ht_Services,
                         serviceDetail => serviceDetail.ServiceId,
                         service => service.Id,
@@ -597,25 +602,25 @@ namespace API_HotelManagement.Business.Services.Orders
                 var data = await query
                     .Skip((currentPage - 1) * pageSize)
                     .Take(pageSize)
-                    .OrderBy(o => o.serviceDetail.CreateDate)
+                    .OrderBy(o => o.serviceDetail.CreatedDate)
                 .ToListAsync();
 
                 var result = data.Select(orderService => new OrderServiceDetailViewModel
                 {
                     Id = orderService.serviceDetail.Id,
-                    TotalPrice = orderService.serviceDetail.TotalPrice,
-                    OrderTime = orderService.serviceDetail.OrderTime,
+                    TotalPriceAmount = orderService.serviceDetail.TotalPriceAmount,
+                    OrderDate = orderService.serviceDetail.OrderDate,
                     Quantity = orderService.serviceDetail.Quantity,
 
                     //--
                     ServiceId = orderService.serviceDetail.ServiceId,
                     ServiceName = orderService.service.ServiceName,
-                    Price = orderService.service.Price,
+                    PriceAmount = orderService.service.PriceAmount,
                     Status = orderService.service.Status,
 
                     //-------------
-                    CreateBy = orderService.serviceDetail.CreateBy,
-                    CreateDate = orderService.serviceDetail.CreateDate,
+                    CreatedBy = orderService.serviceDetail.CreatedBy,
+                    CreatedDate = orderService.serviceDetail.CreatedDate,
                     ModifiedBy = orderService.serviceDetail.ModifiedBy,
                     ModifiedDate = orderService.serviceDetail.ModifiedDate,
                 }).ToList();
@@ -656,19 +661,19 @@ namespace API_HotelManagement.Business.Services.Orders
                         (orderRoom, room) => new OrderRoomDetailViewModel
                         {
                             Id = orderRoom.Id,
-                            TimeStart = orderRoom.TimeStart,
-                            TimeEnd = orderRoom.TimeEnd,
+                            StartDate = orderRoom.StartDate,
+                            EndDate = orderRoom.EndDate,
 
                             //-------------
                             RoomId = orderRoom.RoomId,
                             RoomName = room.RoomName,
                             FloorNumber = room.FloorNumber,
-                            Price = room.Price,
+                            PriceAmount = room.PriceAmount,
                             Status = room.Status,
 
                             //-------------
-                            CreateBy = orderRoom.CreateBy,
-                            CreateDate = orderRoom.CreateDate,
+                            CreatedBy = orderRoom.CreatedBy,
+                            CreatedDate = orderRoom.CreatedDate,
                             ModifiedBy = orderRoom.ModifiedBy,
                             ModifiedDate = orderRoom.ModifiedDate,
                         }
@@ -684,19 +689,19 @@ namespace API_HotelManagement.Business.Services.Orders
                         (orderService, service) => new OrderServiceDetailViewModel
                         {
                             Id = orderService.Id,
-                            OrderTime = orderService.OrderTime,
-                            TotalPrice = orderService.TotalPrice,
+                            OrderDate = orderService.OrderDate,
+                            TotalPriceAmount = orderService.TotalPriceAmount,
                             Quantity = orderService.Quantity,
 
                             //-------------
                             ServiceId = orderService.ServiceId,
-                            Price = service.Price,
+                            PriceAmount = service.PriceAmount,
                             Status = service.Status,
                             ServiceName = service.ServiceName,
 
                             //-------------
-                            CreateBy = orderService.CreateBy,
-                            CreateDate = orderService.CreateDate,
+                            CreatedBy = orderService.CreatedBy,
+                            CreatedDate = orderService.CreatedDate,
                             ModifiedBy = orderService.ModifiedBy,
                             ModifiedDate = orderService.ModifiedDate,
 
@@ -704,8 +709,8 @@ namespace API_HotelManagement.Business.Services.Orders
                     ).ToList(),
 
                             //-------------
-                            CreateBy = order.CreateBy,
-                            CreateDate = order.CreateDate,
+                            CreatedBy = order.CreatedBy,
+                            CreatedDate = order.CreatedDate,
                             ModifiedBy = order.ModifiedBy,
                             ModifiedDate = order.ModifiedDate,
                         })
@@ -740,19 +745,19 @@ namespace API_HotelManagement.Business.Services.Orders
                         (orderRoom, room) => new OrderRoomDetailViewModel
                         {
                             Id = orderRoom.Id,
-                            TimeStart = orderRoom.TimeStart,
-                            TimeEnd = orderRoom.TimeEnd,
+                            StartDate = orderRoom.StartDate,
+                            EndDate = orderRoom.EndDate,
 
                             //-------------
                             RoomId = orderRoom.RoomId,
                             RoomName = room.RoomName,
                             FloorNumber = room.FloorNumber,
-                            Price = room.Price,
+                            PriceAmount = room.PriceAmount,
                             Status = room.Status,
 
                             //-------------
-                            CreateBy = orderRoom.CreateBy,
-                            CreateDate = orderRoom.CreateDate,
+                            CreatedBy = orderRoom.CreatedBy,
+                            CreatedDate = orderRoom.CreatedDate,
                             ModifiedBy = orderRoom.ModifiedBy,
                             ModifiedDate = orderRoom.ModifiedDate,
                         }
@@ -786,19 +791,19 @@ namespace API_HotelManagement.Business.Services.Orders
                         (orderService, service) => new OrderServiceDetailViewModel
                         {
                             Id = orderService.Id,
-                            OrderTime = orderService.OrderTime,
-                            TotalPrice = orderService.TotalPrice,
+                            OrderDate = orderService.OrderDate,
+                            TotalPriceAmount = orderService.TotalPriceAmount,
                             Quantity = orderService.Quantity,
 
                             //-------------
                             ServiceId = orderService.ServiceId,
-                            Price = service.Price,
+                            PriceAmount = service.PriceAmount,
                             Status = service.Status,
                             ServiceName = service.ServiceName,
 
                             //-------------
-                            CreateBy = orderService.CreateBy,
-                            CreateDate = orderService.CreateDate,
+                            CreatedBy = orderService.CreatedBy,
+                            CreatedDate = orderService.CreatedDate,
                             ModifiedBy = orderService.ModifiedBy,
                             ModifiedDate = orderService.ModifiedDate,
 
@@ -864,8 +869,8 @@ namespace API_HotelManagement.Business.Services.Orders
 
                 if (orderRoomToUpdate != null)
                 {
-                    orderRoomToUpdate.TimeStart = model.TimeStart;
-                    orderRoomToUpdate.TimeEnd = model.TimeEnd;
+                    orderRoomToUpdate.StartDate = model.StartDate;
+                    orderRoomToUpdate.EndDate = model.EndDate;
 
                     //-------------
                     orderRoomToUpdate.ModifiedDate = DateTime.UtcNow;
@@ -895,9 +900,9 @@ namespace API_HotelManagement.Business.Services.Orders
 
                 if (orderServiceToUpdate != null)
                 {
-                    orderServiceToUpdate.OrderTime = model.OrderTime;
+                    orderServiceToUpdate.OrderDate = model.OrderDate;
                     orderServiceToUpdate.Quantity = model.Quantity;
-                    orderServiceToUpdate.TotalPrice = _context.ht_Services.Find(orderServiceToUpdate.ServiceId).Price * model.Quantity;
+                    orderServiceToUpdate.TotalPriceAmount = _context.ht_Services.Find(orderServiceToUpdate.ServiceId).PriceAmount * model.Quantity;
 
                     //-------------
                     orderServiceToUpdate.ModifiedDate = DateTime.UtcNow;

@@ -39,7 +39,7 @@ namespace API_HotelManagement.Business.Services.Rooms
                 }
 
                 var queryRoom = _context.ht_Rooms.FirstOrDefault(o => o.RoomName.Equals(model.RoomName.Trim())
-                && o.CreateBy.Equals(GetExtensions.GetUserId(_httpContextAccessor)));
+                && o.CreatedBy.Equals(GetExtensions.GetUserId(_httpContextAccessor)));
 
                 if (queryRoom != null)
                 {
@@ -53,12 +53,12 @@ namespace API_HotelManagement.Business.Services.Rooms
                     RoomName = model.RoomName,
                     FloorNumber = model.FloorNumber,
                     Status = model.Status,
-                    Price = model.Price,
+                    PriceAmount = model.PriceAmount,
                     CategoryRoomId = model.CategoryRoomId,
 
                     //---------
-                    CreateDate = DateTime.UtcNow,
-                    CreateBy = GetExtensions.GetUserId(_httpContextAccessor),
+                    CreatedDate = DateTime.UtcNow,
+                    CreatedBy = GetExtensions.GetUserId(_httpContextAccessor),
                     ModifiedBy = Guid.Parse("00000000-0000-0000-0000-000000000000"),
                     ModifiedDate = new DateTime(),
                 };
@@ -124,7 +124,7 @@ namespace API_HotelManagement.Business.Services.Rooms
                 var currentUserId = GetExtensions.GetUserId(_httpContextAccessor);
 
                 // Truy vấn dữ liệu từ cơ sở dữ liệu sử dụng LINQ
-                var query = _context.ht_Rooms.Where(o => o.CreateBy.Equals(currentUserId)).AsQueryable();
+                var query = _context.ht_Rooms.Where(o => o.CreatedBy.Equals(currentUserId)).AsQueryable();
 
                 // Áp dụng bộ lọc nếu có
                 if (!string.IsNullOrEmpty(search))
@@ -140,7 +140,7 @@ namespace API_HotelManagement.Business.Services.Rooms
                     .Skip((currentPage - 1) * pageSize)
                     .Take(pageSize)
                     .OrderBy(o => o.ModifiedDate)
-                    .OrderBy(o => o.CreateDate)
+                    .OrderBy(o => o.CreatedDate)
                     .ToListAsync();
 
                 var result = _mapper.Map<List<RoomViewModel>>(data).ToList();
@@ -172,12 +172,12 @@ namespace API_HotelManagement.Business.Services.Rooms
                         Status = test.Status,
                         RoomName = test.RoomName,
                         FloorNumber = test.FloorNumber,
-                        Price = test.Price,
+                        PriceAmount = test.PriceAmount,
 
                         ModifiedDate = test.ModifiedDate,
                         ModifiedBy = test.ModifiedBy,
-                        CreateBy = test.CreateBy,
-                        CreateDate = test.CreateDate,
+                        CreatedBy = test.CreatedBy,
+                        CreatedDate = test.CreatedDate,
                     })
                     .FirstOrDefaultAsync();
 
@@ -219,7 +219,7 @@ namespace API_HotelManagement.Business.Services.Rooms
                     roomToUpdate.RoomName = model.RoomName;
                     roomToUpdate.FloorNumber = model.FloorNumber;
                     roomToUpdate.Status = model.Status;
-                    roomToUpdate.Price = model.Price;
+                    roomToUpdate.PriceAmount = model.PriceAmount;
                     roomToUpdate.CategoryRoomId = model.CategoryRoomId;
 
                     //-------------
