@@ -1,0 +1,17 @@
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Business\bin\Debug\net7.0\API_HotelManagement.Business.deps.json
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Business\bin\Debug\net7.0\API_HotelManagement.Business.dll
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Business\bin\Debug\net7.0\API_HotelManagement.Business.pdb
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Business\bin\Debug\net7.0\API_HotelManagement.common.dll
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Business\bin\Debug\net7.0\API_HotelManagement.Data.dll
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Business\bin\Debug\net7.0\API_HotelManagement.common.pdb
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Business\bin\Debug\net7.0\API_HotelManagement.Data.pdb
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Business\obj\Debug\net7.0\API_HotelManagement.Business.csproj.AssemblyReference.cache
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Business\obj\Debug\net7.0\API_HotelManagement.Business.GeneratedMSBuildEditorConfig.editorconfig
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Business\obj\Debug\net7.0\API_HotelManagement.Business.AssemblyInfoInputs.cache
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Business\obj\Debug\net7.0\API_HotelManagement.Business.AssemblyInfo.cs
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Business\obj\Debug\net7.0\API_HotelManagement.Business.csproj.CoreCompileInputs.cache
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Business\obj\Debug\net7.0\API_HotelManagement.Business.csproj.CopyComplete
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Business\obj\Debug\net7.0\API_HotelManagement.Business.dll
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Business\obj\Debug\net7.0\refint\API_HotelManagement.Business.dll
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Business\obj\Debug\net7.0\API_HotelManagement.Business.pdb
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Business\obj\Debug\net7.0\ref\API_HotelManagement.Business.dll

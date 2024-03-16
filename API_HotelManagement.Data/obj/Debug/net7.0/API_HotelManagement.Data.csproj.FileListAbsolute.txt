@@ -1,0 +1,17 @@
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Data\bin\Debug\net7.0\API_HotelManagement.Data.deps.json
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Data\bin\Debug\net7.0\API_HotelManagement.Data.runtimeconfig.json
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Data\bin\Debug\net7.0\API_HotelManagement.Data.dll
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Data\bin\Debug\net7.0\API_HotelManagement.Data.pdb
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Data\bin\Debug\net7.0\API_HotelManagement.common.dll
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Data\bin\Debug\net7.0\API_HotelManagement.common.pdb
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Data\obj\Debug\net7.0\API_HotelManagement.Data.csproj.AssemblyReference.cache
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Data\obj\Debug\net7.0\API_HotelManagement.Data.GeneratedMSBuildEditorConfig.editorconfig
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Data\obj\Debug\net7.0\API_HotelManagement.Data.AssemblyInfoInputs.cache
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Data\obj\Debug\net7.0\API_HotelManagement.Data.AssemblyInfo.cs
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Data\obj\Debug\net7.0\API_HotelManagement.Data.csproj.CoreCompileInputs.cache
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Data\obj\Debug\net7.0\API_HotelManagement.Data.csproj.CopyComplete
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Data\obj\Debug\net7.0\API_HotelManagement.Data.dll
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Data\obj\Debug\net7.0\refint\API_HotelManagement.Data.dll
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Data\obj\Debug\net7.0\API_HotelManagement.Data.pdb
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Data\obj\Debug\net7.0\API_HotelManagement.Data.genruntimeconfig.cache
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement.Data\obj\Debug\net7.0\ref\API_HotelManagement.Data.dll

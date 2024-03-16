@@ -60,7 +60,7 @@ builder.Services.AddSwaggerGen(options =>
     {
         Version = "v1",
         Title = "API_HotelManagement",
-        Description = "Dự án thiết kế hotel ma....",
+        Description = "Kho lưu trữ này chứa mã nguồn của hệ thống quản lý khách sạn được xây dựng bằng API ASP.NET Core 7. Dự án được thiết kế để hỗ trợ các ứng dụng di động và web với phiên bản mới nhất của .NET Core framework.",
         TermsOfService = new Uri("https://example.com/terms"),
         Contact = new OpenApiContact
         {
