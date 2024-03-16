@@ -1,7 +1,7 @@
 ﻿using API_HotelManagement.common.Helps;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace API_HotelManagement.Data.Data.Entitys
+namespace API_HotelManagement.Data
 {
     [Table("ht_Service")]
     public class ht_Service : EntityBase

@@ -1,4 +1,4 @@
-﻿using API_HotelManagement.Business.Services.Auths;
+﻿using API_HotelManagement.Business;
 using API_HotelManagement.common.Helps;
 using API_HotelManagement.common.Utils;
 using Microsoft.AspNetCore.Authorization;
@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace API_HotelManagement.Controllers
 {
     /// <summary>
-    /// 
+    /// Module quyền hệ thống
     /// </summary>
     //[Route("api/v{version:apiVersion}/auths")]
     [ApiVersion("1.0")]
@@ -31,12 +31,13 @@ namespace API_HotelManagement.Controllers
         /// Đăng nhập (not auth)
         /// </summary>
         /// <param name="request"></param>
-        /// <returns></returns>
+        /// <returns>Kết quả trả về</returns>
+        /// <response code="200">Thành công</response>
         [AllowAnonymous, HttpPost, Route("login")]
         [ProducesResponseType(typeof(ApiResponseAuth), StatusCodes.Status200OK)]
         public async Task<IActionResult> Login([FromBody] LoginView request)
         {
-            var model = await _authHandler.Authenticate(request.UserName, request.Password);
+            var model = await _authHandler.Authenticate(UserName: request.UserName, password: request.Password);
 
             if (model == null)
                 return Unauthorized();
@@ -48,7 +49,8 @@ namespace API_HotelManagement.Controllers
         /// Tạo tài khoản (not auth)
         /// </summary>
         /// <param name="request"></param>
-        /// <returns></returns>
+        /// <returns>Kết quả trả về</returns>
+        /// <response code="200">Thành công</response>
         [AllowAnonymous, HttpPost, Route("register")]
         [ProducesResponseType(typeof(ApiResponse<UserViewModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> Register([FromBody] UserUpdateCreateModel request)
@@ -62,7 +64,8 @@ namespace API_HotelManagement.Controllers
         /// Đổi mật khẩu user
         /// </summary>
         /// <param name="request"></param>
-        /// <returns></returns>
+        /// <returns>Kết quả trả về</returns>
+        /// <response code="200">Thành công</response>
         [Authorize, HttpPut, Route("change-pass")]
         [ProducesResponseType(typeof(ApiResponse<UserViewModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> ChangePass([FromBody] ChangePasswordModel request)
@@ -76,7 +79,8 @@ namespace API_HotelManagement.Controllers
         /// Cập nhật thông tin
         /// </summary>
         /// <param name="request"></param>
-        /// <returns></returns>
+        /// <returns>Kết quả trả về</returns>
+        /// <response code="200">Thành công</response>
         [Authorize, HttpPut, Route("update-information")]
         [ProducesResponseType(typeof(ApiResponse<UserViewModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> UpdateInformation([FromBody] UserUpdateCreateModel request)
@@ -89,8 +93,9 @@ namespace API_HotelManagement.Controllers
         /// <summary>
         /// khôi phục tài khoản bị vô hiệu hoá
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">Id bản ghi</param>
+        /// <returns>Kết quả trả về</returns>
+        /// <response code="200">Thành công</response>
         [Authorize(Roles = AppRole.Admin), HttpPut, Route("recover-account/{id}")]
         [ProducesResponseType(typeof(ApiResponse<UserViewModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> RecoverAccount(Guid id)
@@ -104,7 +109,8 @@ namespace API_HotelManagement.Controllers
         /// <summary>
         /// Xoá/vô hiệu hoá tài khoản
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Kết quả trả về</returns>
+        /// <response code="200">Thành công</response>
         [Authorize, HttpDelete, Route("remove-account")]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> RemoveAccount()
@@ -117,7 +123,8 @@ namespace API_HotelManagement.Controllers
         /// <summary>
         /// lấy thông tin tài khoản đã đăng nhập
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Kết quả trả về</returns>
+        /// <response code="200">Thành công</response>
         [Authorize, HttpGet, Route("me")]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> Me()
@@ -130,7 +137,8 @@ namespace API_HotelManagement.Controllers
         /// <summary>
         /// Lấy thông tin tài khoản(not auth)
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Kết quả trả về</returns>
+        /// <response code="200">Thành công</response>
         [AllowAnonymous, HttpGet, Route("check-usename")]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> CheckUsename(string usename)
@@ -143,10 +151,11 @@ namespace API_HotelManagement.Controllers
         /// <summary>
         /// Lấy tất cả tài khoản (not auth) (test)
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Kết quả trả về</returns>
+        /// <response code="200">Thành công</response>
         [AllowAnonymous, HttpGet, Route("")]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetAllUsers(string search = "", int currentPage = 1, int pageSize = 10)
+        public async Task<IActionResult> GetAllUsers([FromQuery] string search = "", [FromQuery] int currentPage = 1, [FromQuery] int pageSize = 10)
         {
             var result = await _authHandler.GetAllUsers(search, currentPage, pageSize);
 
@@ -156,10 +165,11 @@ namespace API_HotelManagement.Controllers
         /// <summary>
         /// lấy tất cả role (not auth) (test)
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Kết quả trả về</returns>
+        /// <response code="200">Thành công</response>
         [AllowAnonymous, HttpGet, Route("role")]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetRoles()
+        public IActionResult GetRoles()
         {
             var result = AppRole.GetAllRoles().ToList();
 
@@ -171,7 +181,7 @@ namespace API_HotelManagement.Controllers
         ///// <summary>
         ///// logout and revoke the token
         ///// </summary>
-        ///// <returns></returns>
+        ///// <response code="200">Thành công</response>
         //[Authorize, HttpPost(), Route("logout")]
         //[ProducesResponseType(typeof(ApiResponse<string>), StatusCodes.Status200OK)]
         //public async Task<IActionResult> Logout()

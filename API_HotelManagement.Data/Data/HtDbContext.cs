@@ -1,8 +1,7 @@
-﻿using API_HotelManagement.Data.Data.Entitys;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace API_HotelManagement.Data.Data
+namespace API_HotelManagement.Data
 {
     /// <summary>
     /// DB context
@@ -29,8 +28,8 @@ namespace API_HotelManagement.Data.Data
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             // connect to sql server with connection string from app settings
-            options.UseSqlServer(Configuration.GetConnectionString("WebHotelApiDbManagement_SqlServer"));
-            //options.UseSqlServer(Configuration.GetConnectionString("WebHotelApiDbManagement_SqlServer_Sv_Somee"));
+            //options.UseSqlServer(Configuration.GetConnectionString("WebHotelApiDbManagement_SqlServer"));
+            options.UseSqlServer(Configuration.GetConnectionString("WebHotelApiDbManagement_SqlServer_Sv_Somee"));
             //options.UseNpgsql(Configuration.GetConnectionString("WebHotelApiDbManagement_PostreSql"));
         }
 

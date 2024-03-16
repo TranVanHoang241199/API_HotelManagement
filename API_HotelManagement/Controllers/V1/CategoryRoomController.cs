@@ -1,4 +1,4 @@
-﻿using API_HotelManagement.Business.Rooms.CategoryRooms;
+﻿using API_HotelManagement.Business;
 using API_HotelManagement.common.Utils;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -33,13 +33,14 @@ namespace API_HotelManagement.Controllers.V1
         /// <param name="search"></param>
         /// <param name="currentPage">Page hiển thị hiện tại </param>
         /// <param name="pageSize">Kích thước lỗi trang</param>
-        /// <returns></returns>
+        /// <returns>Kết quả trả về</returns>
+        /// <response code="200">Thành công</response>
         [Authorize, HttpGet, Route("")]
         [ProducesResponseType(typeof(ApiResponsePagination<CategoryRoomViewModel>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetAllCategoryRooms(string search = "", int currentPage = 1, int pageSize = 10)
+        public async Task<IActionResult> Gets([FromQuery] string search = "", [FromQuery] int currentPage = 1, [FromQuery] int pageSize = 10)
         {
 
-            var result = await _CategoryRoomService.GetAllCategoryRooms(search, currentPage, pageSize);
+            var result = await _CategoryRoomService.Gets(search, currentPage, pageSize);
 
             return ApiHelper.TransformData(result);
         }
@@ -47,8 +48,9 @@ namespace API_HotelManagement.Controllers.V1
         /// <summary>
         /// Lấy về theo Id
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">Id bản ghi</param>
+        /// <returns>Kết quả trả về</returns>
+        /// <response code="200">Thành công</response>
         [Authorize, HttpGet, Route("{id}")]
         [ProducesResponseType(typeof(ApiResponse<CategoryRoomViewModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetCategoryRoomById(Guid id)
@@ -62,14 +64,15 @@ namespace API_HotelManagement.Controllers.V1
         /// <summary>
         /// Thêm mới
         /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
+        /// <param name="model">Dữ liệu</param>
+        /// <returns>Kết quả trả về</returns>
+        /// <response code="200">Thành công</response>
         [Authorize, HttpPost, Route("")]
         [ProducesResponseType(typeof(ApiResponseObject<CategoryRoomViewModel>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> CreateCategoryRoom([FromBody] CategoryRoomCreateUpdateModel model)
+        public async Task<IActionResult> Create([FromBody] CategoryRoomCreateUpdateModel model)
         {
 
-            var result = await _CategoryRoomService.CreateCategoryRoom(model);
+            var result = await _CategoryRoomService.Create(model);
 
             return ApiHelper.TransformData(result);
         }
@@ -77,15 +80,16 @@ namespace API_HotelManagement.Controllers.V1
         /// <summary>
         /// Cập nhật
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="model"></param>
-        /// <returns></returns>
+        /// <param name="id">Id bản ghi</param>
+        /// <param name="model">Dữ liệu</param>
+        /// <returns>Kết quả trả về</returns>
+        /// <response code="200">Thành công</response>
         [Authorize, HttpPut, Route("{id}")]
         [ProducesResponseType(typeof(ApiResponse<bool>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> UpdateCategoryRoom(Guid id, [FromBody] CategoryRoomCreateUpdateModel model)
+        public async Task<IActionResult> Update(Guid id, [FromBody] CategoryRoomCreateUpdateModel model)
         {
 
-            var result = await _CategoryRoomService.UpdateCategoryRoom(id, model);
+            var result = await _CategoryRoomService.Update(id, model);
 
             return ApiHelper.TransformData(result);
         }
@@ -93,14 +97,15 @@ namespace API_HotelManagement.Controllers.V1
         /// <summary>
         /// xoá
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">Id bản ghi</param>
+        /// <returns>Kết quả trả về</returns>
+        /// <response code="200">Thành công</response>
         [Authorize, HttpDelete, Route("{id}")]
         [ProducesResponseType(typeof(ApiResponse<bool>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> DeleteCategoryRoom(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
 
-            var result = await _CategoryRoomService.DeleteCategoryRoom(id);
+            var result = await _CategoryRoomService.Delete(id);
 
             return ApiHelper.TransformData(result);
         }

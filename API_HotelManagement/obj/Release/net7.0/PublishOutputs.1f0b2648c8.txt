@@ -10,6 +10,7 @@ D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement\obj\R
 D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement\obj\Release\net7.0\PubTmp\Out\Azure.Identity.dll
 D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement\obj\Release\net7.0\PubTmp\Out\BCrypt.Net-Next.dll
 D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement\obj\Release\net7.0\PubTmp\Out\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement\obj\Release\net7.0\PubTmp\Out\Microsoft.AspNetCore.Mvc.Versioning.dll
 D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement\obj\Release\net7.0\PubTmp\Out\Microsoft.AspNetCore.OpenApi.dll
 D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement\obj\Release\net7.0\PubTmp\Out\Microsoft.Bcl.AsyncInterfaces.dll
 D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement\obj\Release\net7.0\PubTmp\Out\Microsoft.Data.SqlClient.dll

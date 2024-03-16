@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace API_HotelManagement.Data.Data.Entitys
+namespace API_HotelManagement.Data
 {
     [Table("ht_CategoryService")]
     public class ht_CategoryService : EntityBase

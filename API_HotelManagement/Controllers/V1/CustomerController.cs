@@ -1,7 +1,6 @@
-﻿using API_HotelManagement.Business.Services.Customers;
+﻿using API_HotelManagement.Business;
 using API_HotelManagement.common.Utils;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API_HotelManagement.Controllers
@@ -10,9 +9,9 @@ namespace API_HotelManagement.Controllers
     /// 
     /// </summary>
     [ApiVersion("1.0")]
-    [Route("api/v1/customers")]
-    //[Route("api/v{version:apiVersion}/customers")]
     [ApiController]
+    [Route("api/v1/customers")]
+    [ApiExplorerSettings(GroupName = "Customers")]
     public class CustomerController : ControllerBase
     {
         private readonly ICustomerHandler _customerService;
@@ -33,13 +32,14 @@ namespace API_HotelManagement.Controllers
         /// <param name="search"></param>
         /// <param name="currentPage">Page hiển thị hiện tại </param>
         /// <param name="pageSize">Kích thước lỗi trang</param>
-        /// <returns></returns>
+        /// <returns>Kết quả trả về</returns>
+        /// <response code="200">Thành công</response>
         [Authorize, HttpGet, Route("")]
         [ProducesResponseType(typeof(ApiResponsePagination<CustomerViewModel>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetAllCustomers(string search = "", int currentPage = 1, int pageSize = 10)
+        public async Task<IActionResult> Gets([FromQuery] string search = "", [FromQuery] int currentPage = 1, [FromQuery] int pageSize = 10)
         {
 
-            var result = await _customerService.GetAllCustomers(search, currentPage, pageSize);
+            var result = await _customerService.Gets(search, currentPage, pageSize);
 
             return ApiHelper.TransformData(result);
         }
@@ -47,8 +47,9 @@ namespace API_HotelManagement.Controllers
         /// <summary>
         /// Lấy về theo Id
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">Id bản ghi</param>
+        /// <returns>Kết quả trả về</returns>
+        /// <response code="200">Thành công</response>
         [Authorize, HttpGet, Route("{id}")]
         [ProducesResponseType(typeof(ApiResponse<CustomerViewModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetCustomerById(Guid id)

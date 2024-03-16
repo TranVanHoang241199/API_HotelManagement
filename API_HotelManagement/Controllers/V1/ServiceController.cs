@@ -1,4 +1,4 @@
-﻿using API_HotelManagement.Business.Services.Services;
+﻿using API_HotelManagement.Business;
 using API_HotelManagement.common.Utils;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +8,6 @@ namespace API_HotelManagement.Controllers
     /// <summary>
     /// 
     /// </summary>
-    //[Route("api/v{version:apiVersion}/service")]
     [ApiVersion("1.0")]
     [ApiController]
     [Route("api/v1/service")]
@@ -34,12 +33,13 @@ namespace API_HotelManagement.Controllers
         /// <param name="search"></param>
         /// <param name="currentPage">Page hiển thị hiện tại </param>
         /// <param name="pageSize">Kích thước lỗi trang</param>
-        /// <returns></returns>
+        /// <returns>Kết quả trả về</returns>
+        /// <response code="200">Thành công</response>
         [Authorize, HttpGet, Route("")]
         [ProducesResponseType(typeof(ApiResponsePagination<ServiceViewModel>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetAllServices(string search = "", int currentPage = 1, int pageSize = 10)
+        public async Task<IActionResult> Gets([FromQuery] string search = "", [FromQuery] int currentPage = 1, [FromQuery] int pageSize = 10)
         {
-            var result = await _serviceService.GetAllServices(search, currentPage, pageSize);
+            var result = await _serviceService.Gets(search, currentPage, pageSize);
 
             return ApiHelper.TransformData(result);
         }
@@ -47,8 +47,9 @@ namespace API_HotelManagement.Controllers
         /// <summary>
         /// Lấy về theo Id
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">Id bản ghi</param>
+        /// <returns>Kết quả trả về</returns>
+        /// <response code="200">Thành công</response>
         [Authorize, HttpGet, Route("{id}")]
         [ProducesResponseType(typeof(ApiResponse<ServiceViewModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetServiceById(Guid id)
@@ -61,13 +62,14 @@ namespace API_HotelManagement.Controllers
         /// <summary>
         /// Thêm mới
         /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
+        /// <param name="model">Dữ liệu</param>
+        /// <returns>Kết quả trả về</returns>
+        /// <response code="200">Thành công</response>
         [Authorize, HttpPost, Route("")]
         [ProducesResponseType(typeof(ApiResponseObject<ServiceViewModel>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> CreateService([FromBody] ServiceCreateUpdateModel model)
+        public async Task<IActionResult> Create([FromBody] ServiceCreateUpdateModel model)
         {
-            var result = await _serviceService.CreateService(model);
+            var result = await _serviceService.Create(model);
 
             return ApiHelper.TransformData(result);
         }
@@ -75,14 +77,15 @@ namespace API_HotelManagement.Controllers
         /// <summary>
         /// Cật nhật
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="model"></param>
-        /// <returns></returns>
+        /// <param name="id">Id bản ghi</param>
+        /// <param name="model">Dữ liệu</param>
+        /// <returns>Kết quả trả về</returns>
+        /// <response code="200">Thành công</response>
         [Authorize, HttpPut, Route("{id}")]
         [ProducesResponseType(typeof(ApiResponse<bool>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> UpdateService(Guid id, [FromBody] ServiceCreateUpdateModel model)
+        public async Task<IActionResult> Update(Guid id, [FromBody] ServiceCreateUpdateModel model)
         {
-            var result = await _serviceService.UpdateService(id, model);
+            var result = await _serviceService.Update(id, model);
 
             return ApiHelper.TransformData(result);
         }
@@ -90,13 +93,14 @@ namespace API_HotelManagement.Controllers
         /// <summary>
         /// Xoá
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">Id bản ghi</param>
+        /// <returns>Kết quả trả về</returns>
+        /// <response code="200">Thành công</response>
         [Authorize, HttpDelete, Route("{id}")]
         [ProducesResponseType(typeof(ApiResponse<bool>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> DeleteService(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            var result = await _serviceService.DeleteService(id);
+            var result = await _serviceService.Delete(id);
 
             return ApiHelper.TransformData(result);
         }

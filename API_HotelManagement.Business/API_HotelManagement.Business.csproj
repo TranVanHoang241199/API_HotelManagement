@@ -17,4 +17,8 @@
     <ProjectReference Include="..\API_HotelManagement.Data\API_HotelManagement.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\Cms\" />
+  </ItemGroup>
+
 </Project>

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace API_HotelManagement.Data.Data.Entitys
+namespace API_HotelManagement.Data
 {
     /// <summary>
     /// Bản nhiều nhiều Order N-N Service

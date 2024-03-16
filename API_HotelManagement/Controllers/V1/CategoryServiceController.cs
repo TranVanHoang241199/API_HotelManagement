@@ -1,7 +1,6 @@
-﻿using API_HotelManagement.Business.Services.CategoryServices;
+﻿using API_HotelManagement.Business;
 using API_HotelManagement.common.Utils;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API_HotelManagement.Controllers
@@ -9,7 +8,6 @@ namespace API_HotelManagement.Controllers
     /// <summary>
     /// 
     /// </summary>
-    //[Route("api/v{api-version:apiVersion}/services")]
     [ApiVersion("1.0")]
     [ApiController]
     [Route("api/v1/services-categories")]
@@ -35,13 +33,14 @@ namespace API_HotelManagement.Controllers
         /// <param name="search"></param>
         /// <param name="currentPage">Page hiển thị hiện tại </param>
         /// <param name="pageSize">Kích thước lỗi trang</param>
-        /// <returns></returns>
+        /// <returns>Kết quả trả về</returns>
+        /// <response code="200">Thành công</response>
         [Authorize, HttpGet, Route("")]
         [ProducesResponseType(typeof(ApiResponsePagination<CategoryServiceViewModel>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetAllCategoryServices(string search = "", int currentPage = 1, int pageSize = 10)
+        public async Task<IActionResult> Gets([FromQuery] string search = "", [FromQuery] int currentPage = 1, [FromQuery] int pageSize = 10)
         {
 
-            var result = await _categoryServiceService.GetAllCategoryServices(search, currentPage, pageSize);
+            var result = await _categoryServiceService.Gets(search, currentPage, pageSize);
 
             return ApiHelper.TransformData(result);
         }
@@ -49,8 +48,9 @@ namespace API_HotelManagement.Controllers
         /// <summary>
         /// Lấy về theo Id
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">Id bản ghi</param>
+        /// <returns>Kết quả trả về</returns>
+        /// <response code="200">Thành công</response>
         [Authorize, HttpGet, Route("{id}")]
         [ProducesResponseType(typeof(ApiResponse<CategoryServiceViewModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetCategoryServiceById(Guid id)
@@ -64,14 +64,15 @@ namespace API_HotelManagement.Controllers
         /// <summary>
         /// Thêm mới
         /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
+        /// <param name="model">Dữ liệu</param>
+        /// <returns>Kết quả trả về</returns>
+        /// <response code="200">Thành công</response>
         [Authorize, HttpPost, Route("")]
         [ProducesResponseType(typeof(ApiResponseObject<CategoryServiceViewModel>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> CreateCategoryService([FromBody] CategoryServiceCreateUpdateModel model)
+        public async Task<IActionResult> Create([FromBody] CategoryServiceCreateUpdateModel model)
         {
 
-            var result = await _categoryServiceService.CreateCategoryService(model);
+            var result = await _categoryServiceService.Create(model);
 
             return ApiHelper.TransformData(result);
         }
@@ -79,15 +80,16 @@ namespace API_HotelManagement.Controllers
         /// <summary>
         /// Cập nhật
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="model"></param>
-        /// <returns></returns>
+        /// <param name="id">Id bản ghi</param>
+        /// <param name="model">Dữ liệu</param>
+        /// <returns>Kết quả trả về</returns>
+        /// <response code="200">Thành công</response>
         [Authorize, HttpPut, Route("{id}")]
         [ProducesResponseType(typeof(ApiResponse<bool>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> UpdateCategoryService(Guid id, [FromBody] CategoryServiceCreateUpdateModel model)
+        public async Task<IActionResult> Update(Guid id, [FromBody] CategoryServiceCreateUpdateModel model)
         {
 
-            var result = await _categoryServiceService.UpdateCategoryService(id, model);
+            var result = await _categoryServiceService.Update(id, model);
 
             return ApiHelper.TransformData(result);
         }
@@ -95,14 +97,15 @@ namespace API_HotelManagement.Controllers
         /// <summary>
         /// Xoá
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">Id bản ghi</param>
+        /// <returns>Kết quả trả về</returns>
+        /// <response code="200">Thành công</response>
         [Authorize, HttpDelete, Route("{id}")]
         [ProducesResponseType(typeof(ApiResponse<bool>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> DeleteCategoryService(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
 
-            var result = await _categoryServiceService.DeleteCategoryService(id);
+            var result = await _categoryServiceService.Delete(id);
 
             return ApiHelper.TransformData(result);
         }

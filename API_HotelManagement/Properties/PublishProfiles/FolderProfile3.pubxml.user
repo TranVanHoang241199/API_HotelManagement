@@ -6,12 +6,12 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <_PublishTargetUrl>C:\publish\API_HotelManagement</_PublishTargetUrl>
-    <History>True|2024-03-08T08:24:45.3784359Z;True|2024-03-08T15:24:32.1919782+07:00;True|2024-03-08T15:01:47.7638014+07:00;True|2024-03-08T14:31:08.9974433+07:00;</History>
+    <History>True|2024-03-16T11:04:32.2281600Z;True|2024-03-16T17:45:08.6891876+07:00;True|2024-03-16T17:36:07.6784410+07:00;True|2024-03-16T17:35:56.1412721+07:00;True|2024-03-16T17:33:37.7876379+07:00;True|2024-03-08T15:24:45.3784359+07:00;True|2024-03-08T15:24:32.1919782+07:00;True|2024-03-08T15:01:47.7638014+07:00;True|2024-03-08T14:31:08.9974433+07:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
-    <DestinationConnectionStrings Include="WebHotelApiDbManagement_PostreSql">
-      <Value>Data Source=.\SQLEXPRESS%3b Initial Catalog=DBHotelManagement_2%3b User Id=acc_hotelmanagement%3b Password=HoangTV%40123%3b TrustServerCertificate=True%3b</Value>
+    <DestinationConnectionStrings Include="WebHotelApiDbManagement_SqlServer_Sv_Somee">
+      <Value>Data Source=DBHotelManagement.mssql.somee.com%3bInitial Catalog=DBHotelManagement%3bUser Id=acc_hotelmanagement%3bPassword=HoangTV%40123%3bTrustServerCertificate=True%3b</Value>
     </DestinationConnectionStrings>
   </ItemGroup>
 </Project>

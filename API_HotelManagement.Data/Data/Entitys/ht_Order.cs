@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace API_HotelManagement.Data.Data.Entitys
+namespace API_HotelManagement.Data
 {
     [Table("ht_Order")]
     public class ht_Order : EntityBase

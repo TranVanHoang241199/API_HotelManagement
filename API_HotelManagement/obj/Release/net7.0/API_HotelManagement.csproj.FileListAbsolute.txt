@@ -91,3 +91,4 @@ D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement\obj\R
 D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement\obj\Release\net7.0\API_HotelManagement.genruntimeconfig.cache
 D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement\obj\Release\net7.0\ref\API_HotelManagement.dll
 D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement\bin\Release\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\developer\C#_dotnet\Project_DHY\API_HotelManagement\API_HotelManagement\bin\Release\net7.0\Microsoft.AspNetCore.Mvc.Versioning.dll

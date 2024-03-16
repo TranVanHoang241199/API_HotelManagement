@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace API_HotelManagement.Data.Data.Entitys
+namespace API_HotelManagement.Data
 {
     /// <summary>
     /// * Bản Room 

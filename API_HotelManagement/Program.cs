@@ -1,4 +1,4 @@
-﻿using API_HotelManagement.Data.Data;
+﻿using API_HotelManagement.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -6,17 +6,9 @@ using System.Reflection;
 using System.Text;
 using System.Security.Claims;
 using Serilog;
-using API_HotelManagement.Business.Services.Orders;
-using API_HotelManagement.Business.Services.Rooms;
-using API_HotelManagement.Business.Services.Services;
-using API_HotelManagement.Business.Services.Auths;
-using API_HotelManagement.Business.Services.Customers;
-using API_HotelManagement.Business.Rooms.CategoryRooms;
-using API_HotelManagement.Business.Services.CategoryRooms;
-using API_HotelManagement.Business.Services.CategoryServices;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Mvc.Controllers;
-
+using API_HotelManagement.Business;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -52,7 +44,6 @@ builder.Services.AddEndpointsApiExplorer();
 //    // Specify versioning scheme (e.g., using query string parameter "api-version")
 //    options.ApiVersionReader = new QueryStringApiVersionReader("api-version");
 //});
-
 
 builder.Services.AddSwaggerGen(options =>
 {
@@ -144,7 +135,7 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
 
-    
+
 });
 
 // Đăng ký ràng buộc cho tham số đường dẫn 'api-version'
@@ -183,6 +174,7 @@ builder.Services.AddScoped<HtDbContext>();
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
+
 /***
  * Authentcatin JWT token
  * 
@@ -198,17 +190,19 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateIssuerSigningKey = true,
             RoleClaimType = ClaimTypes.Role,
             //ClockSkew = TimeSpan.Zero,
-            ValidIssuer = builder.Configuration["Jwt:Issuer"],
-            ValidAudience = builder.Configuration["Jwt:Audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+            ValidIssuer = builder.Configuration["Authentication:Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Authentication:Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Authentication:Jwt:Key"]))
         };
     });
+
 
 /***
  * Connection DB Sql Server
  */
 //builder.Services.AddDbContext<HtDbContext>(options =>
 //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
 
 /***
  * AutoMapper
@@ -221,6 +215,7 @@ builder.Services.AddAutoMapper(typeof(ServiceAutoMapper));
 
 var app = builder.Build();
 
+#region Swagger View
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -237,7 +232,7 @@ app.UseSwaggerUI(options =>
     options.SwaggerEndpoint("/swagger/v1/swagger.json", "API_HotelManagement_v1");
     options.RoutePrefix = string.Empty; // chỉnh đường linh swagger 
 });
-
+#endregion Swagger View
 
 app.UseHttpsRedirection();
 
