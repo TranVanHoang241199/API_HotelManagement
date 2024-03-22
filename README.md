@@ -2,7 +2,7 @@
 
 - Is a small and medium hotel management mobile application that helps manage and support hotel business activities, with many outstanding features, downloaded for free on many platforms such as app store, CH play.
 - The project includes main functions such as creating rooms divided into management areas, along with accompanying services such as water, food,..., ordering support and storing historical information , statistics orders that customers have transacted to support information retrieval and future revenue
-- This project uses "ASP.NET Core 7 API - Cross - Platform Development" using Entity Framework to reduce complexity in software maintenance, security uses JWT tokens to increase security- Cross - Platform Development", can be found at this URL: http://hotel.somee.com/swagger/index.html
+- This project uses "ASP.NET Core 7 API - Cross - Platform Development" using Entity Framework to reduce complexity in software maintenance, security uses JWT tokens to increase security- Cross - Platform Development", can be found at this URL: http://hotel.somee.com/index.html
 
 ## Table of Contents
 
