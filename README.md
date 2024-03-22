@@ -1,8 +1,8 @@
 # Hotel Management System with ASP.NET Core 7 API
 
-This repository contains the source code of a hotel management system built using the ASP.NET Core 7 API. The project is designed to support mobile and web applications with the latest version of the .NET Core framework .
-
-This project is a support repository for Hotels that stores customer information, history, room information, services provided, room number, status... "ASP.NET Core 7 API - Cross - Platform Development", can be found at this URL: http://hotel.somee.com/swagger/index.html
+- Is a small and medium hotel management mobile application that helps manage and support hotel business activities, with many outstanding features, downloaded for free on many platforms such as app store, CH play.
+- The project includes main functions such as creating rooms divided into management areas, along with accompanying services such as water, food,..., ordering support and storing historical information , statistics orders that customers have transacted to support information retrieval and future revenue
+- This project uses "ASP.NET Core 7 API - Cross - Platform Development" using Entity Framework to reduce complexity in software maintenance, security uses JWT tokens to increase security- Cross - Platform Development", can be found at this URL: http://hotel.somee.com/swagger/index.html
 
 ## Table of Contents
 
@@ -24,6 +24,7 @@ The project uses the following technologies:
 - AutoMapper
 - JWTBearer
 - serilog
+- ...
 
 ## Getting Started
 
@@ -35,15 +36,41 @@ To get started with the project, follow these steps:
 4. Run the following commands in the root directory of the project to set up the database: `update-database`
 5. Run the following command to start the web application: `dotnet run --project API_HotelManagement`
 
-
 ## Project Structure
+
+```
+API_HotelManagement
+│
+├── API_HotelManagement
+│   ├── Controllers
+│   ├── Logs
+│   ├── appsettings.json
+│   └── Program.cs
+│
+├── API_HotelManagement.Business
+│   ├── Handlers
+│   ├── Services
+│   ├── ModelViews
+│
+├── API_HotelManagement.Common
+│   ├── Utils
+│   ├── Helps
+│   └── AutoMapper
+│
+└─── API_HotelManagement.Data
+    ├── Data
+    ├── Entities
+    ├── Migrations
+    ├── Infrastructures
+    └── DbContext.cs
+```
 
 The solution is composed of the following projects:
 
 - `API_HotelManagement`: Contains the API controllers, version, log.
 - `API_HotelManagement.Business`: Contains the service (IHandler, Handler, ModelView/CreateUpdate).
 - `API_HotelManagement.common`: Contains the Help business, extensions, type, ApiResponse,..
-- `API_HotelManagement.Data`: Contains the Entity, Context.
+- `API_HotelManagement.Data`: Contains the Entity, Context..
 
 ## Featured
 
